@@ -1,1 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fertilizer Recommendation Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e6ffe6;
+            margin: 0;
+            padding: 0;
+        }
 
+        .container {
+            max-width: 500px;
+            margin: 60px auto;
+            padding: 40px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 12px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #2d862d;
+            text-align: center;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            margin-top: 10px;
+            display: block;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .result {
+            margin-top: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #2d862d;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌱 Fertilizer Recommendation Tool</h1>
+
+        <form method="POST">
+            {% csrf_token %}
+            <label for="temperature">Temperature (°C):</label>
+            {{ form.temperature }}
+
+            <label for="humidity">Humidity (%):</label>
+            {{ form.humidity }}
+
+            <label for="moisture">Moisture (%):</label>
+            {{ form.moisture }}
+
+            <label for="soil_type">Soil type:</label>
+            {{ form.soil_type }}
+
+            <label for="crop_type">Crop type:</label>
+            {{ form.crop_type }}
+
+            <label for="nitrogen">Nitrogen Level:</label>
+            {{ form.nitrogen }}
+
+            <label for="potassium">Potassium Level:</label>
+            {{ form.potassium }}
+
+            <label for="phosphorus">Phosphorus Level:</label>
+            {{ form.phosphorus }}
+
+            <button type="submit">Predict Fertilizer</button>
+        </form>
+
+        {% if result %}
+            <div class="result">
+                🌾 {{ result }}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
