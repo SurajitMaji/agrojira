@@ -1,1 +1,66 @@
+{% extends 'systemAdminBase.html'%}
+
+{% load static %}
+{% block title%}
+Home
+{% endblock title%}
+  
+{% block head %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/admin/addCrop.css' %}">
+{% endblock head %}
+
+{%block pagename%} 
+
+{% endblock pagename %}
+{% block adminBody %}
+    <div class="crop-form-area">
+        <h2 style="text-align:center;">Add New Crop</h2>
+        <form id="cropForm" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <label>Admin Id:</label>
+            <select name="admin_id" required>
+                <option value="">Select Type</option>
+                {% for admin in admins %}
+                    <option value="{{admin.admin_id}}"> {{admin.admin_name}} </option>
+                {% endfor %}
+            </select>
+
+            <label>Crop Name:</label>
+            <input type="text" name="crop_name" required>
+
+            <label>Crop Type:</label>
+            <select name="crop_type" required>
+                <option value="">Select Type</option>
+                <option value="Cereal">Cereal</option>
+                <option value="Vegetable">Vegetable</option>
+                <option value="Fruit">Fruit</option>
+                <option value="Medicinal">Medicinal</option>
+                <option value="Oilseeds">Oilseeds</option>
+                <option value="Cash">Cash</option>
+                <option value="Fiber">Fiber</option>
+                <option value="Flower">Flower</option>
+            </select>
+
+            <label>Crop Duration (in days):</label>
+            <input type="number" name="crop_duration" required>
+
+            <label>Crop Season:</label>
+            <input type="text" name="crop_season" required>
+
+            <label>Crop Image:</label>
+            <input type="file" name="crop_image" accept="image/*" class="user_photo" id="user_photo" required onchange="preview(this,'photo_preview')" required>
+            <figure>
+                <img src="" alt="" id="photo_preview" width="100px" height="70px">
+                <figcaption>Uploading Image</figcaption>
+            </figure>
+            <label>Crop Description:</label>
+            <textarea name="crop_description" rows="4" required></textarea>
+
+            <input type="submit" value="Submit Crop">
+        </form>
+    </div>
+{% endblock adminBody %}
+    
 

@@ -1,0 +1,400 @@
+{% extends 'systemAdminBase.html'%}
+
+{% load static %}
+{% block title%}
+Crops
+{% endblock title%}
+  
+{% block head %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/adminEachProject.css' %}">
+{% endblock head %}
+{% block adminBody %}
+
+  <div class="container-project-details">
+    <h1>Crop Farming Information</h1>
+    <div class="project-details-section">
+      <div class="card">
+        {% comment %} {% for cp in crop %} {% endcomment %}
+        <h2>General Information</h2>
+        <p><strong>Name:</strong> {{crop.crop_name}}</p>
+        <p><strong>Growth Duration:</strong> {{crop.crop_duration}}</p>
+        <p><strong>Season:</strong>{{crop.crop_season}} </p>
+        <p><strong>Crop_type :</strong>{{crop.crop_crop_type}} </p>
+        {% comment %} <p><strong>Equipments :</strong>{{crop.crop_name}} </p> {% endcomment %}
+        
+        <p><strong>Photo:</strong> <img src="{{crop.crop_image.url}}"  class="details-image"></p>
+        <p><strong>Description:</strong> {{crop.crop_description}}</p>
+        {% comment %} {% endfor %} {% endcomment %}
+      </div>
+
+      <div class="card">
+        <div class="details-heading">
+          <h2>Soil Requirements</h2>
+          <div class="action-area">
+            {% comment %} <a href="{% url 'adminAddSoil' crop.crop_id %}" class="add-btn">Add</a> {% endcomment %}
+
+            {% comment %} {% if crop.crop_id %}
+    <a href="{% url 'adminAddSoil' crop.crop_id %}" class="add-btn">Add</a>
+{% else %}
+    <span class="add-btn disabled">No Crop ID</span>
+{% endif %} {% endcomment %}
+
+
+             {% if crop.crop_id %}
+    <a href="{% url 'adminAddSoil' crop.crop_id %}" class="add-btn">Add</a>
+{% endif %} 
+
+           <a href="" class="edit-btn">Edit</a>
+            <a href="" class="remove-btn">Remove</a>
+          </div>
+        </div>
+        {% if soils %}
+        {% for soil in soils %}
+        <p><strong>Soil Type:</strong> {{soil.soil_type}}</p>
+        <p><strong>pH Range:</strong> 6.0 – 7.5</p>
+        <p><strong>Nutrients:</strong> {{soil.nutrients}}</p>
+        <p><strong>Structure:</strong>{{soil.structure}}</p>
+        <p><strong>Water Holding Capacity:</strong>{{soil.water_holding_capacity}} </p>
+        <p><strong>Drainage:</strong>{{soil.drainage}} </p>
+        <p><strong>Organic Matter:</strong> {{soil.organic_matter}} </p>
+        <p><strong>Soil Depth:</strong>{{soil.soil_depth}} </p>
+        <p><strong> Equipments:</strong>{{soil.equipments}}</p>
+        <p><strong> Image:</strong> <img src="
+          {% if soil.soil_image %}
+          {{ soil.soil_image.url }}
+          {% endif %} 
+          " class="details-image"></p>        
+        <p><strong>Description:</strong> {{soil.description}} </p>
+        {% endfor %}
+        {% endif %}
+      </div> 
+    
+
+
+      <div class="card">
+        <div class="details-heading">
+        <h2>Seed Details</h2> 
+          <div class="action-area">
+            {% if crop.crop_id %}
+    <a href="{% url 'adminAddSeed' crop.crop_id %}"class="add-btn">Add</a>
+{% endif %} 
+            <a href="" class="edit-btn">Edit</a>
+            <a href="" class="remove-btn">Remove</a>
+          </div>
+        </div>
+        {% if seeds %}
+        {% for seed in seeds %}
+        <p><strong>Variety:</strong>{{seed.variety }}</p>
+        <p><strong>Rate per Acre:</strong> {{seed.rate_per_area}}</p>
+        <p><strong>Source:</strong> {{seed.source}} </p>
+        <p><strong>Germination Percentage:</strong> {{seed.germination_percentage}} </p>
+        <p><strong>Purity Percentage:</strong> {{seed.purity_percentage}} </p>
+        <p><strong>Moisture Content:</strong> {{seed.moisture_content}} </p>
+        <p><strong> Equipments:</strong>{{seed.equipments}} </p>
+        <p><strong> Image:</strong> <img src="
+          {% if seed.seed_image %}
+          {{seed.seed_image.url}}
+          {% endif %}
+          " class="details-image"></p>
+        <p><strong>Description:</strong>{{seed.description}}</p>
+        {% endfor %}
+        {% endif %}
+      </div>
+
+      <div class="card">
+        <div class="details-heading">
+        <h2>Sowing Process</h2> 
+          <div class="action-area">
+            <a href="/adminAddSowing" class="add-btn">Add</a>
+            <a href="" class="edit-btn">Edit</a>
+            <a href="" class="remove-btn">Remove</a>
+          </div>
+        </div>
+        {% if sowings %}
+        {% for sowing in sowings  %}
+        <p><strong>Method:</strong>{{sowing.method}} </p>
+        <p><strong>Spacing:</strong>{{sowing.spacing}} </p>
+        <p><strong>Depth:</strong>{{sowing.depth}}</p>
+        <p><strong>Best Time:</strong>{{sowing.best_time }}</p>
+        <p><strong>Land Preparation:</strong>{{sowing.land_preparation}}</p>
+        <p><strong>Soil Moisture:</strong> {{sowing.soil_moisture}}</p> 
+        <p><strong>Sowing Tools :</strong> {{sowing.sowing_tools}}</p>
+        <p><strong>Seed Coverage:</strong> {{sowing.seed_coverage}}</p>
+        <p><strong>Pre-sowing Irrigation:</strong>{{sowing.pre_sowing_irrigation}}</p>
+        <p><strong>Post-sowing Practices:</strong> {{sowing.post_sowing_practice}}</p>
+        <p><strong> Equipments:</strong>{{sowing.depth}}</p>
+        <p><strong> Image:</strong>  <img src="
+          {% if sowing.sowing_image %}
+          {{sowing.sowing_image.url}}
+          {% endif %}
+          " class="details-image"></p>
+        <p><strong>Description:</strong> {{sowing.description}}</p>
+          {% endfor %}
+          {% endif %}
+          
+      </div>
+      <div class="card">
+        <div class="details-heading">
+        <h2>Irrigation Details</h2> 
+          <div class="action-area">
+            <a href="/adminAddIrrigation" class="add-btn">Add</a>
+            <a href="" class="edit-btn">Edit</a>
+            <a href="" class="remove-btn">Remove</a>
+          </div>
+        </div>
+        {% if irrigations %}
+        {% for irrigation in irrigations %}
+        <p><strong>Irrigation Method:</strong>{{irrigation.irrigation_method}} </p>
+        <p><strong>Variety:</strong>{{irrigation.variety}}</p>
+        <p><strong>Rate per Acre:</strong> {{irrigation.rate_per_area}}</p>
+        <p><strong>Source:</strong> {{irrigation.source}}</p>
+        <p><strong>Irrigation Timing:</strong> {{irrigation.irrigation_timing}}</p>
+        <p><strong>Water Quantity (Volume):</strong> {{irrigation.water_quantity}}</p>
+        <p><strong>Water Quality:</strong> {{irrigation.water_quality}}</p>
+        <p><strong>Drainage Considerations:</strong>{{irrigation.drainage_considerations}}</p>
+        <p><strong> Automation or Control System:</strong>{{irrigation.control_system}}</p>
+        <p><strong> Equipments:</strong>{{irrigation.equipment}}</p>
+        <p><strong> Image:</strong> <img src="
+          {% if irrigation.irrigation_image %}
+          {{irrigation.irrigation_image.url}}
+          {% endif %}
+          " class="details-image"></p>
+        <p><strong>Description:</strong> {{irrigation.description}}</p>
+          {% endfor %}
+          {% endif %}
+      </div>
+      <div class="card">
+         <div class="details-heading">
+        <h2>Fertilizer Details</h2>
+          <div class="action-area">
+            <a href="/adminAddFertilizer" class="add-btn">Add</a>
+            <a href="" class="edit-btn">Edit</a>
+            <a href="" class="remove-btn">Remove</a>
+          </div>
+        </div>
+        {% if fertilizers %}
+        {% for fertilizer in fertilizers %}
+
+        <p><strong>Organic - Compost:</strong>{{fertilizer.organic_compost}} </p>
+        <p><strong>Chemical - Urea:</strong>{{fertilizer.chemical_urea}}</p>
+        <p><strong>Chemical - DAP:</strong>{{fertilizer.chemical_dap}}</p>
+        <p><strong>Nutrient Composition:</strong>{{fertilizer.nurient_composition}}</p>
+        <p><strong>Application Method:</strong>{{fertilizer.application_method}}</p>
+        <p><strong>Application Timing:</strong>{{fertilizer.application_timing}}</p>
+        <p><strong>Application Frequency:</strong>{{fertilizer.application_frequency}} </p>
+        <p><strong>Dosage (Quantity):</strong>{{fertilizer.dosage}}</p>
+        <p><strong>Storage and Handling:</strong>{{fertilizer.storage}}</p>
+        <p><strong> Equipments:</strong>{{fertilizer.equipments}}</p>
+        <p><strong> Image:</strong> <img src="
+          {% if fertilizer.fertilizer_image %}
+          {{fertilizer.fertilizer_image.url}}
+          {% endif %}
+          " class="details-image"></p>
+        <p><strong>Description:</strong>{{fertilizer.description}}</p>
+        {% endfor %}
+        {% endif %}
+
+      </div>
+      <div class="card">
+        <div class="details-heading">
+        <h2>Pest Details</h2> 
+          <div class="action-area">
+            <a href="/adminAddPest" class="add-btn">Add</a>
+            <a href="" class="edit-btn">Edit</a>
+            <a href="" class="remove-btn">Remove</a>
+          </div>
+        </div>
+        {% if pests %}
+        {% for pest in pests %}
+        <p><strong>Pest Name:</strong>{{pest.pest_name}}</p>
+        <p><strong>Pest Category or Type:</strong> {{pest.pest_type}}</p>
+        <p><strong>Pest Life Cycle:</strong> {{pest.pest_life_cycle}}</p>
+        <p><strong>Symptoms of Pest Infestation:</strong>{{pest.symptoms}}</p>
+        <p><strong>Affected Plant Parts:</strong>{{pest.affected_plant_parts}}</p>
+        <p><strong>Pest Seasonality:</strong>{{pest.pest_seasonality}}</p>
+        <p><strong>Pest Damage Level or Severity:</strong>{{pest.pest_damage_level}} </p>
+        <p><strong>Monitoring and Detection Methods:</strong>{{pest.detection_method}}</p>
+        <p><strong>Control Measures:</strong>{{pest.control_measures}}</p>
+        <p><strong>Recommended Pesticides:</strong>{{pest.recommended_pesticides}} </p>
+        <p><strong>Resistance Risk:</strong>{{pest.resistance_risk}}</p>
+        <p><strong>Safety and Environmental Impact:</strong> {{pest.environment_effect}}</p>
+        <p><strong>Farmer-Friendly Tips:</strong>{{pest.friendly_tips}}</p>
+        <p><strong> Equipments:</strong>{{pest.equipments}}</p>
+        <p><strong> Image:</strong> <img src="
+          {% if pest.pest_image %}
+          {{pest.pest_image.url}}
+          {% endif %}
+          " class="details-image"></p>
+        <p><strong>Description:</strong> {{pest.description}}</p>
+        {% endfor %}
+        {% endif %}
+      </div>
+      <div class="card">
+        <div class="details-heading">
+        <h2>Weed Details</h2> 
+          <div class="action-area">
+            <a href="/adminAddWeed" class="add-btn">Add</a>
+            <a href="" class="edit-btn">Edit</a>
+            <a href="" class="remove-btn">Remove</a>
+          </div>
+        </div>
+        {% if weeds %}
+        {% for weed in weeds %}
+
+        <p><strong>Weed Name:</strong>{{weed.weed_name}} </p>
+        <p><strong>Weed Type:</strong>{{weed.weed_type}}</p>
+        <p><strong>Growth Habit:</strong>{{weed.growth_habit}}</p>
+        <p><strong>Life Cycle:</strong>{{weed.life_cycle}}</p>
+        <p><strong>Time of Appearance / Seasonality:</strong>{{weed.time_of_appearence}}</p>
+        <p><strong>Affected Crop Growth Stage:</strong>{{weed.affected_crop_growth_stage}}</p>
+        <p><strong>Area of Infestation:</strong>{{weed.area_of_infestation}}</p>
+        <p><strong>Competitive Impact on Crop:</strong>{{weed.competitive_impact_on_crop}}</p>
+        <p><strong>Leaf shape:</strong> {{weed.leaf_shape}}</p>
+        <p><strong>Leaf Color:</strong>{{weed.leaf_color}}</p>
+        <p><strong>Root structure:</strong>{{weed.root_structure}}</p>
+        <p><strong>Control Measures:</strong>{{weed.control_measures}}</p>
+        <p><strong>Name of herbicide:</strong>{{weed.herbicide_name}} </p>
+        <p><strong>Dosage and dilution:</strong>{{weed.dosage}} </p>
+        <p><strong>Application timing:</strong>{{weed.application_time}} </p>
+        {% comment %} <p><strong>Pre-harvest interval:</strong> </p> {% endcomment %}
+        <p><strong>Herbicide Resistance Risk:</strong> {{weed.herbicide_resistance_risk}}</p>
+        <p><strong>Weed Dispersal Method:</strong>{{weed.weed_dispersal_method}}</p>
+        <p><strong>Impact on Human or Animal Health:</strong>{{weed.environment_effect}}</p>
+        <p><strong> Equipments:</strong>{{weed.equipments}}</p>
+        <p><strong> Image:</strong> <img src="
+          {% if weed.weed_image %}
+          {{weed.weed_image.url}}
+          {% endif %}
+          " class="details-image"></p>
+        <p><strong>Description:</strong> {{weed.description}}</p>
+        {% endfor %}
+        {% endif %}
+      </div>
+      <div class="card">
+        <div class="details-heading">
+        <h2>Disease Details</h2> 
+          <div class="action-area">
+            <a href="/adminAddDisease" class="add-btn">Add</a>
+            <a href="" class="edit-btn">Edit</a>
+            <a href="" class="remove-btn">Remove</a>
+          </div>
+        </div>
+        {% if harvestings %}
+        {% for harvesting in harvestings %}
+        <p><strong> Disease Name:</strong>{{disease.disease_name}} </p>
+        <p><strong>Causal Organism:</strong>{{disease.causal_organism}}</p>
+        <p><strong>Mode of Transmission:</strong> {{disease.mode_of_transmission }}</p>
+        <p><strong>Symptoms:</strong>{{disease.symptoms}}</p>
+        <p><strong>Affected Plant Parts:</strong> {{disease.affected_plant_parts}}</p>
+        <p><strong>Disease Cycle or Progression:</strong>{{disease.disease_cycle}}</p>
+        <p><strong>Favorable Conditions for Disease:</strong>{{disease.favorable_condition_for_disease}}</p>
+        <p><strong>Seasonality:</strong>{{disease.seasonality}}</p>
+        <p><strong>Methods of Diagnosis:</strong>{{disease.method_of_diagnosis}}</p>
+        <p><strong>Control Measures:</strong>{{disease.control_measures}}</p>
+        <p><strong>Recommended Pesticides Name:</strong>{{disease.medicine_name}}  </p>
+        <p><strong>Pesticide dosage and dilution:</strong>{{disease.dosage}}  </p>
+        <p><strong>Pesticide application method and frequency:</strong>{{disease.application_method}}  </p>
+        <p><strong>Impact on Yield and Crop Quality:</strong>{{disease.impact_on_crop_quality}}</p>
+        <p><strong>Resistance Risk:</strong> {{disease.resistance_risk}} </p>
+        <p><strong>Geographic Spread:</strong> {{disease.geographic_spread}}</p>
+        <p><strong>Human and Animal Safety:</strong>{{disease.environment_effect_of_medicine}}</p>
+        <p><strong> Equipments:</strong>{{disease.equipments }}</p>
+        <p><strong> Image:</strong> <img src="
+          {% if disease.disease_image %}
+          {{disease.disease_image.url}}
+          {% endif %}
+          " class="details-image"></p>
+        <p><strong>Description:</strong> {{disease.description}}</p>
+        {% endfor %}
+        {% endif %}
+      </div>
+
+      <div class="card">
+         <div class="details-heading">
+        <h2>Harvesting</h2>
+          <div class="action-area">
+            <a href="/adminAddHarvesting" class="add-btn">Add</a>
+            <a href="" class="edit-btn">Edit</a>
+            <a href="" class="remove-btn">Remove</a>
+          </div>
+        </div>
+        {% if diseases %}
+        {% for disease in diseases %}
+        <p><strong>Time:</strong> {{harvesting.time}} </p>
+        <p><strong>Drying:</strong> {{harvesting.drying}}</p>
+        <p><strong>Storage:</strong> {{harvesting.storage}}</p>
+        <p><strong>Optimal Harvesting Period:</strong> {{harvesting.optimal_harvesting_period}} </p>
+        <p><strong>Method of Harvesting:</strong>{{harvesting.method_of_harvesting}}</p>
+        <p><strong>Tools and Equipment Used:</strong>{{harvesting.equipments}}</p>
+         <p><strong>Labor Requirement:</strong>{{harvesting.labor_requirement}}</p>
+        <p><strong>Yield Estimate:</strong> {{harvesting.yield_quantity}}</p>
+        <p><strong>Moisture Content at Harvest:</strong>{{harvesting.moisture_content}}</p>
+        <p><strong>Post-Harvest Handling:</strong> {{harvesting.post_harvesting_handling}}</p>
+        <p><strong>Transportation Requirements:</strong> {{harvesting.transportation_requirement}}</p>
+        <p><strong>Challenges During Harvesting:</strong> {{harvesting.challenges}}</p>
+        <p><strong>Crop Loss Percentage:</strong>{{harvesting.crop_loss_percentage}}</p>
+        <p><strong>Market Readiness:</strong>  {{harvesting.market_readiness}}</p>
+        <p><strong> Image:</strong> <img src="
+          {% if harvesting.harvesting_image %}
+          {{harvesting.harvesting_image.url}}
+          {% endif %}
+          
+          " class="details-image"></p>
+        <p><strong>Safety & Hygiene Practices:</strong> {{harvesting.safty_practice}}</p>
+        <p><strong>Description:</strong> {{harvesting.description}}</p>
+        {% endfor %}
+        {% endif %}
+      </div>
+      <div class="card">
+        <div class="details-heading">
+        <h2>Post Harvesting Details</h2> 
+          <div class="action-area">
+            <a href="/adminAddPostHarvesting" class="add-btn">Add</a>
+            <a href="" class="edit-btn">Edit</a>
+            <a href="" class="remove-btn">Remove</a>
+          </div>
+        </div>
+        {% if postHarvestings %}
+        {% for postHarvesting in postHarvestings %}
+        
+        <p><strong>Cleaning:</strong>{{postHarvesting.cleaning}}</p>
+        <p><strong>Sorting and Grading:</strong>{{postHarvesting.sorting}}</p>
+        <p><strong> Drying:</strong>{{postHarvesting.drying}}</p>
+        <p><strong> Curing :</strong>{{postHarvesting.curing}} </p>
+        <p><strong>Packaging :</strong>{{postHarvesting.packaging}} </p>
+        <p><strong>Storage :</strong> {{postHarvesting.storage}}</p>
+        <p><strong> Waste Management:</strong>{{postHarvesting.waste_management}} </p>
+        <p><strong>Market Preparation :</strong>{{postHarvesting.market_preparation}} </p>
+        <p><strong> Equipments:</strong>{{postHarvesting.equipments}}</p>
+        <p><strong> Image:</strong> <img src="
+          {% if postHarvesting.post_harvesting_image %}
+          {{postHarvesting.post_harvesting_image.url}}
+          {% endif %}
+          " class="details-image"></p>
+        <p><strong> Description:</strong> {{postHarvesting.description}}</p>
+        {% endfor %}
+        {% endif %}
+      </div>
+      <div class="card">
+        <div class="details-heading">
+        <h2>Others Details</h2> 
+          <div class="action-area">
+            <a href="/adminAddOthers" class="add-btn">Add</a>
+            <a href="" class="edit-btn">Edit</a>
+            <a href="" class="remove-btn">Remove</a>
+          </div>
+        </div>
+        <p><strong> Properties Name: </strong>Details</p>
+        <p><strong>Description</strong> </p> 
+      </div>
+    </div>
+  </div>
+
+
+
+{% endblock adminBody %}
+{% block javaScript%}
+{% endblock javaScript%}
+
+    

@@ -1,0 +1,68 @@
+{% extends 'systemAdminBase.html'%}
+
+{% load static %}
+{% block title%}
+Crops
+{% endblock title%}
+  
+{% block head %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/admin/cropDetailsAddForm.css' %}">
+{% endblock head %}
+
+{% block adminBody %}
+<div class="form-container">
+    <h2 style="text-align:center;">Add Post-Harvesting Info</h2>
+    <form method="POST" action="{% if crop_id %}{% url 'adminAddPostHarvesting' crop_id %}{% else %}{% url 'adminAddPostHarvesting' %}{% endif %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label>Crop:</label>
+        <select name="admin_crop" required>
+            <option value="">Select Crop</option>
+            {% for crop in crops %}
+            <option value="{{ crop.crop_id }}" {% if crop.crop_id == crop_id %}selected{% endif %}>{{ crop.crop_name }}</option>
+            {% endfor %}
+        </select>
+
+        <label>Cleaning:</label>
+        <textarea name="cleaning" required></textarea>
+
+        <label>Sorting:</label>
+        <textarea name="sorting" required></textarea>
+
+        <label>Drying:</label>
+        <textarea name="drying" required></textarea>
+
+        <label>Curing:</label>
+        <textarea name="curing" required></textarea>
+
+        <label>Packaging:</label>
+        <textarea name="packaging" required></textarea>
+
+        <label>Storage:</label>
+        <textarea name="storage" required></textarea>
+
+        <label>Waste Management:</label>
+        <textarea name="waste_management" required></textarea>
+
+        <label>Market Preparation:</label>
+        <textarea name="market_preparation" required></textarea>
+
+        <label>Equipments:</label>
+        <textarea name="equipments" required></textarea>
+
+        <label>Post-Harvesting Image:</label>
+        <input type="file" name="post_harvesting_image" accept="image/*" onchange="previewImage(this)">
+        <img id="preview" alt="Image Preview"/>
+
+        <label>Description:</label>
+        <textarea name="description" required></textarea>
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
+{% endblock adminBody %}
+{% block javaScript%}
+<script src="{% static 'js/admin/formImagePreview.js' %}"></script>
+{% endblock javaScript%}
+    
+

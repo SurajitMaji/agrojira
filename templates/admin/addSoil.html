@@ -1,0 +1,68 @@
+{% extends 'systemAdminBase.html'%}
+
+{% load static %}
+{% block title%}
+Crops
+{% endblock title%}
+  
+{% block head %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/admin/cropDetailsAddForm.css' %}">
+{% endblock head %}
+
+{% block adminBody %}
+<div class="form-container">
+    <h2>Add Soil Information</h2>
+    <form method="POST" action="{% if crop_id %}{% url 'adminAddSoil' crop_id %}{% else %}{% url 'adminAddSoil' %}{% endif %}"  enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="admin_crop">Select Crop:</label>
+        <select name="admin_crop" id="admin_crop" required>
+            <option value="">Select a crop</option>
+{% for crop in crops %}
+    <option value="{{ crop.crop_id }}" {% if crop.crop_id == crop_id %}selected{% endif %}>
+        {{ crop.crop_name }}
+    </option>
+{% endfor %}
+
+        </select>
+
+        <label>Soil Type:</label>
+        <input type="text" name="soil_type" required>
+
+        <label>Nutrients:</label>
+        <textarea name="nutrients" required></textarea>
+
+        <label>Structure:</label>
+        <input type="text" name="structure" required>
+
+        <label>Water Holding Capacity:</label>
+        <input type="text" name="water_holding_capacity" required>
+
+        <label>Drainage:</label>
+        <input type="text" name="drainage" required>
+
+        <label>Organic Matter:</label>
+        <input type="text" name="organic_matter" required>
+
+        <label>Soil Depth:</label>
+        <input type="text" name="soil_depth" required>
+
+        <label>Equipments:</label>
+        <input type="text" name="equipments" required>
+
+        <label>Soil Image:</label>
+        <input type="file" name="soil_image" accept="image/*" required>
+
+        <label>Description:</label>
+        <textarea name="description" required></textarea>
+
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
+{% endblock adminBody %}
+{% block javaScript%}
+<script src="{% static 'js/admin/formImagePreview.js' %}"></script>
+{% endblock javaScript%}
+
+    

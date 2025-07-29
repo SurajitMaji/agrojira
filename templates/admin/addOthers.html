@@ -1,0 +1,47 @@
+{% extends 'systemAdminBase.html'%}
+
+{% load static %}
+{% block title%}
+Crops
+{% endblock title%}
+  
+{% block head %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/admin/cropDetailsAddForm.css' %}">
+{% endblock head %}
+
+{% block adminBody %}
+<div class="form-container">
+    <h2 style="text-align:center;">Add Other Property</h2>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <label for="crop">Select Crop:</label>
+    <select name="crop" required>
+        <option value="">-- Select Crop --</option>
+        {% for crop in crops %}
+            <option value="{{ crop.pk }}">{{ crop.crop_name }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="property_name">Property Name:</label>
+    <input type="text" name="property_name" required>
+
+    <label for="property_image">Property Image:</label>
+    <input type="file" name="property_image" accept="image/*" onchange="previewImage(event)" required>
+    <img id="imagePreview" style="display: none;" />
+
+    <label for="description">Description:</label>
+    <textarea name="description" rows="5" required></textarea>
+
+    <input type="submit" value="Submit">
+</form>
+
+</div>
+{% endblock adminBody %}
+{% block javaScript%}
+<script src="{% static 'js/admin/formImagePreview.js' %}"></script>
+{% endblock javaScript%}
+    
+

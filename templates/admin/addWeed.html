@@ -1,0 +1,63 @@
+{% extends 'systemAdminBase.html'%}
+
+{% load static %}
+{% block title%}
+Crops
+{% endblock title%}
+  
+{% block head %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/admin/cropDetailsAddForm.css' %}">
+{% endblock head %}
+
+{% block adminBody %}
+
+<div class="form-container">
+    <h2>Add Weed Info</h2>
+    <form method="POST" action="{% if crop_id %}{% url 'adminAddWeed' crop_id %}{% else %}{% url 'adminAddWeed' %}{% endif %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label>Select Crop:</label>
+        <select name="crop" id="admin_crop" required>
+            <option value="">Select a crop</option>
+            {% for crop in crops %}
+            <option value="{{ crop.crop_id }}" {% if crop.crop_id == crop_id %}selected{% endif %}>{{ crop.crop_name }}</option>
+            {% endfor %}
+        </select>
+
+        <input type="text" name="weed_name" placeholder="Weed Name" required>
+        <input type="text" name="weed_type" placeholder="Weed Type" required>
+        <input type="text" name="growth_habit" placeholder="Growth Habit">
+        <input type="text" name="life_cycle" placeholder="Life Cycle">
+        <input type="text" name="time_of_appearence" placeholder="Time of Appearance">
+        <input type="text" name="affected_crop_growth_stage" placeholder="Affected Crop Growth Stage">
+        <textarea name="area_of_infestation" placeholder="Area of Infestation"></textarea>
+        <textarea name="competitive_impact_on_crop" placeholder="Competitive Impact on Crop"></textarea>
+        <input type="text" name="leaf_shape" placeholder="Leaf Shape">
+        <input type="text" name="leaf_color" placeholder="Leaf Color">
+        <textarea name="root_structure" placeholder="Root Structure"></textarea>
+        <textarea name="control_measures" placeholder="Control Measures"></textarea>
+        <input type="text" name="herbicide_name" placeholder="Herbicide Name">
+        <input type="text" name="dosage" placeholder="Dosage">
+        <input type="text" name="application_time" placeholder="Application Time">
+        <textarea name="herbicide_resistance_risk" placeholder="Herbicide Resistance Risk"></textarea>
+        <textarea name="weed_dispersal_method" placeholder="Weed Dispersal Method"></textarea>
+        <textarea name="environment_effect" placeholder="Environmental Effect"></textarea>
+        <input type="text" name="equipments" placeholder="Equipments">
+        
+        <label>Weed Image:</label>
+        <input type="file" name="weed_image" accept="image/*" onchange="previewImage(event)">
+        <img id="imagePreview" class="preview" src="#" style="display: none;" />
+
+        <textarea name="description" placeholder="Description"></textarea>
+
+        <input type="submit" value="Add Weed">
+    </form>
+</div>
+
+
+{% endblock adminBody %}
+{% block javaScript%}
+<script src="{% static 'js/admin/formImagePreview.js' %}"></script>
+{% endblock javaScript%}
+    
+

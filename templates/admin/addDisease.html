@@ -1,0 +1,98 @@
+{% extends 'systemAdminBase.html'%}
+
+{% load static %}
+{% block title%}
+Crops
+{% endblock title%}
+  
+{% block head %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/admin/cropDetailsAddForm.css' %}">
+{% endblock head %}
+
+{% block adminBody %}
+<div class="form-container">
+    
+    <h2 style="text-align:center;">Add Disease</h2>
+    <form method="POST" action="{% if crop_id %}{% url 'adminAddDisease' crop_id %}{% else %}{% url 'adminAddDisease' %}{% endif %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <label for="crop_id">Select Crop</label>
+        <select name="admin_crop" required>
+            <option value="">--Select Crop--</option>
+            {% for crop in crops %}
+            <option value="{{ crop.crop_id }}" {% if crop.crop_id == crop_id %}selected{% endif %}>{{ crop.crop_name }}</option>
+            {% endfor %}
+        </select>
+
+        <label>Disease Name</label>
+        <input type="text" name="disease_name" required>
+
+        <label>Causal Organism</label>
+        <input type="text" name="causal_organism">
+
+        <label>Mode of Transmission</label>
+        <input type="text" name="mode_of_transmission">
+
+        <label>Symptoms</label>
+        <textarea name="symptoms" rows="2"></textarea>
+
+        <label>Affected Plant Parts</label>
+        <textarea name="affected_plant_parts" rows="2"></textarea>
+
+        <label>Disease Cycle</label>
+        <textarea name="disease_cycle" rows="2"></textarea>
+
+        <label>Favorable Condition</label>
+        <textarea name="favorable_condition_for_disease" rows="2"></textarea>
+
+        <label>Seasonality</label>
+        <input type="text" name="seasonality">
+
+        <label>Method of Diagnosis</label>
+        <textarea name="method_of_diagnosis" rows="2"></textarea>
+
+        <label>Control Measures</label>
+        <textarea name="control_measures" rows="2"></textarea>
+
+        <label>Medicine Name</label>
+        <input type="text" name="medicine_name">
+
+        <label>Dosage</label>
+        <input type="text" name="dosage">
+
+        <label>Application Method</label>
+        <input type="text" name="application_method">
+
+        <label>Impact on Crop Quality</label>
+        <textarea name="impact_on_crop_quality" rows="2"></textarea>
+
+        <label>Resistance Risk</label>
+        <input type="text" name="resistance_risk">
+
+        <label>Geographic Spread</label>
+        <textarea name="geographic_spread" rows="2"></textarea>
+
+        <label>Environmental Effect of Medicine</label>
+        <textarea name="environment_effect_of_medicine" rows="2"></textarea>
+
+        <label>Equipments</label>
+        <input type="text" name="equipments">
+
+        <label>Disease Image</label>
+        <input type="file" name="disease_image" accept="image/*" onchange="previewImage(event)">
+        <img id="preview" src="#" alt="Image Preview" style="display:none;"/>
+
+        <label>Description</label>
+        <textarea name="description" rows="3"></textarea>
+
+        <button type="submit">Submit</button>
+    </form>
+
+</div>
+{% endblock adminBody %}
+{% block javaScript%}
+<script src="{% static 'js/admin/formImagePreview.js' %}"></script>
+{% endblock javaScript%}
+    
+

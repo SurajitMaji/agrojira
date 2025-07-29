@@ -1,0 +1,76 @@
+{% extends 'systemAdminBase.html'%}
+
+{% load static %}
+{% block title%}
+Crops
+{% endblock title%}
+  
+{% block head %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/admin/cropDetailsAddForm.css' %}">
+{% endblock head %}
+
+{% block adminBody %}
+<div class="form-container">
+    <h2>Add Fertilizer Information</h2>
+    <form method="POST" action="{% if crop_id %}{% url 'adminAddFertilizer' crop_id %}{% else %}{% url 'adminAddFertilizer' %}{% endif %}" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <label>Select Crop:</label>
+      <select name="crop" id="admin_crop" required>
+        <option value="">Select a crop</option>
+        {% for crop in crops %}
+        <option value="{{ crop.crop_id }}" {% if crop.crop_id == crop_id %}selected{% endif %}>{{ crop.crop_name }}
+        </option>
+        {% endfor %}
+      </select>
+      
+
+      <label>Organic Compost:</label>
+      <input type="text" name="organic_compost" required>
+
+      <label>Chemical Urea:</label>
+      <input type="text" name="chemical_urea" required>
+
+      <label>Chemical DAP:</label>
+      <input type="text" name="chemical_dap" required>
+
+      <label>Nutrient Composition:</label>
+      <textarea name="nurient_composition" rows="3" required></textarea>
+
+      <label>Application Method:</label>
+      <input type="text" name="application_method" required>
+
+      <label>Application Timing:</label>
+      <input type="text" name="application_timing" required>
+
+      <label>Application Frequency:</label>
+      <input type="text" name="application_frequency" required>
+
+      <label>Dosage:</label>
+      <input type="text" name="dosage" required>
+
+      <label>Storage:</label>
+      <input type="text" name="storage" required>
+
+      <label>Equipments:</label>
+      <input type="text" name="equipments" required>
+
+      <label>Fertilizer Image:</label>
+      <input type="file" name="fertilizer_image" accept="image/*" onchange="previewImage(event)" required>
+      <img id="preview" style="display:none; max-width:100%; margin-top:10px;" />
+
+      <label>Description:</label>
+      <textarea name="description" rows="4" required></textarea>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+
+{% endblock adminBody %}
+{% block javaScript%}
+<script src="{% static 'js/admin/formImagePreview.js' %}"></script>
+{% endblock javaScript%}
+    
+

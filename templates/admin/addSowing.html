@@ -1,0 +1,80 @@
+{% extends 'systemAdminBase.html'%}
+
+{% load static %}
+{% block title%}
+Crops
+{% endblock title%}
+  
+{% block head %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/admin/cropDetailsAddForm.css' %}">
+{% endblock head %}
+
+{% block adminBody %}
+<div class="form-container">
+    <h2>Add Sowing Information</h2>
+    <form method="POST" action="{% if crop_id %}{% url 'adminAddSowing' crop_id %}{% else %}{% url 'adminAddSowing' %}{% endif %}"  enctype="multipart/form-data">
+    
+        {% csrf_token %}
+        
+        <label>Select Crop:</label>
+        <select name="admin_crop" id="admin_crop" required>
+            <option value="">Select a crop</option>
+{% for crop in crops %}
+    <option value="{{ crop.crop_id }}" {% if crop.crop_id == crop_id %}selected{% endif %}>
+        {{ crop.crop_name }}
+    </option>
+{% endfor %}
+        </select>
+        
+
+        <label>Method:</label>
+        <input type="text" name="method" required>
+
+        <label>Spacing:</label>
+        <input type="text" name="spacing" required>
+
+        <label>Depth:</label>
+        <input type="text" name="depth" required>
+
+        <label>Best Time:</label>
+        <input type="text" name="best_time" required>
+
+        <label>Land Preparation:</label>
+        <textarea name="land_preparation" rows="3" required></textarea>
+
+        <label>Soil Moisture:</label>
+        <input type="text" name="soil_moisture" required>
+
+        <label>Sowing Tools:</label>
+        <input type="text" name="sowing_tools" required>
+
+        <label>Seed Coverage:</label>
+        <input type="text" name="seed_coverage" required>
+
+        <label>Pre-sowing Irrigation:</label>
+        <textarea name="pre_sowing_irrigation" rows="3" required></textarea>
+
+        <label>Post-sowing Practice:</label>
+        <textarea name="post_sowing_practice" rows="3" required></textarea>
+
+        <label>Sowing Image:</label>
+        <input type="file" name="sowing_image" accept="image/*" onchange="previewImage(event)" required>
+        <figure>
+            <img id="preview" src="#" alt="Image Preview" style="display:none; max-width: 100%; margin-top: 10px;">
+            <figcaption>Image Preview</figcaption>
+        </figure>
+
+        <label>Description:</label>
+        <textarea name="description" rows="4" required></textarea>
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+{% endblock adminBody %}
+{% block javaScript%}
+<script src="{% static 'js/admin/formImagePreview.js' %}"></script>
+{% endblock javaScript%}
+    
+
