@@ -1,0 +1,103 @@
+{% extends 'base.html'%}
+
+{% load static %}
+{% block title%}
+Login
+{% endblock title%}
+  
+{% block head %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/' %}">
+{% endblock head %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Submit Your Query</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .add-new-query-container {
+            margin:20px 0px;
+            padding:10px;
+        }
+
+        .add-new-query-container .container {
+            max-width: 600px;
+            background: #fff;
+            padding: 20px;
+            margin: auto;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .add-new-query-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .add-new-query-container  label {
+            display: block;
+            margin-top: 15px;
+        }
+
+        .add-new-query-container input[type="text"], 
+        .add-new-query-container textarea, 
+        .add-new-query-container input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin-top: 5px;
+            border-radius: 4px;
+        }
+
+        .add-new-query-container  button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            background-color: #28a745;
+            color: white;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .add-new-query-container button:hover {
+            background-color: #218838;
+        }
+
+        @media (max-width: 600px) {
+            .add-new-query-container  .container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<div class="add-new-query-container">
+    <div class="container">
+        <h2>Submit Your Query</h2>
+        <form id="queryForm" method="POST" action="addQuery" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="query_title">Query Title</label>
+            <input type="text" name="query_title" id="query_title" required>
+
+            <label for="query_text">Describe Your Problem</label>
+            <textarea name="query_text" id="query_text" rows="5" required></textarea>
+
+            <label for="query_image">Upload Image (Optional)</label>
+            <input type="file" name="query_image" id="query_image" accept="image/*">
+
+            <button type="submit">Submit Query</button>
+        </form>
+    </div>
+</div >
+</html>
+
+{% endblock body %}
+    
+{% block javaScript%}
+
+    <script src="{% static 'js/imagePreview.js' %}"></script>
+{% endblock javaScript%}
+

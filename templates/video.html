@@ -1,0 +1,71 @@
+{% extends 'base.html'%}
+
+{% load static %}
+{% block title%}
+Home
+{% endblock title%}
+  
+{% block head %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/video.css' %}">
+<style>
+
+</style>
+{% endblock head %}
+    {% block body %}
+
+    <main>
+        {% comment %} <section id="live-videos">
+            <h2>Live Videos</h2>
+            <div class="video-container">
+                {% for i in count %}
+                
+                    <a href="#" class="video-content">
+                        <img src="{% static 'image/germination3.jpg'%}" alt="" class="video-image">
+                        <h3>Video heading</h3>
+                        <p>Video Description</p>
+                    </a>                
+                {% endfor %}
+            </div>
+        </section> {% endcomment %}
+         <section id="recorded-videos">
+            <h2>Recorded Videos</h2>
+            <div class="video-container">
+                {% for  video in videos %}
+                    <a href="{% url "playingRecordedVideo" video.video_id%} " class="video-content-anchor">
+                        {% comment %} <img src="{% static 'image/germination3.jpg'%}" alt="" class="video-image"> {% endcomment %}
+                        <div class="video-content">
+                            <img class="video-thumbnail" src="{{ video.thumbnail.url }}" alt="{{ video.title }}">
+                            <video class="video-player" muted loop>
+                                <source src="{{ video.video_file.url }}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        
+                         <div class="video-info">
+                            <h3>{{ video.title }}</h3>
+                            <p>{{ video.description|truncatechars:100 }}</p>
+                        </div>
+                    </a>            
+                {% endfor %}
+
+            </div>
+        </section> 
+        {% comment %} <section id="record-live-session">
+            <h2>Record Live Session</h2>
+            <button id="record-button">Start Recording</button>
+            <div id="recorded-session-container"></div>
+        </section> {% endcomment %}
+        
+    </main>
+<script>
+document.querySelectorAll('.video-content').forEach(videoBlock => {
+    const video = videoBlock.querySelector('video');
+    videoBlock.addEventListener('mouseenter', () => video.play());
+    videoBlock.addEventListener('mouseleave', () => {
+        video.pause();
+        video.currentTime = 0;
+    });
+});
+</script>
+  {% endblock body %}

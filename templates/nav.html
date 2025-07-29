@@ -1,0 +1,44 @@
+
+{% load static %}
+<header>
+    <nav class="navbar">
+    <div class="menu-button" id="menu-btn" onclick="navOption()">
+        <div class="bar bar1"></div>
+        <div class="bar bar2"></div>
+        <div class="bar bar3"></div>
+    </div>
+    <div class="navbar-brand">
+        <img src="{% static 'image/agrojira.jpeg' %}" class="websiteLogo">
+        Agrojira
+        {% if  'farmer_expert_id' in request.session %}
+        {{request.session.farmer_expert_id}}
+        {% endif %}
+    </div>
+    <form method="get" action="{% url 'search_results' %}">
+      {% csrf_token %}
+        <input type="text" name="q" class="search-bar" placeholder="Search...">
+        <input type="submit" class="search" value="search">
+    </form>
+
+    {% comment %} <input type="text" class="search-bar" placeholder="Search...">
+    <input type="submit" class="search" value="search"> {% endcomment %}
+    <div class="navbar-menu" id="navBarMenu">
+        <ul>
+            <li><a href="/" class="navOption">Home</a></li>
+            <li><a href="/category" class="navOption">Category</a></li>
+            <li><a href="/video" class="navOption">Video</a></li>
+            <li><a href="/community" class="navOption">Community</a></li>
+            <li><a href="/about" class="navOption">About&nbsp;Us</a></li>
+            {% if  'farmer_primary_id' in request.session %}
+                <li><a href="/profile" class="navButton">Profile</a></li>
+                <li><a href="/logoutUser" class="navButton">LogOut</a></li>
+            {% else %}
+                <li><a href="/registration" class="navButton">Sign&nbsp;Up</a></li>
+                <li><a href="/login" class="navButton">Login</a></li>
+
+            {% endif %}
+        </ul>
+        
+    </div>
+    </nav>
+</header>

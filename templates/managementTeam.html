@@ -1,0 +1,161 @@
+
+{% comment %} {% extends 'base.html'%}
+
+{% load static %}
+{% block title%}
+Our Management Team
+{% endblock title%}
+  
+{% block head %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/farming.css' %}">
+{% endblock head %}
+    {% block body %} {% endcomment %}
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+        <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title></title>
+        <link rel="stylesheet" href="style.css">
+        <style>
+
+            .team-section {
+            text-align: center;
+            max-width: 1200px;
+            margin: auto;
+            }
+
+            .team-section h1 {
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            font-weight: bold;
+            }
+
+            .subheading {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            color: #555;
+            }
+
+            .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            padding: 0 20px;
+            }
+
+            .team-member {
+            text-align: center;
+            margin:3px;
+            padding:5px;
+            background-color:#f2ffe6;
+            }
+
+            .team-member h2 {
+            margin-top: 20px;
+            font-size: 1.4rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            }
+            .team-member h3 {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            }
+
+            .team-member p {
+            font-size: 0.9rem;
+            color: #555;
+            margin-top: 10px;
+            max-width: 300px;
+            margin-inline: auto;
+            }
+
+            /* Hexagon Image Style */
+            .hexagon {
+            width: 280px;
+            aspect-ratio: 1;
+            margin: auto;
+            clip-path: polygon(
+                25% 6.7%, 75% 6.7%,
+                100% 50%,
+                75% 93.3%, 25% 93.3%,
+                0% 50%
+            );
+            overflow: hidden;
+            }
+
+            .hexagon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+            }
+
+            .hexagon:hover img {
+            transform: scale(1.05);
+            }
+
+            .footer-desc {
+            margin-top: 50px;
+            font-size: 1rem;
+            color: #777;
+            padding: 0 20px;
+            }
+
+        </style>
+        </head>
+        <body>
+        <section class="team-section">
+            <h1>OUR MANAGEMENT TEAM</h1>
+            <p class="subheading">Meet our experienced leadership team</p>
+
+            <div class="team-grid">
+            <div class="team-member">
+                <div class="hexagon">
+                <img src="{% static "/image/__Page.jpg" %}" alt="Brian Frankfurt" style="object-position: 0% 30%;">
+                </div>
+                 <a href="https://faculty.vidyasagar.ac.in/Faculties/Profile?fac_u_id=Fac-CS-195"><h2>Dr. Partha Chaudhuri</h2></a>
+                <h3>Supervisor</h3>
+                <p>Assistant Professor,Department of Computer Science, Vidyasagar University</p>
+            </div>
+            <div class="team-member">
+                <div class="hexagon">
+                <img src="{% static "/image/IMG-20240824-WA0161.jpg" %}" alt="Gloria Marsdon" style="object-position: 33.3% 30%;">
+                </div>
+                <a href="https://surajitmaji.github.io/Portfolio/"> <h2>Surajit Maji</h2></a>
+                <h3>Developer</h3>
+                <p>B.Sc (CS), Calcutta University<br> MCA, Vidyasagar Unniversity</p>
+            </div>
+            <div class="team-member">
+                <div class="hexagon">
+                <img src="{% static "/image/IMG_20241005_152418.jpg" %}" alt="Rebecca Mills" style="object-position: 66.6% 30%;">
+                </div>
+                <a href="https://in.linkedin.com/in/sreyashree-khanra-7a6b872a9"><h2>Sreyashree Khanra</h2></a>
+                <h3>Developer</h3>
+                <p>BCA,  Vidyasagar Unniversity<br> MCA, Vidyasagar Unniversity</p>
+            </div>
+            <div class="team-member">
+                <div class="hexagon">
+                <img src="{% static "/image/IMG-20240825-WA0021.jpg" %}" alt="Dan Sloan" style="object-position: 100% 30%;">
+                </div>
+                <a href="https://in.linkedin.com/in/mamoni-sukla?trk=people-guest_people_search-card"><h2>Mamoni Sukla</h2></a>
+                <h3>Machine learning Expert</h3>
+                <p>BCA,  Midnapore College<br> MCA, Vidyasagar Unniversity</p>
+            </div>
+            </div>
+
+            <p class="footer-desc">
+            Agrojira is an intelligent agricultural guidance platform that helps farmers manage crop cultivation processes step-by-step with expert advice, AI predictions, and interactive tools.
+            </p>
+        </section>
+
+        <script src="script.js"></script>
+        </body>
+</html>
+
+  {% comment %} {% endblock body %} {% endcomment %}
+    

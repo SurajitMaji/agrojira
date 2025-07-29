@@ -1,0 +1,52 @@
+{% extends 'base.html'%}
+
+{% load static %}
+{% block title%}
+Login
+{% endblock title%}
+  
+{% block head %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/registration.css' %}">
+{% endblock head %}
+{% block body %}
+<div class="registration_form_area">
+   
+        <form  method="post" name="registration_from" action="login">
+            {% csrf_token %}
+        <div class="registration_form_heading">
+             Log in
+        </div>
+        <div class="registration_form_component">
+            <div class="registration_form_input_area">
+                <label for="user_name">User&nbsp;Id: </label>
+                <input type="text" name="user_id" class="user_name" id="user_name" placeholder="User Id" required>
+            </div>
+            <div class="registration_form_input_area">
+                <label for="user_password">Password: </label>
+                <input type="password" name="user_password" class="user_password" id="user_password" placeholder="Password" required>
+            </div>
+            <div class="registration_form_input_area">
+                <input type="submit" class="registration_submit" name="login" value="Login">
+            </div>
+        </div>
+        <div class="already_register">
+            Have not register yet? <a href="/registration" class="login_form">Register.</a>
+        </div>
+    </form>
+    {% if  farmer %}
+        <div class="after-valid-information">
+            Successfully Login , <a href="profile">click here</a> to continue
+        </div>
+        {% else %}
+        <center>Wrong</center>
+    {% endif %}
+</div>
+
+{% endblock body %}
+    
+{% block javaScript%}
+
+    <script src="{% static 'js/imagePreview.js' %}"></script>
+{% endblock javaScript%}
+

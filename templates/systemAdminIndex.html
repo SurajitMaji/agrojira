@@ -1,0 +1,20 @@
+{% extends 'systemAdminBase.html'%}
+
+{% load static %}
+{% block title%}
+Home
+{% endblock title%}
+  
+{% block head %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/farming.css' %}">
+{% endblock head %}
+
+{%block pagename%} 
+
+{% endblock pagename %}
+{% block adminBody %}
+    
+    {% include "dashboard.html" %}
+{% endblock adminBody %}
+    

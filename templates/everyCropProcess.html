@@ -1,0 +1,419 @@
+{% extends 'base.html'%}
+
+{% load static %}
+{% block title%}
+Home
+{% endblock title%}
+  
+{% block head %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/everyCropProcess.css' %}">
+{% endblock head %}
+    {% block body %}
+
+    <main>  
+        
+  <header class="hero">
+    <div class="hero-text">
+      <h1>Complete Crop Farming Guide on {{crop.crop_name}}</h1>
+      <p>Step-by-step instructions from soil to harvest</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="grid">
+      <!-- Farming Stage Cards -->
+      <div class="card">
+        <img src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-LmQ09WWGIGwOeeA4ArnRw0x5/user-uJPET5fjNenSso8wCETWVNOp/img-mdYjfEPWYBkhlvF07uSrtx6Q.png?st=2025-04-16T17%3A50%3A53Z&amp;se=2025-04-16T19%3A50%3A53Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscd=inline&amp;rsct=image/png&amp;skoid=cc612491-d948-4d2e-9821-2683df3719f5&amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;skt=2025-04-16T06%3A01%3A22Z&amp;ske=2025-04-17T06%3A01%3A22Z&amp;sks=b&amp;skv=2024-08-04&amp;sig=Yb%2BzlkgzVU3tRyYA8sSUUXaW61xFJKub4Rzu/%2By/J04%3D" width="64"
+        lt="Soil Preparation" />
+        <h3>Soil Preparation</h3>
+        {% if soils %}
+          <p>Prepare the soil by plowing, levelling, and incorporating organic matter.</p>
+          {% for soil in soils %}
+              <p><b>Soil Type:</b> {{soil.soil_type}}<p>                
+              <p><b>Nutrients:</b> {{soil.nutrients}}<p>
+                <p><b>Structure:</b> {{soil.structure}}<p>
+                  <p><b>Water Holding Capacity:</b> {{soil.water_holding_capacity}}<p>
+                    <p><b>Drainage:</b> {{soil.drainage}}<p> 
+                      <p><b>Organic Matter:</b> {{soil.organic_matter}}<p>
+                        <p><b>Soil Depth:</b> {{soil.soil_depth}}<p> 
+                          <p><b>Equipments:</b> {{soil.equipments}}<p>
+                            <p><b>Soil Image:</b></p>
+<img src="{{ soil.soil_image.url }}" alt="Soil Image" class="crop-step-image">
+
+                            <p><b>Description:</b> {{soil.description}}<p>
+
+          {% endfor %}
+          <a href="#">Learn More &rarr;</a>
+        {% else %}
+          <p>No records</p>
+        {% endif %}
+      </div>
+
+      <div class="card">
+        <img src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-LmQ09WWGIGwOeeA4ArnRw0x5/user-uJPET5fjNenSso8wCETWVNOp/img-tZbgMboJt5ZgWxtJsyxowIG8.png?st=2025-04-16T17%3A50%3A51Z&amp;se=2025-04-16T19%3A50%3A51Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscd=inline&amp;rsct=image/png&amp;skoid=cc612491-d948-4d2e-9821-2683df3719f5&amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;skt=2025-04-16T04%3A53%3A56Z&amp;ske=2025-04-17T04%3A53%3A56Z&amp;sks=b&amp;skv=2024-08-04&amp;sig=3paQB2xRmncoGqwJx8M4CjOtQN9mIktKgv/RgLBqJOI%3D"
+        width="64" alt="Sowing" />
+        <h3>Sowing</h3>
+
+{% if sowings %}
+  <p>Select suitable seeds and sow them at correct depth and spacing.</p>
+  {% for sowing in sowings %}
+    <p><b>Method:</b> {{ sowing.method }}</p>                
+    <p><b>Spacing:</b> {{ sowing.spacing }}</p>
+    <p><b>Depth:</b> {{ sowing.depth }}</p>
+    <p><b>Best time:</b> {{ sowing.best_time }}</p>
+    <p><b>Land Preparation:</b> {{ sowing.land_preparation }}</p>
+    <p><b>Soil Moisture:</b> {{ sowing.soil_moisture }}</p>
+    <p><b>Sowing Tools:</b> {{ sowing.sowing_tools }}</p>
+    <p><b>Seed Coverage:</b> {{ sowing.seed_coverage }}</p> 
+    <p><b>Pre Sowing Irrigation:</b> {{ sowing.pre_sowing_irrigation }}</p> 
+    <p><b>Post Sowing Irrigation:</b> {{ sowing.post_sowing_irrigation }}</p>
+    
+    <p><b>Sowing Image:</b></p>
+    <img src="{{ sowing.sowing_image.url }}" alt="Sowing Image" class="crop-step-image"> 
+
+    <p><b>Description:</b> {{ sowing.description }}</p> 
+  {% endfor %}
+  
+  <a href="#">Learn More &rarr;</a>
+{% else %}
+  <p>No records</p>
+{% endif %}
+
+      </div>
+
+      <div class="card">
+        <img src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-LmQ09WWGIGwOeeA4ArnRw0x5/user-uJPET5fjNenSso8wCETWVNOp/img-HHKJFg9h7glDiblg0i7Lxynd.png?st=2025-04-16T17%3A50%3A48Z&amp;se=2025-04-16T19%3A50%3A48Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscd=inline&amp;rsct=image/png&amp;skoid=cc612491-d948-4d2e-9821-2683df3719f5&amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;skt=2025-04-16T07%3A53%3A29Z&amp;ske=2025-04-17T07%3A53%3A29Z&amp;sks=b&amp;skv=2024-08-04&amp;sig=MAx5GS1lmsr2s3Nq6CLtvg/m8Pa06gsvH6/5E7dc%2BTQ%3D" width="64"
+         alt="Fertilization" />
+        
+        <h3>Fertilization</h3>
+
+{% if fertilizers %}
+  <p>Apply appropriate fertilizers to support healthy crop growth.</p>
+  {% for fertilizer in fertilizers %}
+    <p><b>Organic Compost:</b> {{ fertilizer.organic_compost }}</p>
+    <p><b>Chemical Urea:</b> {{ fertilizer.chemical_urea }}</p>
+    <p><b>Chemical DAP:</b> {{ fertilizer.chemical_dap }}</p>
+    <p><b>Nutrient Composition:</b> {{ fertilizer.nurient_composition }}</p>
+    <p><b>Application Method:</b> {{ fertilizer.application_method }}</p>
+    <p><b>Application Timing:</b> {{ fertilizer.application_timing }}</p>
+    <p><b>Application Frequency:</b> {{ fertilizer.application_frequency }}</p>
+    <p><b>Dosage:</b> {{ fertilizer.dosage }}</p>
+    <p><b>Storage:</b> {{ fertilizer.storage }}</p>
+    <p><b>Equipments:</b> {{ fertilizer.equipments }}</p>
+
+    <p><b>Fertilizer Image:</b></p>
+    {% if fertilizer.fertilizer_image %}
+      <img src="{{ fertilizer.fertilizer_image.url }}" alt="Fertilizer Image" class="crop-step-image">
+    {% else %}
+      <p>No image available.</p>
+    {% endif %}
+
+    <p><b>Description:</b> {{ fertilizer.description }}</p>
+    <hr>
+  {% endfor %}
+{% else %}
+  <p>No fertilization records found.</p>
+{% endif %}
+
+      </div>
+
+      <div class="card">
+        <img src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-LmQ09WWGIGwOeeA4ArnRw0x5/user-uJPET5fjNenSso8wCETWVNOp/img-HHKJFg9h7glDiblg0i7Lxynd.png?st=2025-04-16T17%3A50%3A48Z&amp;se=2025-04-16T19%3A50%3A48Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscd=inline&amp;rsct=image/png&amp;skoid=cc612491-d948-4d2e-9821-2683df3719f5&amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;skt=2025-04-16T07%3A53%3A29Z&amp;ske=2025-04-17T07%3A53%3A29Z&amp;sks=b&amp;skv=2024-08-04&amp;sig=MAx5GS1lmsr2s3Nq6CLtvg/m8Pa06gsvH6/5E7dc%2BTQ%3D" width="64"
+         alt="Weed Management" />
+         <h3>Weed Management</h3>
+
+         {% if weeds %}
+           <p>Identify and control weeds to protect the crop yield and health.</p>
+           {% for weed in weeds %}
+             <p><b>Weed Name:</b> {{ weed.weed_name }}</p>
+             <p><b>Weed Type:</b> {{ weed.weed_type }}</p>
+             <p><b>Growth Habit:</b> {{ weed.growth_habit }}</p>
+             <p><b>Life Cycle:</b> {{ weed.life_cycle }}</p>
+             <p><b>Time of Appearance:</b> {{ weed.time_of_appearence }}</p>
+             <p><b>Affected Crop Growth Stage:</b> {{ weed.affected_crop_growth_stage }}</p>
+             <p><b>Area of Infestation:</b> {{ weed.area_of_infestation }}</p>
+             <p><b>Competitive Impact on Crop:</b> {{ weed.competitive_impact_on_crop }}</p>
+             <p><b>Leaf Shape:</b> {{ weed.leaf_shape }}</p>
+             <p><b>Leaf Color:</b> {{ weed.leaf_color }}</p>
+             <p><b>Root Structure:</b> {{ weed.root_structure }}</p>
+             <p><b>Control Measures:</b> {{ weed.control_measures }}</p>
+             <p><b>Herbicide Name:</b> {{ weed.herbicide_name }}</p>
+             <p><b>Dosage:</b> {{ weed.dosage }}</p>
+             <p><b>Application Time:</b> {{ weed.application_time }}</p>
+             <p><b>Herbicide Resistance Risk:</b> {{ weed.herbicide_resistance_risk }}</p>
+             <p><b>Weed Dispersal Method:</b> {{ weed.weed_dispersal_method }}</p>
+             <p><b>Environmental Effect:</b> {{ weed.environment_effect }}</p>
+             <p><b>Equipments:</b> {{ weed.equipments }}</p>
+         
+             <p><b>Weed Image:</b></p>
+             {% if weed.weed_image %}
+               <img src="{{ weed.weed_image.url }}" alt="Weed Image" class="crop-step-image">
+             {% else %}
+               <p>No image available.</p>
+             {% endif %}
+         
+             <p><b>Description:</b> {{ weed.description }}</p>
+             <hr>
+           {% endfor %}
+         {% else %}
+           <p>No weed management records found.</p>
+         {% endif %}
+         
+      </div>
+
+      <div class="card">
+        <img src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-LmQ09WWGIGwOeeA4ArnRw0x5/user-uJPET5fjNenSso8wCETWVNOp/img-SfpmuLXOBYJuwB7ZFbaVfiTL.png?st=2025-04-16T17%3A50%3A54Z&amp;se=2025-04-16T19%3A50%3A54Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscd=inline&amp;rsct=image/png&amp;skoid=cc612491-d948-4d2e-9821-2683df3719f5&amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;skt=2025-04-16T05%3A40%3A46Z&amp;ske=2025-04-17T05%3A40%3A46Z&amp;sks=b&amp;skv=2024-08-04&amp;sig=IoNLajnkW5o/6gQfOP4X/IuVliCFjF7YDF%2BXFxgtlSM%3D" width="64"
+         alt="Pest Control" />
+         <h3>Pest Control</h3>
+
+         {% if pests %}
+           <p>Identify and manage pests to ensure healthy crop growth and better yields.</p>
+           {% for pest in pests %}
+             <p><b>Pest Name:</b> {{ pest.pest_name }}</p>
+             <p><b>Pest Type:</b> {{ pest.pest_type }}</p>
+             <p><b>Pest Life Cycle:</b> {{ pest.pest_life_cycle }}</p>
+             <p><b>Symptoms:</b> {{ pest.symptoms }}</p>
+             <p><b>Affected Plant Parts:</b> {{ pest.affected_plant_parts }}</p>
+             <p><b>Pest Seasonality:</b> {{ pest.pest_seasonality }}</p>
+             <p><b>Pest Damage Level:</b> {{ pest.pest_damage_level }}</p>
+             <p><b>Detection Method:</b> {{ pest.detection_method }}</p>
+             <p><b>Control Measures:</b> {{ pest.control_measures }}</p>
+             <p><b>Recommended Pesticides:</b> {{ pest.recommended_pesticides }}</p>
+             <p><b>Resistance Risk:</b> {{ pest.resistance_risk }}</p>
+             <p><b>Environmental Effect:</b> {{ pest.environment_effect }}</p>
+             <p><b>Friendly Tips:</b> {{ pest.friendly_tips }}</p>
+             <p><b>Equipments:</b> {{ pest.equipments }}</p>
+         
+             <p><b>Pest Image:</b></p>
+             {% if pest.pest_image %}
+               <img src="{{ pest.pest_image.url }}" alt="Pest Image" class="crop-step-image">
+             {% else %}
+               <p>No image available.</p>
+             {% endif %}
+         
+             <p><b>Description:</b> {{ pest.description }}</p>
+             <hr>
+           {% endfor %}
+         {% else %}
+           <p>No pest management records found.</p>
+         {% endif %}
+         
+      </div>
+      <div class="card">
+        <img src="">
+        <h3>Seed Information</h3>
+
+{% if seeds %}
+  <p>Details about the seeds used for this crop.</p>
+  {% for seed in seeds %}
+    <p><b>Variety:</b> {{ seed.variety }}</p>
+    <p><b>Rate per Area:</b> {{ seed.rate_per_area }}</p>
+    <p><b>Source:</b> {{ seed.source }}</p>
+    <p><b>Germination Percentage:</b> {{ seed.germination_percentage }}%</p>
+    <p><b>Purity Percentage:</b> {{ seed.purity_percentage }}%</p>
+    <p><b>Moisture Content:</b> {{ seed.moisture_content }}%</p>
+    
+    <p><b>Equipments:</b> {{ seed.equipments }}</p>
+    
+    <p><b>Seed Image:</b></p>
+    {% if seed.seed_image %}
+      <img src="{{ seed.seed_image.url }}" alt="Seed Image" class="crop-step-image">
+    {% else %}
+      <p>No image available.</p>
+    {% endif %}
+    
+    <p><b>Description:</b> {{ seed.description }}</p>
+    <hr>
+  {% endfor %}
+{% else %}
+  <p>No seed records found.</p>
+{% endif %}
+
+      </div>
+      <div class="card">
+        <img src="">
+        <h3>Irrigation Information</h3>
+
+{% if irrigations %}
+  <p>Details about the irrigation methods and requirements for this crop.</p>
+  {% for irrigation in irrigations %}
+    <p><b>Irrigation Method:</b> {{ irrigation.irrigation_method }}</p>
+    <p><b>Variety:</b> {{ irrigation.variety }}</p>
+    <p><b>Rate per Area:</b> {{ irrigation.rate_per_area }}</p>
+    <p><b>Source:</b> {{ irrigation.source }}</p>
+    <p><b>Irrigation Timing:</b> {{ irrigation.irrigation_timing }}</p>
+    <p><b>Water Quantity:</b> {{ irrigation.water_quantity }}</p>
+    <p><b>Water Quality:</b> {{ irrigation.water_quality }}</p>
+    
+    <p><b>Drainage Considerations:</b> {{ irrigation.drainage_considerations }}</p>
+    <p><b>Control System:</b> {{ irrigation.control_system }}</p>
+    <p><b>Equipment:</b> {{ irrigation.equipment }}</p>
+    
+    <p><b>Irrigation Image:</b></p>
+    {% if irrigation.irrigation_image %}
+      <img src="{{ irrigation.irrigation_image.url }}" alt="Irrigation Image" class="crop-step-image">
+    {% else %}
+      <p>No image available.</p>
+    {% endif %}
+    
+    <p><b>Description:</b> {{ irrigation.description }}</p>
+    <hr>
+  {% endfor %}
+{% else %}
+  <p>No irrigation records found.</p>
+{% endif %}
+
+      </div>
+
+      <div class="card">
+        <img src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-LmQ09WWGIGwOeeA4ArnRw0x5/user-uJPET5fjNenSso8wCETWVNOp/img-ErgoWybhoxpL1v6yTgfoYM3u.png?st=2025-04-16T17%3A50%3A51Z&amp;se=2025-04-16T19%3A50%3A51Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscd=inline&amp;rsct=image/png&amp;skoid=cc612491-d948-4d2e-9821-2683df3719f5&amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;skt=2025-04-16T05%3A33%3A44Z&amp;ske=2025-04-17T05%3A33%3A44Z&amp;sks=b&amp;skv=2024-08-04&amp;sig=O/Hmx2tnPB4X/Nq7TeYu9nwXWxQFaOGnoOTbf0iBKt8%3D" width="64"
+         alt="Disease Management" />
+         <h3>Disease Management</h3>
+
+         {% if diseases %}
+           <p>Identify and control diseases early to maintain crop health and maximize yield.</p>
+           {% for disease in diseases %}
+             <p><b>Disease Name:</b> {{ disease.disease_name }}</p>
+             <p><b>Causal Organism:</b> {{ disease.causal_organism }}</p>
+             <p><b>Mode of Transmission:</b> {{ disease.mode_of_transmission }}</p>
+             <p><b>Symptoms:</b> {{ disease.symptoms }}</p>
+             <p><b>Affected Plant Parts:</b> {{ disease.affected_plant_parts }}</p>
+             <p><b>Disease Cycle:</b> {{ disease.disease_cycle }}</p>
+             <p><b>Favorable Conditions for Disease:</b> {{ disease.favorable_condition_for_disease }}</p>
+             <p><b>Seasonality:</b> {{ disease.seasonality }}</p>
+             <p><b>Method of Diagnosis:</b> {{ disease.method_of_diagnosis }}</p>
+             <p><b>Control Measures:</b> {{ disease.control_measures }}</p>
+             <p><b>Medicine Name:</b> {{ disease.medicine_name }}</p>
+             <p><b>Dosage:</b> {{ disease.dosage }}</p>
+             <p><b>Application Method:</b> {{ disease.application_method }}</p>
+             <p><b>Impact on Crop Quality:</b> {{ disease.impact_on_crop_quality }}</p>
+             <p><b>Resistance Risk:</b> {{ disease.resistance_risk }}</p>
+             <p><b>Geographic Spread:</b> {{ disease.geographic_spread }}</p>
+             <p><b>Environmental Effect of Medicine:</b> {{ disease.environment_effect_of_medicine }}</p>
+             <p><b>Equipments:</b> {{ disease.equipments }}</p>
+         
+             <p><b>Disease Image:</b></p>
+             {% if disease.disease_image %}
+               <img src="{{ disease.disease_image.url }}" alt="Disease Image" class="crop-step-image">
+             {% else %}
+               <p>No image available.</p>
+             {% endif %}
+         
+             <p><b>Description:</b> {{ disease.description }}</p>
+             <hr>
+           {% endfor %}
+         {% else %}
+           <p>No disease management records found.</p>
+         {% endif %}
+         
+      </div>
+
+      <div class="card">
+        <img src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-LmQ09WWGIGwOeeA4ArnRw0x5/user-uJPET5fjNenSso8wCETWVNOp/img-xJ3Xje3vOo0xrKC0Fc1RbWPD.png?st=2025-04-16T17%3A50%3A48Z&amp;se=2025-04-16T19%3A50%3A48Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscd=inline&amp;rsct=image/png&amp;skoid=cc612491-d948-4d2e-9821-2683df3719f5&amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;skt=2025-04-16T06%3A30%3A46Z&amp;ske=2025-04-17T06%3A30%3A46Z&amp;sks=b&amp;skv=2024-08-04&amp;sig=bKk9nh1W78FQ3/RqebNovIFskQ1xRM%2BBpRbJVFRG1Ck%3D" width="64"
+        alt="Harvesting" />
+        <h3>Harvesting Management</h3>
+
+{% if harvestings %}
+  <p>Proper harvesting ensures maximum yield and better crop quality.</p>
+  {% for harvesting in harvestings %}
+    <p><b>Harvesting Time:</b> {{ harvesting.time }}</p>
+    <p><b>Drying Process:</b> {{ harvesting.drying }}</p>
+    <p><b>Storage:</b> {{ harvesting.storage }}</p>
+    <p><b>Optimal Harvesting Period:</b> {{ harvesting.optimal_harvesting_period }}</p>
+    <p><b>Method of Harvesting:</b> {{ harvesting.method_of_harvesting }}</p>
+    <p><b>Equipments:</b> {{ harvesting.equipments }}</p>
+    <p><b>Labor Requirement:</b> {{ harvesting.labor_requirement }}</p>
+    <p><b>Yield Quantity:</b> {{ harvesting.yield_quantity }}</p>
+    <p><b>Moisture Content:</b> {{ harvesting.moisture_content }}</p>
+    <p><b>Post Harvesting Handling:</b> {{ harvesting.post_harvesting_handling }}</p>
+    <p><b>Transportation Requirement:</b> {{ harvesting.transportation_requirement }}</p>
+    <p><b>Challenges during Harvesting:</b> {{ harvesting.challenges }}</p>
+    <p><b>Crop Loss Percentage:</b> {{ harvesting.crop_loss_percentage }}</p>
+    <p><b>Market Readiness:</b> {{ harvesting.market_readiness }}</p>
+    <p><b>Safety Practices:</b> {{ harvesting.safty_practice }}</p>
+
+    <p><b>Harvesting Image:</b></p>
+    {% if harvesting.harvesting_image %}
+      <img src="{{ harvesting.harvesting_image.url }}" alt="Harvesting Image" class="crop-step-image">
+    {% else %}
+      <p>No image available.</p>
+    {% endif %}
+
+    <p><b>Description:</b> {{ harvesting.description }}</p>
+    <hr>
+  {% endfor %}
+{% else %}
+  <p>No harvesting records found.</p>
+{% endif %}
+
+      </div>
+
+
+      <div class="card">
+        <img src="icons/postharvest.png" alt="Post-Harvest" />
+        <h3>Post-Harvesting Management</h3>
+
+{% if post_harvestings %}
+  <p>Proper post-harvesting techniques improve crop quality and reduce waste.</p>
+  {% for post in post_harvestings %}
+    <p><b>Cleaning:</b> {{ post.cleaning }}</p>
+    <p><b>Sorting:</b> {{ post.sorting }}</p>
+    <p><b>Drying:</b> {{ post.drying }}</p>
+    <p><b>Curing:</b> {{ post.curing }}</p>
+    <p><b>Packaging:</b> {{ post.packaging }}</p>
+    <p><b>Storage:</b> {{ post.storage }}</p>
+    <p><b>Waste Management:</b> {{ post.waste_management }}</p>
+    <p><b>Market Preparation:</b> {{ post.market_preparation }}</p>
+    <p><b>Equipments Used:</b> {{ post.equipments }}</p>
+
+    <p><b>Post Harvesting Image:</b></p>
+    {% if post.post_harvesting_image %}
+      <img src="{{ post.post_harvesting_image.url }}" alt="Post Harvesting Image" class="crop-step-image">
+    {% else %}
+      <p>No image available.</p>
+    {% endif %}
+
+    <p><b>Description:</b> {{ post.description }}</p>
+    <hr>
+  {% endfor %}
+{% else %}
+  <p>No post-harvesting records found.</p>
+{% endif %}
+
+      </div>
+      
+    <div class="card">
+        <img src="icons/monitoring.png" alt="Crop Monitoring" />
+        <h3>Other Properties</h3>
+
+{% if others %}
+  <p>Additional important properties related to the crop.</p>
+  {% for other in others %}
+    <p><b>Property Name:</b> {{ other.property_name }}</p>
+    
+    <p><b>Property Image:</b></p>
+    {% if other.property_image %}
+      <img src="{{ other.property_image.url }}" alt="Property Image" class="crop-step-image">
+    {% else %}
+      <p>No image available.</p>
+    {% endif %}
+    
+    <p><b>Description:</b> {{ other.description }}</p>
+    <hr>
+  {% endfor %}
+{% else %}
+  <p>No additional properties records found.</p>
+{% endif %}
+
+      </div>
+    </div>
+ 
+     
+    </main>
+
+  {% endblock body %}
+  {% block javaScript%}
+
+  <script src="{% static 'js/category.js' %}"></script>
+  {% endblock javaScript%}

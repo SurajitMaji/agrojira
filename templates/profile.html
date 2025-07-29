@@ -1,0 +1,90 @@
+{% extends 'base.html'%}
+
+{% load static %}
+{% block title%}
+{{farmer.user_name}}
+{% endblock title%}
+  
+{% block head %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">
+{% endblock head %}
+{% block body %}
+<main>
+    <div class="container">
+        <div class="profile">
+            <img src="{{farmer.user_photo.url}}" alt="Profile Picture" class="profile-image">
+            <div class="profile-info">
+                <h2>{{farmer.user_name}}</h2>
+                <p>{{farmer.user_country}}</p>
+                <p>{{farmer.user_area}},
+                   {{farmer.user_village_city}},
+                   {{farmer.user_police_station}}</p>
+                <a href="" class="btn">Edit Profile</a>
+                <a href="addUserProject" class="btn">Strat New Project</a>
+            </div>
+        </div>
+
+        <div class="social-links">
+            <a href="#" class="fab notification">
+                <span>10</span>
+            </a>
+            <a href="community.html" class="fab message">
+                <span>3</span>
+            </a>
+            <!-- <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+            <a href="#"><i class="fab fa -linkedin"></i> LinkedIn</a> -->
+        </div>
+        <!-- on going project  -->
+         {% if  ongoing_projects %}
+        <section class="ongoing-project-section every-area">
+            <div class="project-heading">
+                <h2>Ongoing Project</h2>
+            </div>
+            <div class="assignment-section">
+                {% for project in ongoing_projects %}
+                <a href="
+                {% url "ongoingProject" project.project_id%}
+                " class="project-card">
+                    <h3>
+                         {{forloop.counter}}. {{project.project_name}}
+                    </h3>
+                    <p>Starting Date: {{project.starting_date}}</p>
+                    <div class="progress">
+                        <div class="progress-bar" style="width: 50%;"></div>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
+
+        <!--Completed project section-->
+        {% if completed_projects %}
+        <section class="ongoing-project-section every-area">
+            <div class="project-heading">
+                <h2>Completed Project</h2>
+            </div>
+            <div class="assignment-section">
+                {% for project in ongoing_projects %}
+                <a href="completedProject.html" class="project-card">
+                    <h3>Project {{forloop.counter}}</h3>
+                    <p>Starting Date: {{project.starting_date}}</p>
+                    <div class="progress">
+                        <div class="progress-bar" style="width: 100%;"></div>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
+    </div>
+    </main>
+
+{% endblock body %}
+    
+{% block javaScript%}
+
+    {% comment %} <script src="{% static 'js/imagePreview.js' %}"></script> {% endcomment %}
+{% endblock javaScript%}
+

@@ -1,0 +1,39 @@
+{% extends 'systemAdminBase.html'%}
+
+{% load static %}
+{% block title%}
+Query
+{% endblock title%}
+  
+{% block head %}
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
+{% endblock head %}
+
+{% block adminBody %}
+
+
+
+<div class="flex items-center justify-center min-h-screen bg-gray-200">
+    <div class="bg-white p-8 rounded-lg shadow-lg text-center max-w-xs">
+        <div class="flex justify-center mb-4">
+            <div class="bg-green-200 rounded-full p-4">
+                <i class="fas fa-exclamation text-green-500 text-2xl"></i>
+            </div>
+        </div>
+        <h2 class="text-gray-800 text-xl font-semibold mb-2">Are you leaving?</h2>
+        <p class="text-gray-600 mb-6">Are you sure you want to log out? All your unsaved data will be lost.</p>
+        <div class="flex justify-between">
+            <button class="text-gray-500 text-white bg-blue-500 px-4 py-2 rounded-lg flex items-center">Cancel</button>
+            <button class="bg-green-500 text-white px-4 py-2 rounded-lg flex items-center">
+                Yes <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+  
+{% endblock adminBody %}
+
+    

@@ -1,0 +1,144 @@
+{% extends 'systemAdminBase.html'%}
+{% load static %}  
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/expertForm.css' %}">
+{% endblock head %}
+{% block adminBody %}
+
+<div class="container expert-form-container">
+    <h2 style="text-align: center;">Update Expert Farmer</h2>
+    <form id="farmerForm" method="POST" enctype="multipart/form-data" action=" "> 
+        {% csrf_token %}
+
+        <div class="each-input-field">
+            <label class="form-label">Full Name <span class="required_field">*</span></label>
+            <input class="form-control"  type="text" name="name" value="{{ expert.name }}" required>
+        </div>
+
+        <div class="each-input-field">
+            <label class="form-label">Date of Birth <span class="required_field">*</span></label>
+            <input class="form-control"  type="date" name="dob" value="{{ expert.dob|date:'Y-m-d' }}" required>
+        </div>
+
+        <div class="each-input-field">
+            <label class="form-label">Gender <span class="required_field">*</span></label>
+            <select name="gender"  class="form-control"  required>
+                <option value="Male" {% if expert.gender == "Male" %}selected{% endif %}>Male</option>
+                <option value="Female" {% if expert.gender == "Female" %}selected{% endif %}>Female</option>
+                <option value="Other" {% if expert.gender == "Other" %}selected{% endif %}>Other</option>
+            </select>
+        </div>
+
+        <div class="each-input-field">
+            <label class="form-label">Mobile Number <span class="required_field">*</span></label>
+            <input class="form-control"  type="text" name="mobile_number" value="{{ expert.mobile_number }}" required>
+        </div>
+
+        <div class="each-input-field">
+            <label class="form-label">Email <span class="required_field">*</span></label>
+            <input class="form-control"  type="email" name="email" value="{{ expert.email }}" readonly>
+        </div>
+
+        <div class="each-input-field">
+            <label class="form-label">Farming Started <span class="required_field">*</span></label>
+            <input class="form-control"  type="date" name="experience_year" value="{{ expert.experience_year|date:'Y-m-d' }}" required>
+        </div>
+
+        <div class="each-input-field">
+            <label class="form-label">Specialization <span class="required_field">*</span></label>
+            <input class="form-control"  type="text" name="specialization" value="{{ expert.specialization }}" required>
+        </div>
+
+        <div class="each-input-field">
+            <label class="form-label">Farm Size (acres)<span class="required_field">*</span></label>
+            <input class="form-control"  type="number" step="0.1" name="farm_size" value="{{ expert.farm_size }}" required>
+        </div>
+
+        <div class="each-input-field">
+            <label class="form-label">Address <span class="required_field">*</span></label>
+            <input class="form-control"  type="text" name="address" value="{{ expert.expert_address }}" required>
+        </div>
+
+        <div class="each-input-field">
+            <label class="form-label">Crops Grown <span class="required_field">*</span></label>
+            <input class="form-control"  type="text" name="crops_grown" value="{{ expert.crops_grown }}" required>
+        </div>
+
+        <div class="each-input-field">
+            <label class="form-label">Soil Type <span class="required_field">*</span></label>
+            <input class="form-control"  type="text" name="soil_type" value="{{ expert.soil_type }}" required>
+        </div>
+
+        <div class="each-input-field">
+            <label class="form-label">Irrigation System <span class="required_field">*</span></label>
+            <input class="form-control"  type="text" name="irrigation_system" value="{{ expert.irrigation_system }}" required>
+        </div>
+
+        <div class="each-input-field">
+            <label class="form-label">Fertilizers Used <span class="required_field">*</span></label>
+            <input class="form-control"  type="text" name="fertilizers_used" value="{{ expert.fertilizers_used }}" required>
+        </div>
+
+        <div class="each-input-field">
+            <label class="form-label">Pest Control Methods <span class="required_field">*</span></label>
+            <input class="form-control"  type="text" name="pest_control_methods" value="{{ expert.pest_control_methods }}" required>
+        </div>
+
+        <div class="each-input-field">
+            <label class="form-label">Equipments Owned</label>
+            <input class="form-control"  type="text" name="equipments_owned" value="{{ expert.equipments_owned }}">
+        </div>
+
+        <div class="each-input-field">
+            <label class="form-label">Farming Techniques <span class="required_field">*</span></label>
+            <input class="form-control"  type="text" name="farming_techniques" value="{{ expert.farming_techniques }}" required>
+        </div>
+
+        <div class="each-input-field">
+            <label class="form-label">Certifications</label>
+            <input class="form-control"  type="text" name="certifications" value="{{ expert.certifications }}">
+        </div>
+
+        <div class="each-input-field">
+            <label class="form-label">Sustainable Practices</label>
+            <input class="form-control"  type="text" name="sustainable_practices" value="{{ expert.sustainable_practices }}">
+        </div>
+
+        <div class="each-input-field">
+            <label class="form-label">Technologies Used</label>
+            <input class="form-control"  type="text" name="technologies_used" value="{{ expert.technologies_used }}">
+        </div>
+
+        <div class="each-input-field">
+            <label class="form-label">Weather Adaptability</label>
+            <input class="form-control"  type="text" name="weather_adaptibility" value="{{ expert.weather_adaptibility }}">
+        </div>
+
+        <div class="each-input-field">
+            <label class="form-label">Government Subsidies</label>
+            <input class="form-control"  type="text" name="goverment_subsides" value="{{ expert.goverment_subsides }}">
+        </div>
+
+        <div class="each-input-field">
+            <label class="form-label">Expert's Photo</label><br>
+            {% if expert.expert_photo %}
+                <img src="{{ expert.expert_photo.url }}" alt="Current Photo" id="photo_preview" width="120">
+            {% else %}
+                <img src="{% static 'image/placeholder.png' %}" alt="No Image" id="photo_preview" width="120">
+            {% endif %}
+            <input class="form-control"  type="file" name="expert_photo" onchange="preview(this, 'photo_preview')">
+        </div>
+
+        <div class="each-input-field submit-btn">
+            <button type="submit" class="btn">Update</button>
+        </div>
+
+    </form>
+    
+    <span class="required_field note-text">Note: * marks field are required</span>
+    <center style="color: green;">{{ status }}</center>
+</div> 
+
+{% endblock adminBody %}
+
+    

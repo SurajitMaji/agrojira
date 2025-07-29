@@ -1,0 +1,125 @@
+
+{% load static %}
+
+{% block head %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/expertForm.css' %}">
+
+
+{% endblock head %}  
+
+        <div class="container expert-form-container">
+            <h2 style="text-align: center;">Expert Farmer Registration</h2>
+            <form id="farmerForm" method="POST" action="/addExpert" onsubmit="return validateForm()">
+                {% csrf_token %}
+               
+                <div class="each-input-field">
+                    <label class="form-label">Full Name<span class="required_field">*</span></label>
+                    <input type="text" class="form-control" name="name" required>
+                </div>
+                <div class="each-input-field">
+                    <label class="form-label">Date of Birth<span class="required_field">*</span></label>
+                    <input type="date" class="form-control" name="dob" required>
+                </div>
+                <div class="each-input-field">
+                    <label class="form-label">Gender<span class="required_field">*</span></label>
+                    <select class="form-control" name="gender" required>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="each-input-field">
+                    <label class="form-label">Mobile Number<span class="required_field">*</span></label>
+                    <input type="text" class="form-control" name="mobile_number" required>
+                </div>
+                <div class="each-input-field">
+                    <label class="form-label">Email<span class="required_field">*</span></label>
+                    <input type="email" class="form-control" name="email" required>
+                </div>
+                <div class="each-input-field">
+                    <label class="form-label">Farming Started (Experience Years)<span class="required_field">*</span></label>
+                    <input type="date" class="form-control" name="experience_year" required>
+                </div>
+                <div class="each-input-field">
+                    <label class="form-label">Specialization<span class="required_field">*</span></label>
+                    <input type="text" class="form-control" name="specialization" required>
+                </div>
+                <div class="each-input-field">
+                    <label class="form-label">Farm Size (acres)<span class="required_field">*</span></label>
+                    <input type="number" class="form-control" name="farm_size" required>
+                </div>
+                <div class="each-input-field">
+                    <label class="form-label">Address<span class="required_field">*</span></label>
+                    <input type="text" class="form-control" name="address" required>
+                </div>
+                <div class="each-input-field">
+                    <label class="form-label">Crops Grown<span class="required_field">*</span></label>
+                    <input type="text" class="form-control" name="crops_grown" required>
+                </div>
+                <div class="each-input-field">
+                    <label class="form-label">Soil Type<span class="required_field">*</span></label>
+                    <input type="text" class="form-control" name="soil_type" required>
+                </div>
+                <div class="each-input-field">
+                    <label class="form-label">Irrigation System<span class="required_field">*</span></label>
+                    <input type="text" class="form-control" name="irrigation_system" required>
+                </div>
+                    <div class="each-input-field">
+                    <label class="form-label">Fertilizers Used<span class="required_field">*</span></label>
+                <input type="text" class="form-control" name="fertilizers_used" required>
+                </div>
+                <div class="each-input-field">
+                    <label class="form-label">Pest Control Methods<span class="required_field">*</span></label>
+                    <input type="text" class="form-control" name="pest_control_methods" required>
+                </div>                
+                <div class="each-input-field">
+                    <label class="form-label">Equipments Owned</label>
+                    <input type="text" class="form-control" name="equipments_owned" >
+                </div>
+                <div class="each-input-field">
+                    <label class="form-label">Farming techniques<span class="required_field">*</span></label>
+                    <input type="text" class="form-control" name="farming_techniques" required>
+                </div>
+                <div class="each-input-field">
+                    <label class="form-label">Certifications</label>
+                    <input type="text" class="form-control" name="certifications" >
+                </div>
+                <div class="each-input-field">
+                    <label class="form-label">Susstainable Practices</label>
+                    <input type="text" class="form-control" name="sustainable_practices" >
+                </div>
+                <div class="each-input-field">
+                    <label class="form-label">Technologies Used</label>
+                    <input type="text" class="form-control" name="technologies_used" >
+                </div>
+                <div class="each-input-field">
+                    <label class="form-label">Weather Adaptibility</label>
+                <input type="text" class="form-control" name="weather_adaptibility" >
+                </div>
+                <div class="each-input-field">
+                    <label class="form-label">Goverment Subsides</label>
+                    <input type="text" class="form-control" name="goverment_subsides" >
+                </div>
+                <div class="each-input-field">
+                    <label class="form-label">Expert's Photo</label>    
+                    <img src="" alt="" id="photo_preview">
+                    <input type="file" class="form-control" name="expert_photo"  onchange="preview(this,'photo_preview')">
+                </div>     
+                
+                <div class="each-input-field"></div>
+                <div class="each-input-field"></div>
+                <div class="each-input-field"></div>
+                <div class="each-input-field submit-btn">
+                    <button type="submit" class="btn">Register</button>
+                </div>
+            </form>
+            
+            <span class="required_field note-text">Note: * marks field are required</span>
+            <center bgcolor="green">{{status}}</center>
+        </div>
+
+    {% block javaScript%}
+        <script src="{% static 'js/addExpert.js' %}"></script>
+        <script src="{% static 'js/imagePreview.js' %}"></script>
+    {% endblock javaScript%}

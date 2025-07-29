@@ -1,0 +1,168 @@
+{% extends 'base.html'%}
+
+{% load static %}
+{% block title%}
+{{project.crop_name}} Project
+{% endblock title%}
+  
+{% block head %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/completedProject.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/pieChart.css' %}">
+{% endblock head %}
+{% block body %}
+
+<main>
+    <section id="project-details">
+        <h2>{{project.project_name}}</h2>
+        <div class="project-info">
+          <div class="info-item">
+            <label>Crop Type:</label>
+            <span id="crop-type">{{project.crop_type}}</span>
+          </div>
+          <div class="info-item">
+            <label>Name of the Crop:</label>
+            <span id="crop-name">{{project.crop_name}}</span>
+          </div>
+          <div class="info-item">
+            <label>Farm Address:</label>
+            <span id="farm-address">{{project.farm_address}}</span>
+          </div>
+          <div class="info-item">
+            <label>Size of the Farm:</label>
+            <span id="farm-size">{{project.farm_size}}</span>
+          </div>
+          <div class="info-item">
+            <label>Name of the Soil in the Farm:</label>
+            <span id="soil-name">{{project.soil_name}}</span>
+          </div>
+          <div class="info-item">
+            <label>Starting Date:</label>
+            <span id="start-date">{{project.starting_date}}</span>
+          </div>
+        </div>
+        <div class="farm-image">
+          <img src="{{project.project_photo.url}}" alt="Farm Image">
+        </div>
+      </section>
+      <section  class="project-info-app">
+          <section id="farm-management">
+            <h2>Farm Management</h2>
+            <div class="management-tabs">
+              <div class="tab">
+                <h3>Option</h3>
+                <ul>
+                  
+                  <li><a href="{% url 'ongoingProject' project.project_id %}" class="project-card">Project</a></li>               
+                  <li>
+                    <a href="{% url 'ongoingProjectSoil' project.project_id %}" class="project-card">
+                        Prepare&nbsp;Soil
+                    </a>
+
+                  </li>
+                  <li>
+                    <a href="{% url 'ongoingProjectSowing' project.project_id %}" class="project-card">
+                    Sow&nbsp;Seeds
+                    </a>
+                  </li>
+                  <li><a href="{% url 'ongoingProjectGrowth' project.project_id %}" class="project-card">Growth</a></li>
+                  <li><a href="{% url 'ongoingProjectHarvesting' project.project_id %}" class="project-card">Harvesting</a></li>
+                  <li><a href="{% url 'ongoingProjectPostHarvesting' project.project_id %}" class="project-card">Post&nbsp;Harvesting</a></li>
+                </ul>
+              </div>
+              <div class="tab">
+                <h3>Emergency</h3>
+                <ul>
+                  <li><a href="#" class="emergency-link">Weather</a>
+                    <ul class="emergency-submenu">
+                      <li><a href="#">Storm</a></li>
+                      <li><a href="#">Floods</a></li>
+                      <li><a href="#">Drought</a></li>
+                      <li><a href="#">Frost</a></li>
+                      <li><a href="#">Uncertain&nbsp;Rain</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="{% url 'ongoingProjectPest' project.project_id %}" class="project-card">Pest</a></li>
+                  <li><a href="{% url 'ongoingProjectDisease' project.project_id %}" class="project-card">Disease</a></li>
+                  <li><a href="#">Resource&nbsp;Shortage</a></li>
+                </ul>
+              </div>
+              <div class="tab">
+                <h3>Operation</h3>
+                <ul>
+                  <li><a href="{% url 'ongoingProjectIrrigation' project.project_id %}" class="project-card">Irrigation</a></li>
+                  <li><a href="{% url 'ongoingProjectFertilizer' project.project_id %}" class="project-card">Fertilization</a></li>
+                </ul>
+              </div>
+            </div>
+          </section>
+          <section class="stepwise-info-area">
+            {% block projectDetailsBody %}
+            
+            
+            {% endblock projectDetailsBody %}
+        </section>
+        {% comment %} <section class="status-area">
+          <h2 class="status-heading">
+            Status
+          </h2>
+          <div class="pie-chart">
+            <canvas id="pie-chart-canvas" width="400" height="400"></canvas>
+          </div>
+          <div class="notification-area">
+            <h3>Notification</h3>
+            <div class="notification">
+              <ul>
+                <li><a href="#">Notification 1</a></li>
+                <li><a href="#">Notification 2</a></li>
+                <li><a href="#">Notification 3</a></li>
+                <li><a href="#">Notification 4</a></li>
+                <li><a href="#">Notification 5</a></li>
+              </ul>
+            </div>
+          </div>
+        </section>    {% endcomment %}
+      </section>
+
+</main>
+
+{% endblock body %}    
+{% block javaScript%}
+
+    <script src="{% static 'js/pieChart.js' %}"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <canvas id="statusPieChart"></canvas>
+<script id="pieLabels" type="application/json">{{ pieLabels|safe }}</script>
+<script id="pieDurations" type="application/json">{{ pieDurations|safe }}</script>
+<script>
+  const pieLabels = JSON.parse(document.getElementById("pieLabels").textContent);
+  const pieDurations = JSON.parse(document.getElementById("pieDurations").textContent);
+
+  new Chart(document.getElementById('pie-chart-canvas'), {
+    type: 'pie',
+    data: {
+      labels: pieLabels,
+      datasets: [{
+        data: pieDurations,
+        backgroundColor: [
+          '#f4a261', '#2a9d8f', '#e76f51', '#264653', '#e9c46a',
+          '#8ecae6', '#219ebc', '#ffb703', '#fb8500', '#023047', '#ff006e'
+        ]
+      }]
+    },
+    options: {
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              return `${context.label}: ${context.parsed} hrs`;
+            }
+          }
+        }
+      }
+    }
+  });
+</script>
+{% endblock javaScript%}
+

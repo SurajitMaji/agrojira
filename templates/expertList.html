@@ -1,0 +1,97 @@
+{% extends 'systemAdminBase.html'%}
+
+{% load static %}
+{% block title%}
+Experts List
+{% endblock title%}
+  
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/expertsList.css' %}">
+{% endblock head %}
+
+{% block adminBody %}
+
+
+    <div class="rest-top">
+        <div class="middle-bar">
+            <div class="middle-bar-heading">Experts</div>
+            <div class="search-area">
+                <div class="search-input-area">
+                    <form action="packagesearch.php" method="POST" class="search-form">
+                    <input type="text" class="search-packages" name="search" required>
+                </div>
+                <div class="search-button">
+                    <input type="submit" class="search" value="Search" >
+                    </form>
+                </div>
+            </div>
+            <div class="add-area">
+                <div class="add-button"><a href="/addExpert" class="add-anchar">+</a> </div>
+            </div>
+        </div>
+        <div class="bottom-area">
+            <div class="first-row">
+                {% if not expertFarmers %}
+                <center> No record Found</center>
+                {% else %}
+                <div class="">
+                    <div class="th">
+                        <div>
+                            Sl No.
+                        </div>
+                        <div>
+                            Photo
+                        </div>
+                        <div>
+                            Name
+                        </div>
+                        <div>
+                            Experience
+                        </div>
+                        <div>
+                            Action
+                        </div>
+                        
+                    </div>
+                   
+                    
+                     {% for expertFarmer in expertFarmers %}
+                    <div class="tr">
+                        <div class="td" id="slno">
+                            {{ forloop.counter }}.
+                        </div>
+                        <div class="td" id="pphoto">
+                            <img src="{% if expertFarmer.expert_photo %}{{ expertFarmer.expert_photo.url }}{% else %}{% static 'image/person.jpg' %}{% endif %}" class="pphoto">
+                        </div>
+                        <div class="td" id="pname">
+                            {{ expertFarmer.name}}
+                        </div>
+                        <div class="td" id="plocation">
+                            {{ expertFarmer.experience_year}}
+                        </div>
+                        <div class="td" id="action-area">
+                            <div class="view-area">
+                                <a href="
+                                {% url 'update_expert' expertFarmer.expert_id %}
+                                " class="view">
+                                    <div class="view">Update</div>
+                                </a>
+                            </div>
+                            <div class="delete-area">
+                                <a href="
+                                {% url 'delete_expert' expertFarmer.expert_id %}
+                                " class="delete">
+                                    <div class="delete">Delete</div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock adminBody %}
+
+    

@@ -1,0 +1,59 @@
+{% extends 'base.html'%}
+
+{% load static %}
+{% block title%}
+Home
+{% endblock title%}
+  
+{% block head %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/community.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/community2.css' %}">
+{% endblock head %}
+    {% block body %}
+   
+        <div class="chat-app">
+            <div class="contact-list">
+                <form method="POST" action="community">
+                    {% csrf_token %}
+                    <div class="search-bar">
+                        <input type="hidden" name="form_type" value="search">
+                        <input type="text" placeholder="Search..." name="query" require>
+                        <button value="submit"><img src="{% static "image/search.png" %}" class="fa fa-search"></button>
+                    </div>
+                </form>
+                <ul>
+                    {% if farmers %}
+                    {% for farmer in  farmers %}
+                    <li>
+                        <a href="{% url "eachMessage" farmer.farmer_primary_id %}">
+                        <div class="user-image">
+                            <img src="
+                            {% if  farmer.user_photo %}
+                            {{farmer.user_photo.url}}
+                            {% else  %}
+                            {% static "image/person.jpg" %}
+                            {% endif %}
+                            " alt="User">
+                            <span class="offline"></span>
+                        </div>
+                        <div class="user-info">
+                            <h2>{{farmer.user_name}}</h2>
+                            <p>Marginal Farmer</p>
+                        </div>
+                        </a>
+                    </li>
+                    {% endfor %}
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="chat-window">
+                <div class="welcome-area">
+                    Welcome to our Community Forum
+                </div>
+            </div>
+        </div>
+
+  {% endblock body %}
+    
+

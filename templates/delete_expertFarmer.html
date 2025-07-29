@@ -1,0 +1,26 @@
+{% extends 'systemAdminBase.html'%}
+
+{% load static %}
+{% block title%}
+Fermers 
+{% endblock title%}
+  
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/farmer_confirm_delete.css' %}">
+{% endblock head %}
+
+{%block pagename%} Fermer {% endblock pagename %}
+{% block adminBody %}
+    <div class="delete-container">
+        <p>Are you sure you want to delete "<strong>{{ expert.name }}</strong>"?</p>
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit">Yes, Delete</button>
+            <a href="{% url 'expertsList' %}">Cancel</a>
+        </form>
+    </div>
+    {% endblock adminBody %}
+
+    
+
+

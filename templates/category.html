@@ -1,0 +1,46 @@
+{% extends 'base.html'%}
+
+{% load static %}
+{% block title%}
+Home
+{% endblock title%}
+  
+{% block head %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/category.css' %}">
+{% endblock head %}
+    {% block body %}
+
+    <main>        
+          <div class="container">
+            
+            {% for crop_type in crop_types %}
+                <div class="category">
+                    <div class="category-header" onclick="toggleCategory(this)">
+                        <span class="category-title">{{forloop.counter}}.
+                            {{crop_type}}</span>
+                        <span class="dropdown-icon">&#9660;</span>
+                    </div>
+                    <ul class="sub-options">
+                        {% for crop in crops  %}
+                            {% if crop.crop_type == crop_type %}
+                                <li>
+                                    <a href="{% url "everyCropProcess" crop.crop_id %}" class="crop-name">
+                                        {{crop.crop_name}}
+                                    </a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endfor %}
+            </div>
+        
+    </main>
+
+  {% endblock body %}
+  {% block javaScript%}
+  <script src="{% static 'js/category.js' %}"></script>
+  {% endblock javaScript%}
+    
+

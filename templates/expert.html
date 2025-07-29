@@ -1,0 +1,87 @@
+{% extends 'base.html'%}
+
+{% load static %}
+{% block title%}
+Experts
+{% endblock title%}
+  /
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/expert.css' %}">
+{% endblock head %}
+{% block body %}
+
+
+ <style>
+    
+ </style>
+  
+  <section class="expert-top">
+   <h1 class="">
+    Meet Our Experts
+   </h1>
+   <p class="">
+    Experties of Agricultural Field over the years
+   </p>
+  </section>
+  <section class="">
+   <!-- Card 1 -->
+   <div class="experts-area">
+    <div class="every-row">
+            {% for expert in experts %}
+
+            <div class="every-expert">
+                <div class="expert-photo-area">
+                    {% if expert.expert_photo %}
+                        <img src="{{ expert.expert_photo.url }}" alt="" class="expert-photo">
+                    {% else %}
+                        {% if expert.gender == 'Male' %}
+                            <img src="{% static 'image/4140037.png' %}" alt="" class="expert-photo">
+                        {% else %}
+                            <img src="{% static 'image/4140047.png' %}" alt="" class="expert-photo">
+                        {% endif %}
+                    {% endif %}
+
+              
+            </div>
+            <div class="expert-details">
+                <div class="expert-name">
+                    <b>{{expert.name}}</b>
+                </div>
+                <div class="expert-degree">
+                    {{expert.specialization}}<br>
+                    {% if expert.gender == 'Male' %}
+                            He
+                    {% else %}
+                            She
+                    {% endif %}
+                     is farming from {{expert.experience_year}}
+                </div>
+                <div class="expert-experience">
+                    
+                </div>
+            </div>
+            <div class="button-area">
+                <div class="view-profile">
+                    <a href="
+                    
+                    ">View&nbsp;Profile</a>
+                </div>
+                <div class="book-appointment">
+                <a href="#">Cummunicate</a>
+                </div>
+            </div>
+        </div>
+        
+   {% endfor %}
+    </div>
+</div>
+ 
+    
+   
+  </section>
+
+{% endblock body %}    
+{% block javaScript%}
+
+{% endblock javaScript%}
+

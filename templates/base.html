@@ -1,0 +1,33 @@
+
+{% load static %}
+<!doctype html>
+<html lang="en">
+{% block head %}{% endblock head %}
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{%block title%} {% endblock title %} Agrojira </title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/nav.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/menuButton.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}">
+    
+    <link rel="shortcut icon" href="{% static 'image/agrojira.jpeg' %}" type="image/x-icon">
+  </head>
+  <body>
+    {% include 'nav.html' %}
+
+  
+        {% block body %}
+
+        {% endblock body %}
+
+    {% include 'fotter.html' %}
+
+    <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/menuButton.js' %}"></script>
+
+    {% block javaScript%}
+    {% endblock javaScript%}
+   </body>
+</html>

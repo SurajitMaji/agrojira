@@ -1,0 +1,165 @@
+{% extends 'base.html'%}
+
+{% load static %}
+{% block title%}
+Query
+{% endblock title%}
+  
+{% block head %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/' %}">
+{% endblock head %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Queries</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .queryList-container{
+            margin:10px 0px;
+        }
+
+        .queryList-container .container {
+            max-width: 900px;
+            margin: auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .queryList-container .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .queryList-container .header h2 {
+            margin: 0;
+        }
+
+        .queryList-container .add-query-btn {
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            padding: 10px 16px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .add-query-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .query-card {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            padding: 15px;
+            position: relative;
+        }
+
+        .query-details {
+            margin-bottom: 10px;
+        }
+
+        .query-image {
+            max-width: 100%;
+            height: 100px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+
+        .action-buttons {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
+
+        .action-buttons a {
+            margin-left: 8px;
+            text-decoration: none;
+            padding: 6px 10px;
+            font-size: 13px;
+            border-radius: 4px;
+            color: white;
+        }
+
+        .edit-btn {
+            background-color: #28a745;
+        }
+
+        .delete-btn {
+            background-color: #dc3545;
+        }
+
+        @media (max-width: 600px) {
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .action-buttons {
+                position: static;
+                margin-top: 10px;
+            }
+
+            .action-buttons a {
+                display: inline-block;
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<div class="queryList-container">
+    <div class="container">
+        <div class="header">
+            <h2>My Queries</h2>
+            <a href="addQuery" class="add-query-btn">+ Add a Query</a>
+        </div>
+        {% if queries %}
+        {% for query in queries %}
+        <div class="query-card">
+            <div class="query-details">
+                <strong>Title:</strong> {{ query.query_title }}<br><br>
+                <strong>Description:</strong> {{ query.query_text }}<br><br>
+                <strong>Status:</strong> {{ query.status }}<br><br>
+                <strong>Submitted:</strong> {{ query.submitted_at|date:"Y-m-d H:i" }}<br><br>
+                {% if query.query_image %}
+                    <img src="{{ query.query_image.url }}" class="query-image" alt="Query Image">
+                {% endif %}
+                {% if query.solution_text %}
+                    <hr>
+                    <strong>Solution:</strong> {{ query.solution_text }}<br>
+                    {% if query.solution_image %}
+                        <img src="{{ query.solution_image.url }}" class="query-image" alt="Solution Image">
+                    {% endif %}
+                    <strong>Answered:</strong> {{ query.answered_at|date:"Y-m-d H:i" }}<br>
+                {% endif %}
+            </div>
+            <div class="action-buttons">
+                <a href="
+                {% comment %} {% url 'edit_query' query.id %} {% endcomment %}
+                " class="edit-btn">Edit</a>
+                <a href="
+                {% comment %} {% url 'delete_query' query.id %} {% endcomment %}
+                " class="delete-btn" onclick="return confirm('Are you sure you want to delete this query?');">Delete</a>
+            </div>
+        </div>
+        {% empty %}
+            <p>No queries submitted yet.</p>
+        {% endfor %}
+        {% endif %}
+    </div>
+</div>
+</html>
+
+{% endblock body %}
+    
+{% block javaScript%}
+{% endblock javaScript%}
+

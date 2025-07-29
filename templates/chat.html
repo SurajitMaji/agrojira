@@ -1,0 +1,55 @@
+{% extends 'base.html'%}
+
+{% load static %}
+{% block title%}
+About Us
+{% endblock title%}
+  
+{% block head %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/about.css' %}">
+{% endblock head %}
+{% block body %}
+ <!DOCTYPE html>
+<html>
+<head>
+  <title>Agrojira Chatbot</title>
+  <style>
+    #chatbox { max-width: 500px; margin: auto; border: 1px solid #ccc; padding: 10px; height: 500px; overflow-y: scroll; }
+    .msg { margin: 5px; }
+    .user { text-align: right; color: green; }
+    .bot { text-align: left; color: blue; }
+  </style>
+</head>
+<body>
+  <div id="chatbox"></div>
+  <input id="msg" placeholder="Type your message" />
+  <button onclick="sendMessage()">Send</button>
+
+  <script>
+    async function sendMessage() {
+      const msg = document.getElementById('msg').value;
+      if (!msg) return;
+
+      const chatbox = document.getElementById('chatbox');
+      chatbox.innerHTML += `<div class="msg user">${msg}</div>`;
+      document.getElementById('msg').value = "";
+
+      const response = await fetch("/chatbot-api/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: msg }),
+      });
+
+      const data = await response.json();
+      chatbox.innerHTML += `<div class="msg bot">${data.reply}</div>`;
+      chatbox.scrollTop = chatbox.scrollHeight;
+    }
+  </script>
+</body>
+</html>
+
+{% endblock body %}    
+{% block javaScript%}
+    {% comment %} <script src="{% static 'js/about.js' %}"></script> {% endcomment %}
+{% endblock javaScript%}

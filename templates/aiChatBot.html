@@ -1,0 +1,95 @@
+{% extends 'base.html'%}
+
+{% load static %}
+{% block title%}
+About Us
+{% endblock title%}
+  
+{% block head %}
+<style>
+#chat-container {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  background: #f2f2f2;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+#chat-box {
+  height: 300px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  background: #fff;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.user-message {
+  text-align: right;
+  color: green;
+  margin: 5px;
+}
+
+.bot-message {
+  text-align: left;
+  color: blue;
+  margin: 5px;
+}
+
+#input-box {
+  display: flex;
+  gap: 10px;
+}
+</style>
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/about.css' %}">
+{% endblock head %}
+{% block body %}
+
+
+
+<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger
+  intent="WELCOME"
+  chat-title="Makhanjira"
+  agent-id="55a00c7d-3467-4b39-9e24-11fa9b4cd7ed"
+  language-code="en"
+></df-messenger>
+{% endblock body %}    
+{% block javaScript%}
+<script>
+async function sendMessage() {
+    const inputField = document.getElementById("user-input");
+    const message = inputField.value.trim();
+    if (!message) return;
+
+    // Show user message
+    const chatBox = document.getElementById("chat-box");
+    chatBox.innerHTML += `<div class='user-message'>🧑‍🌾 You: ${message}</div>`;
+
+    inputField.value = "";
+
+    // Send to Django webhook
+    const response = await fetch("/dialogflow-webhook/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            queryResult: {
+                parameters: {
+                    crop_name: message
+                }
+            }
+        })
+    });
+
+    const data = await response.json();
+    chatBox.innerHTML += `<div class='bot-message'>🤖 Bot: ${data.fulfillmentText}</div>`;
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+</script>
+
+    {% comment %} <script src="{% static 'js/about.js' %}"></script> {% endcomment %}
+{% endblock javaScript%}

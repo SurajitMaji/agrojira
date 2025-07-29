@@ -1,0 +1,111 @@
+{% extends 'base.html'%}
+
+{% load static %}
+{% block title%}
+Home
+{% endblock title%}
+  
+{% block head %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/community.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/eachMessege.css' %}">
+{% endblock head %}
+    {% block body %}
+   
+        <div class="chat-app">
+            <div class="contact-list">
+                <form method="POST" action="/community">
+                    {% csrf_token %}
+                    <div class="search-bar">
+                        <input type="hidden" name="form_type" value="search">
+                        <input type="text" placeholder="Search..." name="query" require>
+                        <button value="submit"><img src="{% static "image/search.png" %}" class="fa fa-search"></button>
+                    </div>
+                </form>
+                <ul>
+                    {% if farmers %}
+                    {% for farmer in  farmers %}
+                    <li>
+                        <a href="{% url "eachMessage" farmer.farmer_primary_id %}">
+                        <div class="user-image">
+                            <img src="
+                            {% if  farmer.user_photo %}
+                            {{farmer.user_photo.url}}
+                            {% else  %}
+                            {% static "image/person.jpg" %}
+                            {% endif %}
+                            " alt="User">
+                            <span class="offline"></span>
+                        </div>
+                        <div class="user-info">
+                            <h2>{{farmer.user_name}}</h2>
+                            <p>Marginal Farmer</p>
+                        </div>
+                        </a>
+                    </li>
+                    {% endfor %}
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="chat-window">
+                <div class="chat-header">
+                    <div class="user-image">
+                        <img src="
+                            {% if  receiver.user_photo %}
+                            {{receiver.user_photo.url}}
+                            {% else  %}
+                            {% static "image/person.jpg" %}
+                            {% endif %}
+                            " alt="User">
+                        
+                    </div>
+                    <div class="user-info">
+                        <h2>Chat with {{receiver.user_name}}</h2>
+                        <p>{{messages_counter}} Chats</p>
+                    </div>
+                    <div class="chat-actions">
+                        <div class="more-option">
+                            <img src="{% static "image/three-dots.png" %} " alt="" class="three-dots">
+                        </div>
+                        <!-- <button><i class="fa fa-video-camera"></i></button>
+                        <button><i class="fa fa-phone"></i></button>
+                        <button><i class="fa fa-ellipsis-v"></i></button> -->
+                    </div>
+                </div>
+                <div class="chat-history">
+                    <ul>
+                        {% for message in messages %}
+                        <li
+                        {% if message.receiver.farmer_primary_id is receiver.farmer_primary_id %}
+                                class="sent"
+                         {% else %}
+                         class="received"
+                         {% endif %}>
+                            <p>{{message.message}}</p>
+                            <span>
+                                {% if message.timestamp.date is today %}
+                                {{ message.timestamp|date:"g:i A" }}, Today
+                            {% else %}
+                                {{ message.timestamp|date:"g:i A, d M Y" }}
+                            {% endif %}
+                            </span>
+                        </li>
+                        {% endfor %}
+                        
+                    </ul>
+                </div>
+                <div class="chat-input">
+                    <form class="chat-input-form" method="POST" action="{% url 'eachMessage' receiver.farmer_primary_id%}">
+                    {% csrf_token %}
+                    <input type="hidden" name="form_type" value="message">
+                    <input type="hidden" name="receiver_id" value="{{receiver.farmer_priamry_id}}">
+                    <input type="text" placeholder="Type a message..." name="message" required>
+                    <button  type="submit"><img src="{% static "image/send.png" %} " class="fa fa-paper-plane"></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+  {% endblock body %}
+    
+

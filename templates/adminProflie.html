@@ -1,0 +1,72 @@
+{% extends 'systemAdminBase.html'%}
+
+{% load static %}
+{% block title%}
+Profile
+{% endblock title%}
+  
+{% block head %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/stats.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/adminProfile.css' %}">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+{% endblock head %}
+{%block pagename%} 
+{% endblock pagename %}
+{% block adminBody %}
+  <div class="profile-container"> 
+    <div class="container">
+        <div class="profile-card">
+            <div class="header">
+                <img src="{% static "image/person.jpg"%}" alt="Profile Picture">
+                <div class="header-info">
+                <h2>Vipraj Nigam</h2>
+                <p>New Delhi, Delhi, 12561, INDIA<br>
+                    Age: 24 | Gender: Male | Status: <span class="badge">Active</span>
+                </p>
+                </div>
+                <a href="#" class="edit-btn">Edit Profile</a>
+            </div>
+            <div class="info">
+                <p><strong>Role:</strong> Administrator</p>
+                <p><strong>Email:</strong> clay.jensen@email.com</p>
+                <p><strong>Contact:</strong> (+61) (45687) (45687)</p>
+                <p><strong>Region:</strong> Central US</p>
+            </div>        
+        </div>
+
+        <div class="activities-card">
+            <h3>Your Activities</h3>
+            <div class="activity-item">Bryce Walker added a role <em>'Worker - 2'</em> <span class="timestamp">11/02/2023 10:40:55 AM</span></div>
+            <div class="activity-item">Bryce Walker assigned task to a role <em>'Worker - 1'</em> <span class="timestamp">11/02/2023 10:40:55 AM</span></div>
+            <div class="activity-item">Bryce Walker added a role <em>'Worker - 2'</em> <span class="timestamp">11/02/2023 10:40:55 AM</span></div>
+            <div class="activity-item">Bryce Walker assigned task to a role <em>'Worker - 1'</em> <span class="timestamp">11/02/2023 10:40:55 AM</span></div>
+        </div>
+    </div>
+    <div class="activities-card recent-activity-area">
+        <h3>Recent Activities</h3>
+        <div class="activity-item">Bryce Walker added a role <em>'Worker - 2'</em> <span class="timestamp">11/02/2023 10:40:55 AM</span></div>
+        <div class="activity-item">Bryce Walker assigned task to a role <em>'Worker - 1'</em> <span class="timestamp">11/02/2023 10:40:55 AM</span></div>
+        <div class="activity-item">Bryce Walker added a role <em>'Worker - 2'</em> <span class="timestamp">11/02/2023 10:40:55 AM</span></div>
+        <div class="activity-item">Bryce Walker assigned task to a role <em>'Worker - 1'</em> <span class="timestamp">11/02/2023 10:40:55 AM</span></div>
+        <div class="activity-item">Bryce Walker added a role <em>'Worker - 2'</em> <span class="timestamp">11/02/2023 10:40:55 AM</span></div>
+        <div class="activity-item">Bryce Walker assigned task to a role <em>'Worker - 1'</em> <span class="timestamp">11/02/2023 10:40:55 AM</span></div>
+        <div class="activity-item">Bryce Walker added a role <em>'Worker - 2'</em> <span class="timestamp">11/02/2023 10:40:55 AM</span></div>
+        <div class="activity-item">Bryce Walker assigned task to a role <em>'Worker - 1'</em> <span class="timestamp">11/02/2023 10:40:55 AM</span></div>
+        <div class="activity-item">Bryce Walker added a role <em>'Worker - 2'</em> <span class="timestamp">11/02/2023 10:40:55 AM</span></div>
+        <div class="activity-item">Bryce Walker assigned task to a role <em>'Worker - 1'</em> <span class="timestamp">11/02/2023 10:40:55 AM</span></div>
+        <div class="activity-item">Bryce Walker added a role <em>'Worker - 2'</em> <span class="timestamp">11/02/2023 10:40:55 AM</span></div>
+        <div class="activity-item">Bryce Walker assigned task to a role <em>'Worker - 1'</em> <span class="timestamp">11/02/2023 10:40:55 AM</span></div>
+        <div class="activity-item">Bryce Walker added a role <em>'Worker - 2'</em> <span class="timestamp">11/02/2023 10:40:55 AM</span></div>
+        <div class="activity-item">Bryce Walker assigned task to a role <em>'Worker - 1'</em> <span class="timestamp">11/02/2023 10:40:55 AM</span></div>
+        <div class="activity-item">Bryce Walker added a role <em>'Worker - 2'</em> <span class="timestamp">11/02/2023 10:40:55 AM</span></div>
+        <div class="activity-item">Bryce Walker assigned task to a role <em>'Worker - 1'</em> <span class="timestamp">11/02/2023 10:40:55 AM</span></div>
+    </div>
+  </div>
+  
+
+    
+   
+{% endblock adminBody %}
+    

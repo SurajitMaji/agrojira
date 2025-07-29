@@ -1,0 +1,88 @@
+{% extends 'base.html'%}
+
+{% load static %}
+{% block title%}
+Registration
+{% endblock title%}
+  
+{% block head %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/registration.css' %}">
+{% endblock head %}
+{% block body %}
+    <div class="registration_form_area">
+        <div class="form_heading">
+           Agrojira
+       </div>
+        <form action="/registration" method="post" name="registration_from" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="registration_form_heading">
+                 Sign Up
+            </div>
+            <div class="registration_form_component">
+                <div class="registration_form_input_area">
+                    <label for="user_id">User&nbsp;Id: </label>
+                    <input type="text" name="user_id" class="user_id inputFeild" id="user_id" placeholder="User Id" required>
+                </div>
+                <div class="registration_form_input_area">
+                    <label for="user_name">User&nbsp;Name: </label>
+                    <input type="text" name="user_name" class="user_name inputFeild" id="user_name" placeholder="User Name" required>
+                </div>
+                
+                <div class="registration_form_input_area">
+                    <label for="user_email">Address: </label>
+                    <input type="text" name="user_area" class="user_address inputFeild" id="user_address" placeholder="Area Name" required>
+                    <input type="text" name="user_village_city" class="user_address inputFeild" id="user_address" placeholder="Village/ City" required>
+                    <input type="text" name="user_police_station" class="user_address inputFeild" id="user_address" placeholder="Police Station" required>
+                    <input type="text" name="user_district" class="user_address inputFeild" id="user_address" placeholder="District" required>
+                    <input type="number" name="user_pincode" class="user_address inputFeild" id="user_address" placeholder="Pinocode" required>
+                    <input type="text" name="user_state" class="user_address inputFeild" id="user_address" placeholder="State" required>
+                    <input type="text" name="user_country" class="user_address inputFeild" id="user_address" placeholder="Country" required>
+                </div>
+                <div class="registration_form_input_area">
+                    <label for="user_email">Date of Birth: </label>
+                    <input type="date" name="user_dob" class="user_dob" id="user_email" placeholder="Date of Birth" >
+                </div>
+                <div class="registration_form_input_area">
+                    <label for="user_email">Mobile Number: </label>
+                    <input type="number" name="user_mobile_number" class="user_mobile_number" id="user_mobile_number" placeholder="Mobile Number" required>
+                </div>
+                <div class="registration_form_input_area">
+                    <label for="user_email">Email: </label>
+                    <input type="email" name="user_email" class="user_email" id="user_email" placeholder="Email" required>
+                </div>
+                
+                <div class="registration_form_input_area">
+                    <label for="user_email">Photo </label>
+                    <input type="file" name="user_photo" class="user_photo" id="user_photo" required onchange="preview(this,'photo_preview')">
+                    <figure>
+                        <img src="" alt="" id="photo_preview">
+                        <figcaption>Uploading Image</figcaption>
+                    </figure>
+                    
+                </div>
+                <div class="registration_form_input_area">
+                    <label for="user_password">Password: </label>
+                    <input type="password" name="user_password" class="user_password" id="user_password" placeholder="Password" required>
+                </div>
+                <div class="registration_form_input_area">
+                    <input type="submit" class="registration_submit" name="submit" value="Register">
+                </div>
+            </div>
+            <div class="already_register">
+                Already have an account? <a href="login.html" class="login_form">Log in.</a>
+            </div>
+        </form>
+        
+        <center class="blinking-text">
+            {{status}}
+        </center>
+    </div>
+
+{% endblock body %}
+    
+{% block javaScript%}
+
+    <script src="{% static 'js/imagePreview.js' %}"></script>
+{% endblock javaScript%}
+

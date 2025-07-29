@@ -1,0 +1,60 @@
+{% extends 'systemAdminBase.html'%}
+
+{% load static %}
+{% block title%}
+
+{% endblock title%}
+  
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/farmersList.css' %}">
+{% endblock head %}
+
+{%block pagename%} Fermer List {% endblock pagename %}
+{% block adminBody %}
+    <table class="memberTable">
+        <caption>Farmer List </caption>
+        <thead>
+            <tr>
+                <th>SL No.</th>
+                <th>Photo</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th colspan="2">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for farmer in farmers %}
+            
+            <tr>
+                <td>{{ forloop.counter }}.</td>
+                <td class="member_photo">
+                    <img src="{% if farmer.user_photo %}{{ farmer.user_photo.url }}{% else %}{% static 'image/person.jpg' %}{% endif %}" 
+                    alt="{{ farmer.user_name }}" 
+                    class="member_image">
+                </td>
+                <td>
+                    <a href="/" class="profileName">
+                        {{ farmer.user_name  }}
+                    </a>
+                </td>
+                <td>
+                    {{ farmer.user_state  }}
+                </td>
+                <td class="actionCell">
+                        <a href="{% url 'update_farmer' farmer.farmer_primary_id %}" class="actionButton">
+                            <img src="{% static 'image/edit.jpg' %}" class="actionLogo">	
+                        </a>
+                </td>
+                <td class="actionCell">
+                        <a href="{% url 'delete_farmer' farmer.farmer_primary_id %}" class="actionButton">
+                        <img src="{% static 'image/remove.webp' %}" class="actionLogo">	
+                        </a>
+                    </td>
+            </tr>
+            
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock adminBody %}
+
+    

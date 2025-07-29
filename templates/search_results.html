@@ -1,0 +1,158 @@
+
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Search Results{% endblock title %}
+
+{% block head %}
+<style>
+.container {
+    padding: 1rem;
+}
+form.search-form {
+    margin-bottom: 1rem;
+}
+.search-input {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 1rem;
+}
+.filters label {
+    background-color: #e0e0e0;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.85rem;
+}
+.result-category {
+    margin-top: 2rem;
+}
+.result-category h3 {
+    border-bottom: 2px solid #4caf50;
+    padding-bottom: 5px;
+    color: #4caf50;
+}
+.result-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+.result-list li {
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    background-color: #fdfdfd;
+}
+.result-list a {
+    text-decoration: none;
+    color: #2c3e50;
+}
+.result-list a:hover {
+    color: #4caf50;
+}
+@media (min-width: 768px) {
+    .search-input {
+        width: 60%;
+    }
+}
+</style>
+{% endblock head %}
+
+{% block body %}
+<div class="container">
+    <h2>Search Results for "{{ keyword }}"</h2>
+
+    <form method="get" action="{% url 'search_results' %}" class="search-form">
+        <input type="text" name="q" class="search-input" value="{{ keyword }}" placeholder="Search..." required>
+        <div class="filters">
+            {% for category in categories %}
+                <label>
+                    <input type="checkbox" name="filter" value="{{ category }}" checked> {{ category|title }}
+                </label>
+            {% endfor %}
+        </div>
+        <button type="submit">Apply Filters</button>
+    </form>
+
+    {% if crop_docs %}
+    <div class="result-category">
+        <h3>Crop Documentation</h3>
+        <ul class="result-list">
+            {% for item in crop_docs %}
+            <li><a href="{% url 'everyCropProcess' item.crop_id %}">{{ item.crop_name }} – {{ item.crop_type }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    {% if videos %}
+    <div class="result-category">
+        <h3>Expert Videos</h3>
+        <ul class="result-list">
+            {% for item in videos %}
+            <li>
+                <a href="{% url 'playingRecordedVideo' item.video_id %}">
+                    {% if item.thumbnail %}
+                        <img src="{{ item.thumbnail.url }}" width="100"><br>
+                    {% endif %}
+                    {{ item.title }}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    {% if farmers %}
+    <div class="result-category">
+        <h3>Farmers</h3>
+        <ul class="result-list">
+            {% for item in farmers %}
+            <li><a href="{% url 'eachMessage' item.farmer_primary_id %}">{{ item.user_name }} – {{ item.user_village_city }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    {% if experts %}
+    <div class="result-category">
+        <h3>Expert Farmers</h3>
+        <ul class="result-list">
+            {% for item in experts %}
+            <li><a href="{% url 'expertsList' %}">{{ item.name }} – {{ item.specialization }}</a></li>  <!-- Assuming list page for now -->
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    {% if queries %}
+    <div class="result-category">
+        <h3>Community Queries</h3>
+        <ul class="result-list">
+            {% for item in queries %}
+            <li><a href="{% url 'userQuery' %}">{{ item.query_title }} – {{ item.query_text|truncatewords:10 }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    {% if user_projects %}
+    <div class="result-category">
+        <h3>My Projects</h3>
+        <ul class="result-list">
+            {% for item in user_projects %}
+            <li><a href="{% url 'ongoingProject' item.project_id %}">{{ item.project_name }} – {{ item.crop_name }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+</div>
+{% endblock body %}
+

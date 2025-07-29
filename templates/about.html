@@ -1,1 +1,169 @@
+{% extends 'base.html'%}
+
+{% load static %}
+{% block title%}
+About Us
+{% endblock title%}
+  
+{% block head %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/about.css' %}">
+{% endblock head %}
+{% block body %}
+
+
+    <!-- Hero Section with Slider -->
+    <section class="hero">
+        <div class="slider">
+            <img src="{% static 'image/harvesting.jpeg' %}" alt="Farm Image" id="slider-image">
+            <button class="slider-btn left" onclick="prevSlide()">&#10094;</button>
+            <button class="slider-btn right" onclick="nextSlide()">&#10095;</button>
+            <div class="hero-title">Agricultural Support</div>
+        </div>
+    </section>
+
+    <!-- About Us -->
+    <section class="about">
+        <div class="about-content">
+            <div class="about-text">
+                <h3>ABOUT US</h3>
+                <h2>AGRICULTURE MARKET</h2>
+                <p>
+                    To seeing the decreasing of the traditional agriculture we can say or assume that the traditional 
+                    agriculture will be lost from our community or our society after long years of period. Then if 
+                    anyone tries or wants to do the traditional agriculture but he will fail because he has no pre 
+                    required knowledge to do these types of agriculture. <br><br>
+
+                    Don't warry we help you in your agricultural life from preparing soild to harvesting by experienced 
+                    farmer and Advanced Artificial Intelligence Techniques.
+                </p>
+                <button class="btn">LEARN MORE</button>
+            </div>
+            <div class="about-images">
+                <img src="{% static 'image/Grape-green-iStock-000014085833Medium.jpg' %}" alt="Grapes">
+                <img src="{% static 'image/e132feec-e292-4e9d-bb24-f731fb2b23a3.jpg' %}" alt="Tomatoes">
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <h3>WHAT WE DO</h3>
+        <h2>SERVICES WE OFFER</h2>
+        <div class="services-cards">
+            <div class="card">
+                <img src="{% static 'image/tutorialToFarmer.jpg' %}" alt="Fresh Vegetables">
+                <h3>Complete Tutorial</h3>
+                <p>
+                    New farmers who need guidance and access to farming resources.<br><br>
+                    - Scope:<br><br>
+                    •	Help farmers choose the right crops based on soil and weather conditions.<br><br>
+                    •	Guide them through soil preparation, sowing, fertilization, irrigation, and harvesting.<br><br>
+                    •	 Provide emergency alerts and expert advice.<br><br>
+                    •	Include video tutorials and a community support system
+    
+                </p>
+                <a href="/category" class="btn">READ MORE</a>
+            </div>
+            <div class="card">
+                <img src="{% static 'image/farmer-agricultural-expert-shaking-hands-green-field_1076263-3899.jpg' %}" alt="Agriculture Products">
+                <h3>Expert Adviced</h3>
+                <p>
+                    
+                • Real Guidance from Real Experts – Grow with Confidence.<br><br>
+
+                • Expert Insights at Every Stage of Your Crop Journey.<br><br>
+
+                • Backed by Knowledge, Guided by Experience.<br><br>
+
+                • Bridge the Gap Between Farmers and Experts.    
+                
+
+                </p>
+                <a href="/expertForUser" class="btn">READ MORE</a >
+            </div>
+            <div class="card">
+                <img src="{% static 'image/16778104782137.jpg' %}" alt="Organic Products">
+                <h3>Advanced Recomendation</h3>
+                <p>
+                    • Smarter Farming Starts with Smarter Suggestions.<br><br>
+
+                    • AI-Powered Recommendations for Next-Level Farming.<br><br>
+
+                    • Precision Insights for Maximum Crop Success.<br><br>
+
+                    • Your Next Best Step—Backed by Data and Intelligence.<br><br>
+
+                    • Advanced Recommendations, Tailored to Your Field.<br><br>
+
+                    • Let Data Drive Your Farming Decisions.
+                </p>
+                <a href="/" class="btn">READ MORE</a >
+            </div>
+            
+            <div class="card">
+                <img src="{% static 'image/smart-agriculture-farmer-using-tablet-corn-planting-modern-agriculture-concept_559531-27307.jpg' %}" alt="Organic Products">
+                <h3>Video Tutorials</h3>
+                <p>
+                    • Learn from the Experts. Watch, Apply, Grow.<br><br>
+
+                    • Farming Made Simple – One Video at a Time.<br><br>
+
+                    • Step-by-Step Crop Guidance, Anytime, Anywhere.<br><br>
+
+                    • Visual Learning for Real Farming Challenges.<br><br>
+
+                    • Your Digital Mentor in the Field.<br><br>
+
+                    • From Soil to Harvest – Learn It All Visually.
+                </p>
+                <a href="/video" class="btn">READ MORE</a>
+            </div>
+
+            <div class="card">
+                <img src="{% static 'image/powerful-solidarity-photos-unified-community-support_1199394-193267.jpg' %}" alt="Organic Products">
+                <h3>Community Support Service</h3>
+                <p>
+                   •  Ask Freely, Learn Together – Powered by Farmers and Experts.<br><br>
+
+                    • One Community, Countless Solutions.<br><br>
+
+                    • Farming Questions? Get Answers from the Agrojira Community.<br><br>
+
+                    • Connect, Share, and Solve – Together We Grow.<br><br>
+
+                    • Real Support from Real People in Real Time.
+                </p>
+                <a href="userQuery" class="btn">READ MORE</a >
+            </div>
+            <div class="card">
+                <img src="{% static 'image/Types-of-Chatbots.jpg' %}" alt="Organic Products">
+                <h3>AI Chat Bot</h3>
+                <p>
+                   •  Ask Freely, Learn Together – Powered by Farmers and Experts.<br><br>
+
+                    • One Community, Countless Solutions.<br><br>
+
+                    • Farming Questions? Get Answers from the Agrojira Community.<br><br>
+
+                    • Connect, Share, and Solve – Together We Grow.<br><br>
+
+                    • Real Support from Real People in Real Time.
+                </p>
+                <a href="/aiChatBot" class="btn">READ MORE</a >
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials (Optional) -->
+    {% comment %} <section class="testimonials">
+        <h3>OUR CUSTOMERS</h3>
+        <h2>TESTIMONIALS</h2>
+        <!-- Add Testimonials Here Later -->
+    </section> {% endcomment %}
+    {% include 'managementTeam.html' %}
+{% endblock body %}    
+{% block javaScript%}
+    {% comment %} <script src="{% static 'js/about.js' %}"></script> {% endcomment %}
+{% endblock javaScript%}
 

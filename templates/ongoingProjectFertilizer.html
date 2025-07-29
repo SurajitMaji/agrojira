@@ -1,0 +1,74 @@
+{% extends 'ongoingProjectBase.html'%}
+{% load static %}
+
+{% block title %}{{project.crop_name}} Project - Fertilizer{% endblock title %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/completedProject.css' %}">
+<link rel="stylesheet" href="{% static 'css/ongoingProjectSoil.css' %}">
+{% endblock head %}
+
+{% block projectDetailsBody %}
+<div class="project-datails-container">
+
+  {% if not fertilizers %}
+  <div class="each-soil-form">
+    <div class="header">Fertilizer Details Form</div>
+    <form method="POST" action="/submit_farmerFertilizer" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="section"><div class="label">Fertilizer Type:</div><div class="value"><input type="text" name="fertilizer_type" required></div></div>
+      <div class="section foreign_key"><div class="label">Project Id:</div><div class="value"><input type="number" name="project_id" readonly value="{{project.project_id}}"></div></div>
+      <div class="section"><div class="label">Name:</div><div class="value"><input type="text" name="name" required></div></div>
+      <div class="section"><div class="label">Dosage:</div><div class="value"><input type="text" name="dosage" required></div></div>
+      <div class="section"><div class="label">Application Time:</div><div class="value"><input type="text" name="application_time" required></div></div>
+      <div class="section"><div class="label">Application Method:</div><div class="value"><textarea name="application_method" required></textarea></div></div>
+      <div class="section"><div class="label">Fertilizer Image:</div><div class="value">
+        <input type="file" name="fertilizer_image" required onchange="preview(this,'photo_preview')">
+        <img alt="Fertilizer Image" id="photo_preview">
+      </div></div>
+      <div class="buttons">
+        <button type="submit" class="edit-btn">Submit</button>
+      </div>
+    </form>
+  </div>
+
+  {% else %}
+  {% for fertilizer in fertilizers %}
+  <div class="each-soil-recorder">
+    <div class="header">Fertilizer Report No: {{forloop.counter}}</div>
+    <div class="section"><div class="label">Fertilizer Type:</div><div class="value">{{fertilizer.fertilizer_type}}</div></div>
+    <div class="section"><div class="label">Name:</div><div class="value">{{fertilizer.name}}</div></div>
+    <div class="section"><div class="label">Dosage:</div><div class="value">{{fertilizer.dosage}}</div></div>
+    <div class="section"><div class="label">Application Time:</div><div class="value">{{fertilizer.application_time}}</div></div>
+    <div class="section"><div class="label">Application Method:</div><div class="value">{{fertilizer.application_method}}</div></div>
+    <div class="section"><div class="label">Is Completed:</div><div class="value">{{fertilizer.is_completed}}</div></div>
+    <div class="section"><div class="label">Created At:</div><div class="value">{{fertilizer.created_at}}</div></div>
+    <div class="section"><div class="label">Updated At:</div><div class="value">{{fertilizer.updated_at}}</div></div>
+    <div class="section"><div class="label">ML Prediction:</div><div class="value">{{fertilizer.ml_prediction}}</div></div>
+    <div class="section"><div class="label">ML Confidence:</div><div class="value">{{fertilizer.ml_confidence}}</div></div>
+    <div class="section"><div class="label">Fertilizer Image:</div>
+      <div class="value"><img src="{{fertilizer.fertilizer_image.url}}" alt="Fertilizer Image"></div>
+    </div>
+    <div class="buttons">
+      {% comment %} <a href="{% url 'ongoingProjectFertilizerUpdate' project.project_id fertilizer.farmer_fertilizer_id %}">
+        <button class="edit-btn">Edit</button>
+      </a>
+      <button class="delete-btn" onclick="deleteReport()">Delete</button> {% endcomment %}
+    </div>
+  </div>
+  {% endfor %}
+  {% endif %}
+</div>
+
+<script>
+function deleteReport() {
+  if (confirm("Are you sure you want to delete this report?")) {
+    alert("Delete functionality goes here.");
+  }
+}
+</script>
+{% endblock projectDetailsBody %}
+
+{% block javaScript %}
+<script src="{% static 'js/imagePreview.js' %}"></script>
+{% endblock javaScript %}

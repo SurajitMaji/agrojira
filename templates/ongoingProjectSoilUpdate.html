@@ -1,0 +1,127 @@
+{% extends 'ongoingProjectBase.html'%}
+
+{% load static %}
+{% block title%}
+{{project.crop_name}} Project
+{% endblock title%}
+  
+  
+{% block head %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/completedProject.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/ongoingProjectSoil.css' %}">
+{% endblock head %}
+{% block projectDetailsBody %}
+
+
+<div class="project-datails-container">
+  
+  
+  <div class="each-soil-form">
+    <div class="header">Soil Details Update</div>
+    <form method="POST" action="/submit_fermerSoil" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="section">      
+      <div class="label">Soil Type:</div>
+      <div class="value">
+        <input type="text" name="soil_type" required>
+      </div>
+    </div>
+    <div class="section foreign_key">      
+      <div class="label">Project Id:</div>
+      <div class="value">
+        <input type="number" name="project_id" readonly value="{{project.project_id}}">
+      </div>
+    </div>
+    <div class="section">
+      <div class="label">pH Level:</div>
+      <div class="value">
+        <input type="number" name="ph_level" required>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="label">Nitrogen:</div>
+      <div class="value">
+        <input type="number" name="nitrogen" required>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="label">Phosphorus:</div>
+      <div class="value">
+        <input type="number" name="phosphorus" required>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="label">Potassium:</div>
+      <div class="value">
+        <input type="number" name="potassium" required>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="label">Organic Matter:</div>
+      <div class="value">
+        <input type="number" name="organic_matter">
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="label">Tempratute:</div>
+      <div class="value">
+        <input type="number" name="temparature" required>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="label">Humidity:</div>
+      <div class="value">
+        <input type="number" name="humidity" required>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="label">Amendments:</div>
+      <div class="value">
+        <textarea type="number" name="amendments"></textarea>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="label">Tools Used:</div>
+      <div class="value">
+        <textarea type="number" name="tools_used"></textarea>
+      </div>
+    </div>
+
+
+
+    <div class="section">
+      <div class="label">Soil Image:</div>
+      <div class="value">
+        <input type="file" name="soil_image" required onchange="preview(this,'photo_preview')" >
+        <img alt="Soil Image" id="photo_preview">
+      </div>
+    </div>
+
+    <div class="buttons">
+      <button type="submit" class="edit-btn" >Update</button>
+    </div>
+    </form>
+  </div>
+  
+  
+</div>
+
+
+
+
+   
+{% endblock projectDetailsBody %}
+   
+{% block javaScript%}
+
+    <script src="{% static 'js/imagePreview.js' %}"></script>
+{% endblock javaScript%}

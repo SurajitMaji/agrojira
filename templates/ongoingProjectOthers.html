@@ -1,0 +1,79 @@
+{% extends 'ongoingProjectBase.html'%}
+{% load static %}
+
+{% block title %}{{project.crop_name}} Project - Other Properties{% endblock title %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/completedProject.css' %}">
+<link rel="stylesheet" href="{% static 'css/ongoingProjectSoil.css' %}">
+{% endblock head %}
+
+{% block projectDetailsBody %}
+<div class="project-datails-container">
+
+  {% if not others %}
+  <div class="each-soil-form">
+    <div class="header">Other Properties Details Form</div>
+    <form method="POST" action="/submit_farmerOthers" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="section">
+        <div class="label">Property Name:</div>
+        <div class="value"><input type="text" name="property_name" required></div>
+      </div>
+      <div class="section foreign_key">
+        <div class="label">Project Id:</div>
+        <div class="value"><input type="number" name="project_id" readonly value="{{project.project_id}}"></div>
+      </div>
+      <div class="section">
+        <div class="label">Description:</div>
+        <div class="value"><textarea name="description" required></textarea></div>
+      </div>
+      <div class="section">
+        <div class="label">Property Image:</div>
+        <div class="value">
+          <input type="file" name="property_image" required onchange="preview(this,'photo_preview')">
+          <img alt="Property Image" id="photo_preview">
+        </div>
+      </div>
+      <div class="buttons">
+        <button type="submit" class="edit-btn">Submit</button>
+      </div>
+    </form>
+  </div>
+
+  {% else %}
+  {% for other in others %}
+  <div class="each-soil-recorder">
+    <div class="header">Other Property Report No: {{forloop.counter}}</div>
+    <div class="section"><div class="label">Property Name:</div><div class="value">{{other.property_name}}</div></div>
+    <div class="section"><div class="label">Description:</div><div class="value">{{other.description}}</div></div>
+    <div class="section"><div class="label">Is Completed:</div><div class="value">{{other.is_completed}}</div></div>
+    <div class="section"><div class="label">Created At:</div><div class="value">{{other.created_at}}</div></div>
+    <div class="section"><div class="label">Updated At:</div><div class="value">{{other.updated_at}}</div></div>
+    <div class="section">
+      <div class="label">Property Image:</div>
+      <div class="value"><img src="{{other.property_image.url}}" alt="Property Image"></div>
+    </div>
+    <div class="buttons">
+      {% comment %} <a href="{% url 'ongoingProjectOthersUpdate' project.project_id other.farmer_other_id %}">
+        <button class="edit-btn">Edit</button>
+      </a>
+      <button class="delete-btn" onclick="deleteReport()">Delete</button> {% endcomment %}
+    </div>
+  </div>
+  {% endfor %}
+  {% endif %}
+</div>
+
+<script>
+function deleteReport() {
+  if (confirm("Are you sure you want to delete this report?")) {
+    alert("Delete functionality goes here.");
+  }
+}
+</script>
+{% endblock projectDetailsBody %}
+
+{% block javaScript %}
+<script src="{% static 'js/imagePreview.js' %}"></script>
+{% endblock javaScript %}

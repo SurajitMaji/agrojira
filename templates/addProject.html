@@ -1,0 +1,84 @@
+{% extends 'base.html'%}
+
+{% load static %}
+{% block title%}
+Login
+{% endblock title%}
+  
+{% block head %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/startNewProject.css' %}">
+{% endblock head %}
+{% block body %}
+<div class="addProject-container">
+    <h1>Start New Project</h1>
+    <form id="project-form" action="addUserProject" method="POST" name="addProject_from" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="project_name">Enter the name of the project:</label>
+        <input type="text" id="project-name" name="project_name"><br><br>
+
+        <label for="crop_type">Types of crop:</label>
+        <select name="crop_type" required>
+            <option value="">--Select Type--</option>
+            <option value="Cereal">Cereal</option>
+            <option value="Vegetable">Vegetable</option>
+            <option value="Fruit">Fruit</option>
+            <option value="Medicinal">Medicinal</option>
+            <option value="Oilseeds">Oilseeds</option>
+            <option value="Cash">Cash</option>
+            <option value="Fiber">Fiber</option>
+            <option value="Flower">Flower</option>
+        </select><br><br>
+
+        <label for="crop_name">Name of the crop:</label>
+        <input type="text" id="crop-name" name="crop_name"><br><br>
+
+        <label for="farm_size">Size of the farm:</label>
+        <input type="text" id="farm-size" name="farm_size"><br><br>
+
+        <label for="farm_address">Address of the farm:</label>
+        <input type="text" id="farm-address" name="farm_address"><br><br>
+
+        <label for="farm_location">Location of the farm:</label>
+        <input type="text" id="farm-location" name="farm_location"><br><br>
+
+        <label for="soil_name">Name of the soil in the farm:</label>
+        <input type="text" id="soil-name" name="soil_name"><br><br>
+
+        <label for="current_session">Current session of the place:</label>
+        <input type="text" id="current-session" name="current_session"><br><br>
+
+        <label for="start_date">Starting date:</label>
+        <input type="date" id="start-date" name="starting_date"><br><br>
+
+        <div id="image-section">
+            <h3 class="farm-images-heading">Image of the farm:</h3>
+            <div class="image-container" id="image_containter">
+                <label for="farm_images">Upload image: </label>
+                <input type="file" id="farm-images" name="project_photo" onchange="preview(this,'photo_preview')" multiple>
+                <figure>
+                    <img src="" alt="" id="photo_preview">
+                    <figcaption>Uploading Image</figcaption>
+                </figure>
+            </div>            
+        </div>
+        
+        <label>Project Description:</label>
+        <textarea name="description" rows="4" required></textarea><br><br>
+        <input type="submit" id="submit" class="opBtn" value="Create" name="submit">
+        <input type="reset" id="reset" class="opBtn" name="reset">
+
+    </form>
+    {% if error %}
+    <div id="output">
+        Failed to submit the Project
+    </div>
+    {% endif %}
+</div>
+{% endblock body %}
+    
+{% block javaScript%}
+
+    <script src="{% static 'js/imagePreview.js' %}"></script>
+{% endblock javaScript%}
+

@@ -1,0 +1,66 @@
+{% extends 'systemAdminBase.html'%}
+
+{% load static %}
+{% comment %} {% load media %}  {% endcomment %}
+{% block title%}
+Crops
+{% endblock title%}
+  
+{% block head %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/projectsListAdmin.css' %}">
+{% endblock head %}
+
+{% block adminBody %}
+<div class="container-crop-list">
+    <div class="inside-header">
+        <h1>Crops Management</h1>
+        <a href="/adminAddCrop" class="add-crop">Add New Crop</a>
+    </div >
+    <main>
+        
+        {% if crops %}
+        <table>
+            <thead>
+                <tr>
+                    <th>SL No.</th>
+                    <th>Crop Name</th>
+                    <th>Image</th>
+                    <th>Type</th>
+                    <th>Season</th>
+                    <th>Duration</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="crop-table-body">
+                <!-- Sample Data -->
+                    {% for crop in crops %}
+                
+                        <tr>
+                            <td>{{forloop.counter}}.</td>
+                            <td>{{crop.crop_name}}</td>
+                            <td class="crop-image"><img src="{{ crop.crop_image.url }}" alt="{{crop.crop_name}} image" class="crop-image"></td>
+                            <td>{{crop.crop_type}}</td>
+                            <td>{{crop.crop_season}}</td>
+                            <td>{{crop.crop_duration}}</td>
+                            <td>
+                                <a href="{% url 'adminEachProject' crop.crop_id %}" class="action-button" onclick="viewCrop(2)">View</a>
+                                <a href="{% url 'delete_adminCrop' crop.crop_id %}" class="action-button delete" onclick="deleteCrop(2)">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+            </tbody>
+        </table>
+        
+            {% else %}
+            <center>No crop exist</h2>
+        {% endif %}
+        
+    </main>
+</div>
+{% endblock adminBody %}
+{% block javaScript%}
+<script src="{% static 'js/projectsListAdmin.js' %}"></script>
+{% endblock javaScript%}
+
+    

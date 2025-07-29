@@ -1,0 +1,93 @@
+{% extends 'systemAdminBase.html'%}
+
+{% load static %}
+{% block title%}
+Fermers 
+{{fermer.fermer_name}}
+{% endblock title%}
+  
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/registration.css' %}">
+{% endblock head %}
+
+{%block pagename%}  {% endblock pagename %}
+{% block adminBody %}
+
+<div class="registration_form_area">
+    
+    
+    <form action=" " method="post" name="registration_from" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <div class="registration_form_heading">
+            Fermer Update of {{f.user_id}}
+        </div>
+        <div class="registration_form_component">
+            <div class="registration_form_input_area">
+                <label for="user_id">User&nbsp;Id: </label>
+                <input type="text" name="user_id" class="user_id inputFeild" id="user_id" placeholder="User Id" value="{{f.user_id}}" readonly>
+            </div>
+            <div class="registration_form_input_area">
+                <label for="user_name">User&nbsp;Name: </label>
+                <input type="text" name="user_name" class="user_name inputFeild" id="user_name" placeholder="User Name" value="{{f.user_name}}" required>
+            </div>
+            
+            <div class="registration_form_input_area">
+                <label for="user_email">Address: </label>
+                <input type="text" name="user_area" class="user_address inputFeild" id="user_address" placeholder="Area Name" value="{{f.user_area}}" required>
+                <input type="text" name="user_village_city" class="user_address inputFeild" id="user_address" placeholder="Village/ City" value="{{f.user_village_city}}"required>
+                <input type="text" name="user_police_station" class="user_address inputFeild" id="user_address" placeholder="Police Station" value="{{f.user_police_station}}" required>
+                <input type="text" name="user_district" class="user_address inputFeild" id="user_address" placeholder="District" value="{{f.user_district}}"  required>
+                <input type="number" name="user_pincode" class="user_address inputFeild" id="user_address" placeholder="Pinocode"  value="{{f.user_pincode}}" required>
+                <input type="text" name="user_state" class="user_address inputFeild" id="user_address" placeholder="State"  value="{{f.user_state}}" required>
+                <input type="text" name="user_country" class="user_address inputFeild" id="user_address" placeholder="Country"  value="{{f.user_country}}" required>
+            </div>
+            <div class="registration_form_input_area">
+                <label for="user_email">Date of Birth: </label>
+                <input type="date" name="user_dob" class="user_dob" id="user_email" placeholder="Date of Birth"  value="{{f.user_dob|date:'Y-m-d' }}" >
+            </div>
+            <div class="registration_form_input_area">
+                <label for="user_email">Mobile Number: </label>
+                <input type="number" name="user_mobile_number" class="user_mobile_number" id="user_mobile_number" placeholder="Mobile Number"  value="{{f.user_mobile_number}}" required>
+            </div>
+            <div class="registration_form_input_area">
+                <label for="user_email">Email: </label>
+                <input type="email" name="user_email" class="user_email" id="user_email" placeholder="Email"  value="{{f.user_email}}" readonly>
+            </div>
+            
+            <div class="registration_form_input_area">
+                <label for="user_email">Photo </label>
+                <input type="file" name="user_photo" class="user_photo" id="user_photo"  value="{{f.user_photo}}"   onchange="preview(this,'photo_preview')">
+                <figure>
+                    <img src="
+                    {% if farmer.user_photo %}{{ farmer.user_photo.url }}{% endif %}
+                    " alt="" id="photo_preview">
+                    {% if farmer.user_photo %}                    
+                        <figcaption>Uploaded Image</figcaption>
+                    {% else%}
+                        <figcaption>No photo Uploaded</figcaption>                    
+                    {% endif %}
+                </figure>
+                
+            </div>
+            <div class="registration_form_input_area">
+                <label for="user_password">Password: </label>
+                <input type="password" name="user_password" class="user_password" id="user_password" placeholder="Password"  value="{{f.user_password}}" required>
+            </div>
+            <div class="registration_form_input_area">
+                <input type="submit" class="registration_submit" name="submit" value="Update">
+            </div>
+        </div>
+    </form>
+    
+     <center class="blinking-text">
+        {{status}}
+    </center> 
+    
+    
+</div>
+
+{% endblock adminBody %}
+
+
+ 

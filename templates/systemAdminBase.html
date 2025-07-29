@@ -1,0 +1,134 @@
+
+
+{% load static %}
+<!doctype html>
+<html lang="en">
+{% block head %}{% endblock head %}
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{%block title%} {% endblock title %} Agrojira Admin</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/systemAdminbase.css' %}">
+    <link rel="shortcut icon" href="{% static 'image/agrojira.jpeg' %}" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  </head>
+  <body>
+
+    <header>
+        <nav class="top">
+            <div class="menu-image">
+                <img src="{% static 'image/list.svg' %}" alt="" class="menu-icon" id="menu_bar" onclick="show_nav()" id="menu_bar">
+            </div>
+            
+            <div class="dashboard">
+                {%block pagename%} {% endblock pagename %}Agrojira
+            </div>
+            <div class="login-details">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <span class="search-area">
+                            <input type="text" placeholder="search for more">
+                            <input type="submit" value="search">
+                        </span>
+                      </li>
+                      <li class="nav-item">
+                        <span class="notification-area">
+                            <img src="{% static 'image/3602145.png' %}" alt="" class="notification">
+                        </span>
+                      </li>
+
+                    <li class="nav-item">
+                        <span class="notification-area">
+                            <img src="{% static 'image/4140037.png' %}" alt="" class="notification">
+                        </span></li>
+                  </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="main-area" id="main_area">
+            <div class="side-nav" id="side_nav" style="display:flex">
+                <ul class="side-nav-area" id="nav_content">
+                    <li class="side-content">
+                        <span class="option-logo" >
+                            <a href="/adminHome" class="option">
+                                <img src="{% static 'image/icons8-dashboard-24.png' %}" class="option-logo">
+                            </a>
+                        </span>
+                        <span class="option" id="side_option" style="width:0px"><a href="/adminHome" class="option">Dashboard</a></span>
+                    </li>
+                    <li class="side-content">
+                        <span class="option-logo" >
+                            <a href="/fermersList" class="option">
+                                <img src="{% static 'image/icons8-farmer-64.png' %}" class="option-logo">
+                            </a>
+                        </span>
+                        <span class="option" id="side_option" style="width:0px"><a href="/fermersList" class="option">Farmers</a></span>
+                    </li>
+                    <li class="side-content">
+                        <span class="option-logo" >
+                            <a href="/usersList" class="option">
+                                <img src="{% static 'image/icons8-user-48.png' %}" class="option-logo">
+                            </a>
+                        </span>
+                        <span class="option" id="side_option" style="width:0px"><a href="/usersList" class="option">Users</a></span>
+                    </li>
+                    <li class="side-content">
+                    <span class="option-logo" >
+                        <a href="/expertsList" class="option">
+                            <img src="{% static 'image/icons8-expert-50.png' %}" class="option-logo">
+                        </a>
+                    </span>
+                        <span class="option" id="side_option" style="width:0px"><a href="/expertsList" class="option">Experts</a></span>
+                </li>
+                    <li class="side-content">
+                        <span class="option-logo" >
+                            <a href="/projectsFromAdmin" class="option">
+                                <img src="{% static 'image/icons8-project-50.png' %}" class="option-logo">
+                            </a>
+                        </span>
+                        <span class="option" id="side_option" style="width:0px"><a href="/projectsFromAdmin" class="option">Projects</a></span>
+                    </li>
+                    <li class="side-content">
+                        <span class="option-logo" >
+                            <a href="/queryForAdmin" class="option">
+                                <img src="{% static 'image/icons8-query-50.png' %}" class="option-logo">
+                            </a>
+                        </span>
+                        <span class="option" id="side_option" style="width:0px"><a href="/queryForAdmin" class="option">Query</a></span>
+                     </li>
+                    <li class="side-content">
+                        <span class="option-logo" >
+                            <a href="/adminProflie" class="option">
+                                <img src="{% static 'image/icons8-male-user-64.png' %}" class="option-logo">
+                            </a>
+                        </span>
+                        <span class="option" id="side_option" style="width:0px"><a href="/adminProflie" class="option">Profile</a></span>
+                    </li>
+                    <li class="side-content">
+                        <span class="option-logo" >
+                            <a href="/adminLogout" class="option">
+                                <img src="{% static 'image/icons8-logout-50.png' %}" class="option-logo">
+                            </a>
+                        </span>
+                        <span class="option" id="side_option" style="width:0px"><a href="/adminLogout" class="option">Log&nbsp;Out</a></span>
+                    </li>
+                </ul>
+                
+            </div>
+            <div class="page-details">                
+                {% block adminBody %}
+
+                {% endblock adminBody %}
+            </div>
+           
+        </div>
+    </main> 
+    <script src="{% static 'js/systemAdminbase.js' %}"></script>
+    <script src="{% static 'js/imagePreview.js' %}"></script>
+    {% block javaScript%}
+    {% endblock javaScript%}
+   </body>
+</html>
+    

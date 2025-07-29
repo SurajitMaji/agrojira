@@ -1,0 +1,589 @@
+{% load static %}
+
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Dashboard
+  </title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link href="stats.css" rel="stylesheet"/>
+  
+  {% block head %}
+
+  <link rel="stylesheet" type="text/css" href="{% static 'css/stats.css' %}">
+  {% endblock head %}
+ 
+ </head>
+ <body class="bg-gray-100 p-4">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 stats-area">
+        <!-- Project Tasks By Status -->
+        <div class="bg-white p-4 rounded shadow">
+            <div class="bg-white p-4 rounded shadow-md w-full max-w-3xl">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-lg font-semibold">Project Tasks By Status</h2>
+                    <i class="fas fa-ellipsis-v"></i>
+                </div>
+                <div class="flex justify-center" style="height: 250px;">
+                    <canvas id="myChart" class="w-full max-w-md"></canvas>
+                </div>
+                <div class="flex justify-center mt-4">
+                    <div class="flex items-center mr-4">
+                        <span class="block w-3 h-3 bg-blue-500 rounded-full mr-2"></span>
+                        <span>Completed</span>
+                    </div>
+                    <div class="flex items-center mr-4">
+                        <span class="block w-3 h-3 bg-green-500 rounded-full mr-2"></span>
+                        <span>Work in Progress</span>
+                    </div>
+                    <div class="flex items-center mr-4">
+                        <span class="block w-3 h-3 bg-red-500 rounded-full mr-2"></span>
+                        <span>Started</span>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="block w-3 h-3 bg-orange-500 rounded-full mr-2"></span>
+                        <span>Planned</span>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+        <!-- Project Tasks Created vs Completed -->
+        <div class="bg-white p-4 rounded shadow">
+            <div class="w-full max-w-4xl p-4 bg-white rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold mb-4">Project Tasks Created vs Completed</h2>
+                <canvas id="tasksChart"></canvas>
+               </div>
+        </div>
+        <!-- Monthly Workload -->
+        <div class="bg-white p-4 rounded shadow">
+            <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+                <h2 class="text-xl font-semibold mb-4">Monthly Workload</h2>
+                <div class="relative" style="height: 300px;">
+                    <canvas id="workloadChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <!-- Employee Performance -->
+        <div class="bg-white p-4 rounded shadow">
+         <div class="flex justify-between items-center mb-4">
+          <h2 class="text-lg font-semibold">
+           Fermer Performance
+          </h2>
+          <i class="fas fa-ellipsis-h text-gray-500">
+          </i>
+         </div>
+         <div class="overflow-x-auto">
+          <table class="min-w-full bg-white">
+           <thead>
+            <tr>
+             <th class="py-2 px-4 border-b">
+              Farmer
+             </th>
+             <th class="py-2 px-4 border-b">
+              Tasks Completed
+             </th>
+             <th class="py-2 px-4 border-b">
+              Work In Progress
+             </th>
+             <th class="py-2 px-4 border-b">
+              Started
+             </th>
+             <th class="py-2 px-4 border-b">
+              Planned
+             </th>
+            </tr>
+           </thead>
+           <tbody>
+            {% if farmers_performance  %}
+            {% for farmer in farmers_performance %}
+            <tr>
+             <td class="py-2 px-4 border-b">
+              {{farmer.user_name}}
+             </td>
+             <td class="py-2 px-4 border-b">
+              {{farmer.total_completed_project}}
+             </td>
+             <td class="py-2 px-4 border-b">
+              {{farmer.total_progress_project}}
+             </td>
+             <td class="py-2 px-4 border-b">
+              {{farmer.total_started_project}}
+             </td>
+             <td class="py-2 px-4 border-b">
+              {{farmer.project_count}}
+             </td>
+             
+            </tr>
+            {% endfor %}
+            {% endif %}
+            
+           </tbody>
+          </table>
+         </div>
+        </div>
+    </div>
+
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+   <div class="bg-white p-4 rounded shadow">
+    <div class="flex items-center">
+     <i class="fas fa-user text-blue-500 text-2xl">
+     </i>
+     <div class="ml-4">
+      <p class="text-gray-500">
+       {{farmer_count}}
+      </p>
+      <p class="text-gray-700">
+       Farmers
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="bg-white p-4 rounded shadow">
+    <div class="flex items-center">
+     <i class="fas fa-graduation-cap text-black-500 text-2xl"></i>
+
+     <div class="ml-4">
+      <p class="text-gray-500">
+        {{expert_count}}
+      </p>
+      <p class="text-gray-700">
+       Experts
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="bg-white p-4 rounded shadow">
+    <div class="flex items-center">
+     
+    <i class="fas fa-seedling text-green-500 text-2xl"></i>
+
+     <div class="ml-4">
+      <p class="text-gray-500">
+       {{crop_type_count}}
+      </p>
+      <p class="text-gray-700">
+       Crop Types
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="bg-white p-4 rounded shadow">
+    <div class="flex items-center">
+    <i class="fas fa-file-alt text-red-500 text-2xl">     
+     </i>
+     <div class="ml-4">
+      <p class="text-gray-500">
+       {{tutorial_doc_count}}
+      </p>
+      <p class="text-gray-700">
+       Tutorial Documents
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="bg-white p-4 rounded shadow">
+    <div class="flex items-center">
+     <i class="fas fa-video text-black-500 text-2xl"></i>
+
+     <div class="ml-4">
+      <p class="text-gray-500">
+        {{video_tutorial_count}}
+      </p>
+      <p class="text-gray-700">
+       Video Tutorial
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="bg-white p-4 rounded shadow">
+    <div class="flex items-center">
+     <i class="fas fa-question-circle text-green-500 text-2xl"></i>
+
+     <div class="ml-4">
+      <p class="text-gray-500">
+        {{query_count}}
+      </p>
+      <p class="text-gray-700">
+       Queries
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="bg-white p-4 rounded shadow">
+    <div class="flex items-center">
+     <i class="fas fa-chart-line text-red-500 text-2xl">
+     </i>
+     <div class="ml-4">
+      <p class="text-gray-500">
+        {{solution_count}}
+      </p>
+      <p class="text-gray-700">
+       Solutions
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="bg-white p-4 rounded shadow">
+    <div class="flex items-center">
+     <i class="fas fa-wifi text-blue-500 text-2xl">
+     </i>
+     <div class="ml-4">
+      <p class="text-gray-500">
+        {{connection_count}}
+      </p>
+      <p class="text-gray-700">
+       Connections
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="bg-green-500 p-4 rounded shadow text-white">
+    <div class="flex items-center">
+     <i class="fas fa-star text-2xl">
+     </i>
+     <div class="ml-4">
+      {% comment %} <p class="text-white">
+       4000+
+      </p> {% endcomment %}
+      <p class="text-white">
+       Ratings Received
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="bg-blue-500 p-4 rounded shadow text-white">
+    <div class="flex items-center">
+     <i class="fas fa-trophy text-2xl">
+     </i>
+     <div class="ml-4">
+      {% comment %} <p class="text-white">
+       17
+      </p> {% endcomment %}
+      <p class="text-white">
+       Achievements
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+  <div class="mt-4 bg-white p-4 rounded shadow">
+   <h2 class="text-gray-700 mb-4">
+    Experts's performance
+   </h2>
+   <div class="space-y-4">
+    {% if expert_performance %}
+    {% for e in expert_performance%}
+    <div class="flex items-center justify-between">
+     <div class="flex items-center">
+      <img alt="{{e.name}}" class="rounded-full" height="40"
+      {% if e.expert_photo %}
+        src="{{ e.expert_photo.url }}"
+      
+      {% endif %} 
+       width="40">
+      <div class="ml-4">
+       <p class="text-gray-700">
+        {{e.name}}
+       </p>
+       <p class="text-gray-500 text-sm">
+        {{e.specialization}}
+       </p>
+      </div>
+     </div>
+     <div class="text-right">
+      <p class="text-gray-700">
+       {{e.query_count}}
+      </p>
+      <p class="text-red-500 text-sm">
+       ↓
+      </p>
+     </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+   
+   </div>
+  </div>
+  {% comment %} <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
+   <div class="bg-white p-4 rounded shadow">
+    <p class="text-gray-700">
+     Total Subscription
+    </p>
+    <p class="text-red-500 text-2xl">
+     7652
+    </p>
+    <p class="text-gray-500 text-sm">
+     48% From Last 24 Hours
+    </p>
+   </div>
+   <div class="bg-white p-4 rounded shadow">
+    <p class="text-gray-700">
+     Order Status
+    </p>
+    <p class="text-green-500 text-2xl">
+     6325
+    </p>
+    <p class="text-gray-500 text-sm">
+     36% From Last 6 Months
+    </p>
+   </div>
+   <div class="bg-red-500 p-4 rounded shadow text-white">
+    <p class="text-white">
+     Total Comment
+    </p>
+    <p class="text-white text-2xl">
+     489
+    </p>
+    <p class="text-white text-sm">
+     15%
+    </p>
+   </div>
+   <div class="bg-green-500 p-4 rounded shadow text-white">
+    <p class="text-white">
+     Income Status
+    </p>
+    <p class="text-white text-2xl">
+     Rs.5782
+    </p>
+    <p class="text-white text-sm">
+     20%
+    </p>
+   </div>
+   <div class="bg-white p-4 rounded shadow">
+    <p class="text-gray-700">
+     Unique Visitors
+    </p>
+    <p class="text-red-500 text-2xl">
+     652
+    </p>
+    <p class="text-gray-500 text-sm">
+     36% From Last 6 Months
+    </p>
+   </div>
+   <div class="bg-white p-4 rounded shadow">
+    <p class="text-gray-700">
+     Monthly Earnings
+    </p>
+    <p class="text-green-500 text-2xl">
+     5963
+    </p>
+    <p class="text-gray-500 text-sm">
+     36% From Last 6 Months
+    </p>
+   </div>
+  </div> {% endcomment %}
+  <div class="bg-white p-4 rounded shadow mt-4">
+   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div>
+     <p class="text-gray-700">
+      Published Project
+     </p>
+     <p class="text-gray-500 text-2xl">
+      532
+      <span class="text-green-500 text-sm">
+       +1.69%
+      </span>
+     </p>
+     <div class="relative pt-1">
+      <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-red-200">
+       <div class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500" style="width: 50%">
+       </div>
+      </div>
+     </div>
+    </div>
+    <div>
+     <p class="text-gray-700">
+      Completed Task
+     </p>
+     <p class="text-gray-500 text-2xl">
+      4,569
+      <span class="text-red-500 text-sm">
+       -0.5%
+      </span>
+     </p>
+     <div class="relative pt-1">
+      <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-blue-200">
+       <div class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500" style="width: 50%">
+       </div>
+      </div>
+     </div>
+    </div>
+    <div>
+     <p class="text-gray-700">
+      Successful Task
+     </p>
+     <p class="text-gray-500 text-2xl">
+      89%
+      <span class="text-green-500 text-sm">
+       +0.99%
+      </span>
+     </p>
+     <div class="relative pt-1">
+      <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-green-200">
+       <div class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-green-500" style="width: 50%">
+       </div>
+      </div>
+     </div>
+    </div>
+    <div>
+     <p class="text-gray-700">
+      Ongoing Project
+     </p>
+     <p class="text-gray-500 text-2xl">
+      365
+      <span class="text-green-500 text-sm">
+       +0.35%
+      </span>
+     </p>
+     <div class="relative pt-1">
+      <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-yellow-200">
+       <div class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-yellow-500" style="width: 50%">
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  <div class="fixed bottom-4 right-4">
+    <button class="bg-blue-500 text-white px-4 py-2 rounded shadow flex items-center">
+    <i class="fas fa-arrow-up mr-2">
+    </i>
+     Top
+   </button> 
+  </div>
+
+ 
+
+   <script>
+   
+
+
+    // Project Tasks By Status
+    const ctx2 = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx2, {
+            type: 'doughnut',
+            data: {
+                labels: ['Completed', 'Work in Progress', 'Started', 'Planned'],
+                datasets: [{
+                    data: {{task_status| safe}},
+                    backgroundColor: [
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+
+
+// Project Tasks Created vs Completed
+    const ctx = document.getElementById('tasksChart').getContext('2d');
+    const tasksChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            datasets: [
+                {
+                    label: 'Tasks Completed',
+                    data: {{monthly_completed_project| safe}},
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Created',
+                    data: {{monthly_created_project| safe}},
+                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+
+        // Monthly Workload
+        const ctx3 = document.getElementById('workloadChart').getContext('2d');
+        const workloadChart = new Chart(ctx3, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun','Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [
+                    {
+                        label: 'Completed',
+                        data: {{monthly_completed_project| safe}},
+                        backgroundColor: '#4285F4'
+                    },
+                    {
+                        label: 'Work In Progress',
+                        data: {{monthly_progress_project| safe}},
+                        backgroundColor: '#34A853'
+                    },
+                    {
+                        label: 'Started',
+                        data: {{monthly_started_project| safe}},
+                        backgroundColor: '#FBBC05'
+                    },
+                    {
+                        label: 'Planned',
+                        data: {{monthly_created_project| safe}},
+                        backgroundColor: '#EA4335'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        stacked: true
+                    },
+                    y: {
+                        stacked: true,
+                        title: {
+                            display: true,
+                            text: 'Hours'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                        labels: {
+                            usePointStyle: true,
+                            pointStyle: 'circle'
+                        }
+                    }
+                }
+            }
+        });
+</script>
+ </body>
+</html>
