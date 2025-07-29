@@ -1,0 +1,128 @@
+.expert-top {
+    background: linear-gradient(to right, #6dbb4f, #4ca1af); /* soft green-blue gradient */
+    color: #fff; /* white text */
+    text-align: center;
+    padding: 80px 20px;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.expert-top h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    animation: fadeInDown 1s ease;
+}
+
+.expert-top p {
+    font-size: 1.2rem;
+    margin: 0;
+    opacity: 0.9;
+    animation: fadeInUp 1s ease;
+}
+
+/* Simple fade-in animations */
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+a{
+    text-decoration: none;
+    color: none;
+}
+.experts-area{
+    background-color: #f0eded;
+}
+.experts-area .every-row{
+    display: wrap;
+    flex-wrap: wrap; 
+    padding: 3px;
+    padding-top: 50px;
+}
+.experts-area .every-row .every-expert{
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    border: 1px solid  #1d8b2c;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    padding: 5px;
+    margin: 5px;
+    margin-top: 150px;
+    padding-top:50px;
+    box-shadow: 2px 0px 2px 2px ;
+    min-width: 50%;
+   
+}
+.experts-area .every-row .every-expert .expert-photo-area{
+    position: absolute;
+}
+.experts-area .every-row .every-expert .expert-photo-area img{
+    border:3px solid #1d8b2c;
+    border-radius: 85px;
+    margin-top: -160px;
+    background: white;
+    width: 150px;
+    height: 150px;
+}
+.experts-area .every-row .every-expert .expert-details{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+.experts-area .every-row .every-expert .button-area{
+    border: 2px solid white;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.experts-area .every-row .every-expert .button-area div a{
+    display: flex;
+    justify-content: center;
+    margin: 2px 5px;
+    padding: 5px 2px;
+    transition: .8s;
+    cursor: pointer;
+}
+.experts-area .every-row .every-expert .button-area .view-profile a{
+    border: 2px solid  #1d8b2c;
+    color: #1d8b2c;
+}
+.experts-area .every-row .every-expert .button-area .view-profile a:hover{
+    background:  #1d8b2c;
+    color: white;
+}
+.experts-area .every-row .every-expert .button-area .book-appointment a{
+    background:  #1d8b2c;
+    color: white;
+}
+.experts-area .every-row .every-expert .button-area .book-appointment a:hover{
+    border: 2px solid  #1d8b2c;
+    background-color: white;
+    color: #1d8b2c;
+}
+
+
+
+

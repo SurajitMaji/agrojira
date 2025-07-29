@@ -1,0 +1,357 @@
+body{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+#project-details {
+  margin: 20px 0px;
+  margin-top: 30px;
+    background-color: #028b242c;
+    padding: 20px;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .project-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .info-item {
+    margin: 8px 0px;
+    width: 45%;
+  }
+  
+  .info-item label {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  .farm-image {
+    margin-top: 20px;
+    text-align: center;
+    
+  }
+  
+  .farm-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  @media only screen and (max-width: 480px) {
+    .farm-image img {
+      height: 150px;
+    }
+  }
+  
+  @media only screen and (max-width: 320px) {
+    .farm-image img {
+      height: 100px;
+    }
+  }
+.project-info-app{
+  border: 3px solid rgb(207, 207, 207);
+  /* display: flex;
+  justify-content: space-evenly; */
+  display: grid;
+  grid-template-columns: 1fr 3fr ;
+}
+.project-info-app section{
+   padding: 5px;
+   margin: 5px;
+   border-radius: 5px;
+   padding: 10px 20px;
+}
+/* after the top section , this section is left side bar */
+#farm-management {
+    background-color: #c9c9c9;
+    padding: 20px;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    height: 100vh;
+  }
+  
+  .management-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .tab {
+    margin-bottom: 20px;
+    width: 30%;
+  }
+  
+  .tab h3 {
+    margin-top: 0;
+  }
+  
+  .tab ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .tab li {
+    margin-bottom: 10px;
+  }
+  
+  .tab a {
+    text-decoration: none;
+    color: #337ab7;
+  }
+  
+  .tab a:hover {
+    color: #23527c;
+  }
+  
+  .emergency-link {
+    position: relative;
+  }
+  
+  .emergency-submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #f7f7f7;
+    padding: 10px;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .emergency-submenu li {
+    margin-bottom: 10px;
+  }
+  
+  .emergency-submenu a {
+    text-decoration: none;
+    color: #337ab7;
+  }
+  
+  .emergency-submenu a:hover {
+    color: #23527c;
+  }
+  
+  .emergency-link:hover .emergency-submenu {
+    display: block;
+  }
+  
+  /* Responsive Design */
+  
+  @media only screen and (max-width: 768px) {
+    .project-info-app{
+      display: flex;
+      flex-direction: column;
+    }
+    .status-area{
+   
+      display: none;
+    }
+    .tab {
+      width: 45%;
+    }
+    .info-item {
+      width: 100%;
+    }
+  }
+  
+  @media only screen and (max-width: 480px) {
+    .tab {
+      width: 100%;
+    }
+  }
+
+ 
+  
+
+
+  /* stepwise information design  */
+  
+.stepwise-info-area{
+  background-color: rgba(85, 255, 99, 0.397);
+}
+.each-step-block{
+  background-color: rgba(220, 255, 222, 0.397);
+  padding: 5px 15px;
+  box-shadow: 0px 0px 10px green;
+  margin: 10px 0px;
+}
+.ssb{
+  border: .5px solid rgb(165, 163, 163);
+  padding: 10px;
+  margin: 10px 5px;
+}
+.stepwise-image{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+  img.every-step-photo{
+    width: 150px;
+    height: 120px;
+    object-fit: cover;
+    border: 1px solid rgb(245, 245, 245);
+    margin: 5px 0px;
+  }
+
+
+
+  /* status-area design */
+  .status-area{
+    border: 1px solid rgb(245, 245, 245);
+  }
+.notification ul{
+  padding: 5px 2px;
+  text-decoration: none;
+  list-style: none;
+  box-shadow: 0px 0px 2px black;
+}
+
+.notification ul li a{
+  background-color: rgb(207, 207, 207); 
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  display: flex;
+  justify-content: center;
+  margin: 5px 0px;
+  padding: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.each-step-block {
+  margin: 30px 0;
+  padding: 20px;
+  border-radius: 12px;
+  background: #f9f9f9;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.step-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2f3e46;
+  margin-bottom: 15px;
+}
+
+.ssb {
+  margin-bottom: 15px;
+  padding: 15px;
+  background-color: #ffffff;
+  border-left: 4px solid #4caf50;
+  border-radius: 5px;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.ssb h4 {
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+  color: #1b4332;
+}
+
+.done.ssb {
+  border-left-color: #2196f3;
+}
+
+.system-suggest.ssb:nth-child(3) {
+  border-left-color: #f57c00;
+}
+
+.every-step-photo {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  margin: 10px 10px 10px 0;
+  border-radius: 6px;
+  object-fit: cover;
+  border: 1px solid #ccc;
+  transition: transform 0.2s;
+}
+
+.every-step-photo:hover {
+  transform: scale(1.05);
+}
+
+.stepwise-image {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.btn-suggestion {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 14px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.btn-suggestion:hover {
+  background-color: #0056b3;
+}
+
+.emergency-alerts {
+  margin-top: 40px;
+  background: #fff3cd;
+  border-left: 6px solid #ffa000;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.alert-item {
+  padding: 8px 0;
+  font-size: 0.95rem;
+  color: #856404;
+}
+
+canvas#statusPieChart {
+  display: block;
+  margin: 40px auto;
+  max-width: 500px;
+}
+@media (max-width: 768px) {
+  .stepwise-image {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+
+
+

@@ -1,0 +1,122 @@
+
+div.registration_form_area{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgba(221, 253, 219, 0.632);
+    padding: 5px ;
+    margin: 5px;
+}
+.form_heading{
+    display: flex;
+    justify-content: center;
+    padding: 8px;
+    margin: 10px;
+    font-style: italic;
+    font-weight:bold;
+    font-size: 50px;
+    text-decoration:underline dashed;
+    font-family: cursive;
+}
+.registration_form_heading{
+    display: flex;
+    justify-content: center;
+    padding: 8px;
+    margin: 10px;
+     font-weight:bold;
+    font-size: 36px;
+    color: #02a222;
+}
+.registration_form_component{
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    margin: 0px 150px;
+}
+.registration_form_input_area{
+    display: flex;
+    flex-direction: column;
+    margin: 8px 0px;
+    font-size: 20px;
+    font-family: arial;
+}
+.registration_form_input_area input{
+   padding: 5px;
+   margin: 7px 0px;
+   font-size: 18px;
+   font-family: arial;
+   align-items: unset;
+   border: none;
+   border-bottom: 1px solid black;
+   background-color: transparent;
+}
+.registration_form_input_area input:focus{
+    border: none;
+}
+.registration_form_input_area input.registration_submit{
+    display: flex;
+    justify-content: center;
+    background-color: #018b31;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    color: white;
+    font-size: 25px;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    transition: .4s;
+    text-align: center;
+    margin: 0px 10%;
+
+}
+.registration_form_input_area input.registration_submit:hover{
+    border-radius: 30px;
+}
+.registration_form_input_area input.registration_submit:active{
+    background-color:green;
+}
+.already_register{
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+}
+img#photo_preview{
+    width: 90px;
+    height: 100px;
+    object-fit: cover;
+}
+figcaption{
+    font-size: 10px;
+}
+.after-valid-information{
+    text-align: center;
+}
+/* Basic Styling for the Blinking Text */
+.blinking-text {
+    font-size: 2em;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    animation: blinkBrightness 1.5s infinite alternate; /* Animation: duration, repeat, and direction */
+  }
+  
+  /* Keyframes to adjust the brightness */
+  @keyframes blinkBrightness {
+    0% {
+      filter: brightness(1); /* Normal brightness */
+    }
+    50% {
+      filter: brightness(3); /* High brightness */
+    }
+    100% {
+      filter: brightness(0.5); /* Low brightness */
+    }
+  }
+  
+@media only screen and (max-width:720px){
+    .registration_form_component{
+        margin: 0px 0px;
+    }
+    .registration_form_input_area input.registration_submit{
+    margin: 0px 0px;
+    }
+}

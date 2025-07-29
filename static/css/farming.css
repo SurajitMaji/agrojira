@@ -1,0 +1,126 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.features-area{
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(32, 121, 0, 0.213);
+    padding: 20px 30px;
+    margin: 10px 5x;
+}
+.features-area h1{
+    text-align: center;
+    padding: 20px 0px;
+    
+}
+.each_features{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.431);
+    margin: 5px 0px;
+    padding: 5px 10px;
+    box-shadow:0px 0px 10px black;
+    border-radius: 0px;
+}
+.soil{
+    background-image:url("/static/image/soil.jpg");
+}
+.seed{
+    background-image:url("/static/image/seed.jpg");
+}
+
+.irrigation{
+    background-image:url("/static/image/irrigation.jpeg");
+}
+.weed{
+    background-image:url("/static/image/weedControl.jpeg");
+}
+.climate{
+    background-image:url("/static/image/climate.jpg");
+}
+.pest{
+    background-image:url("/static/image/pest.jpeg");
+}
+.disease{
+    background-image:url("/static/image/disease.jpeg");
+}
+.harvesting{
+    background-image:url("/static/image/harvesting.jpeg");
+}
+.feature-image{
+    width: 900px;
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+    transition: .4s;
+}
+.feature-image:hover  {
+    scale: 1.02;
+}
+.feature-image span{
+    font-size:20px;
+    padding:5px 10px;
+    background-color: rgba(255, 255, 255, 0.76);
+    margin: 30px 20px;
+    position: absolute;
+}
+.feature-desc{
+    width:100%;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin: 0px 20px;
+    padding: 5px;
+    font-family:  'Playfair Display', serif;
+    background-color: rgb(228, 255, 243);
+    padding: 10px;
+
+}
+.feature-desc p#limited-words{
+    width: 100%; 
+    white-space:inherit; 
+    word-spacing: 8px;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    height: 212px;
+    font-size: 18px;
+}
+
+
+.feature-desc a{
+    text-decoration: none;
+    display: flex;
+    justify-content: right;
+    margin: 5px 3px;
+    transition: .2s;
+}
+.feature-desc a:hover{
+color: rgb(25, 0, 214);
+}
+@media (max-width: 768px){
+    .each_features{
+        flex-direction: column;
+    }
+    .left-side-para{   
+        display: flex;
+        flex-direction: column-reverse;
+    
+    }
+    .feature-image{
+        width: 100%;
+
+    }
+    .feature-desc{
+        width: 100%;
+        margin: 10px 0px;
+    }
+
+    .feature-desc p{
+        width: 100%;
+    }
+}

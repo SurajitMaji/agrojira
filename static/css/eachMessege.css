@@ -1,0 +1,48 @@
+
+@media (max-width: 768px) {
+    /* .chat-app{
+    } */
+    .contact-list {
+        width: 100%;
+        border-right: none;
+        display: none;
+    }
+    .contact-list  ul {
+        height: 10px;
+    overflow-x:visible;
+    overflow-y: visible;
+    }
+    .contact-list  ul li{
+        display: flex;
+        flex-wrap: wrap;
+    }
+   
+    .chat-header {
+        padding: 10px;
+    }
+    .chat-history {
+        padding: 10px;
+    }
+    .chat-input {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-list {
+        width: 100%;
+        border-right: none;
+    }
+    .chat-window {
+        padding: 5px;
+    }
+    .chat-header {
+        padding: 5px;
+    }
+    .chat-history {
+        padding: 5px;
+    }
+    .chat-input {
+        padding: 5px;
+    }
+}

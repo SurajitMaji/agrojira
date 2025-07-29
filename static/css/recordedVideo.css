@@ -1,0 +1,192 @@
+.video-container {
+    position: relative;
+    width: 180%;
+    max-width: 800px;
+    border-radius: 8px;
+    background-color: black;
+}
+
+video {
+    width: 100%;
+    display: block;
+}
+
+.controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 97.5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background:gray;
+    opacity: 1;
+    transition:  .6s ease-in-out;
+}
+
+.video-container:hover .controls {
+    opacity: 1;
+}
+
+.btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+.progress {
+    flex-grow: 1;
+    margin: 0 10px;
+    height: 4px;
+    background: rgb(247, 247, 247);
+    position: relative;
+    cursor: pointer;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: rgb(30, 178, 0);
+}
+button.play-btn{
+    font-size: 70px;
+    padding: 10px 20px;
+    color: green;
+    position: absolute;
+    top:-550%;
+    right:40%;
+}
+.fullscreen-btn {
+    font-size: 18px;
+}
+
+@media (max-width: 768px) {
+    .video-container {
+        width: 95%;
+    }
+    
+    .controls {
+        padding: 8px;
+    }
+
+    .btn {
+        font-size: 14px;
+    }
+
+    .progress {
+        height: 4px;
+    }
+}
+@media (max-width: 768px) { 
+    .video-container {
+    width: 100%;
+    border-radius: 0;
+}
+    video.playing-video{
+        width: 100%;
+    }
+
+} 
+@media (max-width: 480px) {
+    .video-container {
+        width: 100%;
+        border-radius: 0;
+    }
+    video.playing-video{
+        width: 100%;
+    }
+    .controls {
+        padding: 6px;
+    }
+
+    .btn {
+        font-size: 12px;
+    }
+    button.play-btn{
+        
+        top:-500%;
+        right:35%;
+    }
+    .progress {
+        height: 3px;
+    }
+}
+
+
+
+/* other design */
+.container {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+}
+.video-section {
+    flex: 2;
+    padding-right: 20px;
+}
+video {
+    width: 100%;
+    border-radius: 10px;
+}
+.video-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.actions button {
+    margin: 5px;
+    padding: 10px;
+    border: none;
+    background-color: #ccc;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.sidebar {
+    flex: 1;
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+.video-card {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.video-card img {
+    width: 80px;
+    height: 60px;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    .video-section {
+        padding-right: 0;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

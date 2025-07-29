@@ -1,0 +1,214 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+section {
+    background-color: #f7f7f7;
+    padding: .5em;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(7, 7, 7, 0.874);
+}
+
+.video-container {
+    /* width: 640px;
+    height: 480px; */
+    margin: 20px auto;
+    display: flex;
+    flex-wrap:wrap ;
+    justify-content: center;
+}
+.video-content{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 5px;
+    padding: 2px;
+    background-color: rgb(236, 236, 236);
+    transition: .5s;
+}
+.video-content:hover{
+    scale: 1.04;
+}
+.video-content img{
+    width: 400px;
+    height: 250px;
+    align-self: center;
+}
+#record-live-session{
+    background-color: rgb(222, 222, 222);
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+}
+#record-button {
+    background-color: #027532;
+    color: #fff;
+    border: none;
+    margin: 10px 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#record-button:hover {
+    background-color: #01430c;
+}
+
+#recorded-session-container {
+    
+    margin: 20px auto;
+    padding: 200px 400px;
+    border: 2px solid #050505;
+}
+
+/* Responsive design */
+
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+    }
+    section {
+        margin-bottom: 10px;
+    }
+    .video-container {
+        width: 100%;
+        /* height: 200px; */
+    }
+    .video-content {
+        width: 500%;
+        height: 50%;
+    }
+    #recorded-session-container {  
+        padding: 150px 350px;
+    }
+}
+
+@media (max-width: 480px) {
+    main {
+        padding: 1em;
+    }
+    section {
+        margin-bottom: 5px;
+    }
+    .video-container {
+        width: 100%;
+        height: 150px;
+    }
+    video {
+        height: 100%;
+    }
+    #recorded-session-container {  
+        padding: 150px 350px;
+    }
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+}
+.video-section {
+    flex: 2;
+    padding-right: 20px;
+}
+video {
+    width: 100%;
+    border-radius: 10px;
+}
+.video-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.actions button {
+    margin: 5px;
+    padding: 10px;
+    border: none;
+    background-color: #ccc;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.sidebar {
+    flex: 1;
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+.video-card {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.video-card img {
+    width: 80px;
+    height: 60px;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+.video-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.video-content {
+    position: relative;
+    width: 300px;
+    height: 180px;
+    overflow: hidden;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.video-thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+}
+.video-player {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.video-content-anchor{
+    width: 30%;
+}
+.video-content-anchor:hover .video-thumbnail {
+    opacity: 0;
+}
+.video-content-anchor:hover .video-player {
+    display: block;
+}
+.video-info {
+    display:flex;
+    flex-direction:column;
+    margin-top: 10px;
+}
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    .video-section {
+        padding-right: 0;
+    }
+    .video-content-anchor{
+        width: 90%;
+    }
+    .video-content{
+        width: 100%;
+        height: 300px;
+    }
+}

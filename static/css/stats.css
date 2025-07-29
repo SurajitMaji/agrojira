@@ -1,0 +1,27 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+/* Reset Bootstrap's margin/padding */
+body, h1, h2, h3, h4, h5, h6, p, ul, ol, figure {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* You can also reset box-sizing */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+.container, .container-fluid,container-profile {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.stats-area{
+    margin: 20px;
+}
+
+/* admin profile page design */
+img.admin-photo{
+    border: 2px solid red;
+}

@@ -1,0 +1,128 @@
+div.rest-top{
+    height: 100%;
+    background-color: rgb(240, 240, 240);
+}
+div.middle-bar{
+    display: grid;
+    grid-template-columns:1fr 2fr 0.5fr;
+    margin: 10px;
+    padding: 10px;
+}
+div.bottom-area{
+    margin: 2px;
+}
+.middle-bar-heading{
+    display: flex;
+    justify-content: left;
+    font-size:24px
+}
+.search-area{
+    display: flex;
+    justify-content: center;
+}
+.search-input-area{
+    display: flex;
+    justify-content: center;
+}
+input.search-packages{
+    border: 1px solid rgba(0, 204, 255, 0.822);
+    /* width: 400px; */
+    height:23px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    margin-right: 2px;    
+    padding-left:20px;
+}
+input.search{
+    display: flex;
+    justify-content: center;;
+    background-color: rgb(0, 183, 255);
+    font-family: 'Times New Roman', Times, serif;
+    padding:5px;
+    color:white;
+    border: none;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    cursor: pointer;
+    /* padding-left: 10px;
+    padding-right: 10px; */
+}
+input.search:hover{
+    background-color: rgb(34, 163, 238);
+    color:rgb(0, 0, 0);
+}
+
+.add-button{
+    display: flex;
+    justify-content: center;
+    height: 20px;
+    padding: 2px;
+    margin-left: 30px;
+    border-radius:45px;
+    cursor: pointer;
+    text-align: center;
+}
+
+a.add-anchar{
+    font-weight: bold;
+    font-family: Arial Bold;
+    font-size: 40px;
+    color: rgb(0, 152, 253);
+    text-decoration: none;
+    margin-top: -10px;
+}
+
+div.th,div.tr{
+    display: grid;
+    grid-template-columns: 0.1fr 0.4fr 1fr 0.5fr 0.7fr;
+    padding: 5px;
+    text-align: center;
+    
+}
+div.th{
+    background-color: rgb(33, 155, 255);
+    color: rgb(255, 255, 255);
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+div.tr{
+    margin-top:3px;
+    margin-bottom:3px;
+}
+div.td{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border:1px solid black
+}
+div#action-area{
+    display: flex;
+    flex-wrap: wrap;
+}
+div.view-area,div.delete-area{
+    margin: 5px;
+    margin-left: 5px;
+    margin-right:5px;
+}
+div.view,div.delete{
+    color: rgb(252, 252, 252);
+    padding: 5px 10px;
+    transition: .5s;
+}
+div.view{
+    background-color:rgb(0, 124, 7) ;
+}
+div.delete{
+    background-color: rgb(243, 52, 52);
+}
+div.view:hover{
+    background-color:rgb(12, 134, 1) ;
+    border-radius: 20px;
+}
+div.delete:hover{
+    background-color: rgb(182, 0, 0);
+    border-radius: 20px;
+}
+img.pphoto{
+    width: 30px;
+    height: 20px;
+}

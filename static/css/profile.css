@@ -1,0 +1,171 @@
+body {
+    font-family: sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 960px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2, h3 {
+    color: #333;
+}
+
+/* Profile Section */
+.profile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-right: 30px;
+}
+
+.profile-info {
+    flex: 1;
+}
+
+.profile-info h2 {
+    margin-top: 0;
+}
+
+.profile-info p {
+    margin-bottom: 5px;
+}
+
+.social-links a {
+    display: inline-block;
+    margin-right: 10px;
+    color: #333;
+    text-decoration: none;
+    width: 35px;
+    height: 35px;
+    background-size: cover;
+    margin: 0px 10px;
+    transition: .5s;
+}
+.social-links a:hover{
+    scale: 1.1;
+}
+.social-links a.notification{
+    background-image: url("/static/image/notification.png");
+}
+.social-links a.message{
+    background-image: url("/static/image/message.png");
+}
+
+.social-links a span{
+    background-color: rgb(255, 0, 0);
+    color: white;
+    font-size: 12px;
+    border-radius:45px;
+    padding: 2px;
+    margin-left: 24px;
+    border: 1px solid transparent;
+}
+section.every-area{
+    background-color: rgba(0, 255, 136, 0.178);
+    margin: 20px 0px;
+    padding: 10px;
+}
+.project-heading{
+    display: flex;
+}
+.project-card{
+    padding: 10px 5px;
+    color:black;
+    background-color:rgba(0, 255, 136, 0.178); 
+    transition: .5s;
+}
+.project-card:hover{
+    background-color: #d7ffe4;
+    box-shadow: 0px 0px 5px black;
+}
+.project-heading h2{
+    background-color: rgba(218, 221, 219, 0.507);
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-bottom:20px ;
+    box-shadow: 10px 10px 15px black;
+}
+/* Assignment Section */
+.assignment-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 20px;
+    /* border: 1px solid green; */
+    padding: 10px;
+}
+
+.assignment-card {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.assignment-card h3 {
+    margin-top: 0;
+}
+
+.progress {
+    height: 10px;
+    background-color: #eee;
+    border-radius: 5px;
+    overflow: hidden;
+    border:.5px solid black;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: #4CAF50;
+    width: 0%;
+}
+
+/* Button Styling */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #03812d;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: .5s;
+}
+
+
+.btn:hover{
+    background-color: #03238a;
+}
+.btn:active{
+    background-color: #44b801;
+    box-shadow: 0px 0px 10px rgb(5, 4, 4);
+}
+/* Media Queries for Responsiveness */
+@media screen and (max-width: 768px) {
+    .profile {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .profile-image {
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .assignment-section {
+        grid-template-columns: 1fr;
+    }
+}

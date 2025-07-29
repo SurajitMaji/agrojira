@@ -1,0 +1,63 @@
+.expert-form-container{
+    margin: 0px;
+    padding: 20px;
+    box-shadow: 0px 0px 10px 0px #ccc;
+    height: 100%; 
+    font-family:Helvetica;
+   
+}
+form#farmerForm{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    padding: 10px;
+    
+}
+.expert-form-container .each-input-field{
+    display: flex;
+    flex-direction: column;
+}
+
+.expert-form-container .form-label {
+    font-weight: bold;
+}
+.expert-form-container .form-control {
+    min-width: 100px;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-bottom: 1px solid rgb(202, 202, 202) ;
+    font-size: 14px;
+}
+
+.btn {
+    background-color: #007bff;
+    color: white;
+    font-size: 20px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+}
+.btn:hover {
+    background-color: #0056b3;
+}
+img#photo_preview{
+    width: 90px;
+    height: 100px;
+    object-fit: cover;
+    border:0.5px solid rgb(161, 159, 159);
+}
+span.required_field{
+    color: red;
+}
+span.note-text{
+    display: flex;
+    justify-content: right;
+    font-size: 12px;
+    font-style: italic;
+
+}

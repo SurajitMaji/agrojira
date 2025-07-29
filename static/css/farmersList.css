@@ -1,0 +1,57 @@
+body{
+    margin: 0px;
+    padding: 0pc;
+}
+div.memberTableArea{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+table.memberTable{
+    width: 100%;
+
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+table caption{
+    font-size: 30px;
+    margin: 10px;
+}
+table.memberTable th,
+table.memberTable td
+{
+    border: 1px solid black;
+}
+table.memberTable td{
+    padding-left:5px ;
+}
+td.member_photo{
+    display: flex;
+    justify-content: center;
+}
+img.member_image{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+a.profileName{
+    font-weight: bold;
+    color: black;
+    text-decoration:none;
+}
+a.profileName:hover{
+    color:rgb(4, 49, 248);
+}
+
+td.actionCell{
+	text-align: center;
+}
+
+img.actionLogo{
+width: 30px;
+height: 30px;
+border-radius: 55px;
+transition: .7s;
+}
+img.actionLogo:hover{
+    scale: 1.1;
+}

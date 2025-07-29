@@ -1,0 +1,108 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  body {
+    background-color: #f9f9f9;
+    padding: 20px;
+  }
+  .profile-container{
+    margin: 10px;
+
+  }
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .profile-card {
+    flex: 1 1 60%;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .activities-card {
+    flex: 1 1 35%;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+
+  .header img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid #ddd;
+  }
+
+  .header-info h2 {
+    font-size: 22px;
+    margin-bottom: 5px;
+  }
+
+  .info p {
+    margin: 8px 0;
+  }
+
+  .badge {
+    color: green;
+    font-weight: bold;
+  }
+
+  .edit-btn {
+    display: inline-block;
+    padding: 6px 12px;
+    background-color: #3498db;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    /* float: right; */
+    margin-top: -30px;
+  }
+
+  .your-activities, .recent-activities {
+    margin-top: 30px;
+  }
+
+  .activity-item {
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+
+  .timestamp {
+    color: #888;
+    font-size: 12px;
+  }
+
+  /* add manually */
+  .recent-activity-area{
+    margin: 10px 0px;
+  }
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+    }
+    .header{
+        display: flex;
+        flex-direction: column;
+    }
+    .edit-btn {
+      float: none;
+      display: block;
+      margin: 10px 0;
+    }
+  }
