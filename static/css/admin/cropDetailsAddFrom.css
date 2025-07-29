@@ -1,0 +1,58 @@
+body {
+            
+    margin: 0;
+    padding: 20px;
+}
+
+.form-container {
+    font-family: Arial;
+    max-width: 600px;
+    margin: auto;
+    background-color:rgb(248, 248, 248);
+    padding: 20px;
+    border-radius: 10px;
+}
+.form-container h2{
+    text-align:center;
+}
+form label {
+    display: block;
+    margin-top: 15px;
+}
+
+form input[type="text"],
+form input[type="file"],
+form select,
+form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    margin-top: 20px;
+    padding: 12px;
+    width: 100%;
+    background-color:rgb(2, 234, 255);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+@media (max-width: 600px) {
+    .form-container {
+        padding: 15px;
+    }
+
+    button {
+        font-size: 14px;
+    }
+}
