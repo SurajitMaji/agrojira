@@ -1,1 +1,64 @@
+{% extends 'expert/base.html'%}
 
+{% load static %}
+{% block title%}
+Expert
+{% endblock title%}
+  
+{% block head %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/expert/index.css' %}">
+{% endblock head %}
+    {% block expertBody %}
+
+
+    <section class="hero">
+      <div class="container hero-content">
+        <div class="expert-photo-area">
+          {% if expert.expert_photo %}
+              <img src="{{ expert.expert_photo.url }}" alt="" class="expert-photo">
+          {% else %}
+              {% if expert.gender == 'Male' %}
+                  <img src="{% static 'image/4140037.png' %}" alt="" class="expert-photo">
+              {% else %}
+                  <img src="{% static 'image/4140047.png' %}" alt="" class="expert-photo">
+              {% endif %}
+          {% endif %}
+
+    
+      </div>
+        <h1>{{expert.name}}</h1>
+        <p>{{expert.expert_address}}</p>        
+        <p>{{expert.specialization}}</p>
+        <a href="#" class="btn">Get Started</a>
+      </div>
+    </section>
+  
+    <!-- Features Section -->
+    <section class="features">
+      <div class="container features-grid">
+        <a href="answerQuestion" class="feature-box">
+          <div class="icon">🎯</div>
+          <h3>Answer Question</h3>
+          <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi.</p>
+        </a>
+        <a href="getAdvise" class="feature-box">
+          <div class="icon">🧠</div>
+          <h3>Get Adviced</h3>
+          <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</p>
+        </a>
+        <a href="" class="feature-box">
+          <div class="icon">💡</div>
+          <h3>Solve Problem</h3>
+          <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.</p>
+        </a>
+        <a href="expertVideoView" class="feature-box">
+          <div class="icon">🎥</div>
+          <h3>Videos</h3>
+          <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis.</p>
+        </a>
+      </div>
+    </section> 
+   
+
+  {% endblock expertBody %}

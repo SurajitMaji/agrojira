@@ -1,0 +1,102 @@
+{% extends 'expert/base.html'%}
+{% load static %}
+{% block title %}Expert{% endblock title %}
+
+{% block head %}
+<style>
+    .container { padding: 2rem; }
+    .section { background:rgb(217, 255, 206); margin-bottom: 1.5rem; padding: 1rem; border-radius: 8px; }
+    .section h3 { color: #2c3e50; }
+    .success { color: green; font-weight: bold; }
+    textarea { width: 100%; height: 100px; margin-top: 10px; padding: 10px; border-radius: 5px; }
+    button { padding: 10px 20px; background: #2e7d32; color: white; border: none; border-radius: 6px; }
+    canvas { max-width: 300px; margin: auto; }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock head %}
+
+{% block expertBody %}
+<div class="container">
+    <div class="section">
+        <h3>Project Info</h3>
+        <p><strong>Project:</strong> {{ project.project_name }}</p>
+        <p><strong>Crop:</strong> {{ project.crop_name }} ({{ project.crop_type }})</p>
+        <p><strong>Farmer:</strong> {{ farmer.user_name }}</p>
+        <p><strong>Farm Size:</strong> {{ project.farm_size }}</p>
+        <p><strong>Location:</strong> {{ project.farm_location }}, {{ farmer.user_district }}</p>
+        <img src="{{ project.project_photo.url }}" alt="Project Photo" style="max-width: 200px; margin-top: 10px;">
+    </div>
+
+    <div class="section">
+        <h3>Project Completion Progress</h3>
+        <canvas id="progressChart"></canvas>
+    </div>
+
+    <div class="section">
+        <h3>Completed Stages</h3>
+        <ul>
+            {% for stage in completed %}
+                <li>{{ stage }}</li>
+            {% empty %}
+                <li>No stages completed yet.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="section">
+        <h3>Next Suggested Stage</h3>
+        {% if next_stage %}
+            <p><strong>{{ next_stage }}</strong></p>
+        {% else %}
+            <p>All stages completed ✅</p>
+        {% endif %}
+    </div>
+
+    {% if next_stage %}
+    <div class="section">
+        <h3>Give Your Expert Suggestion</h3>
+        <form method="post" >
+            {% csrf_token %}
+            {% comment %} <input type="number" name="project_id" value="{{ project.project_id }}" style="display:none">
+            <input type="text" name="current_stage" value="{{ next_stage }}" style="display:none"> {% endcomment %}
+            <label for="expert_suggestion">Suggestion for {{ next_stage }}:</label>
+            <textarea name="expert_suggestion" id="expert_suggestion" required>{{ obj.expert_advise }}</textarea>
+            <br><button type="submit">
+                Submit Suggestion
+            </button>
+        </form>
+    </div>
+    {% endif %}
+
+    {% if success %}
+        <p class="success">Suggestion submitted successfully!</p>
+    {% endif %}
+</div>
+
+<script>
+    const completed = {{ completed|length }};
+    const total = 5;
+    const remaining = total - completed;
+
+    const ctx = document.getElementById('progressChart').getContext('2d');
+    const progressChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Completed', 'Remaining'],
+            datasets: [{
+                data: [completed, remaining],
+                backgroundColor: ['#2e7d32', '#cfd8dc'],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            },
+            cutout: '60%',
+        }
+    });
+</script>
+{% endblock expertBody %}

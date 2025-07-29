@@ -1,0 +1,43 @@
+{% load static %}
+{% block head %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/expert/header.css' %}">
+{% endblock head %}
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="logo">Agrjira</div>
+      <nav class="nav" id="nav-menu">
+        <ul>
+
+          <li><a href="/expert">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Profile</a></li>
+          <li><a href="#">Query</a></li>
+          <li><a href="#">Notification</a></li>
+          <li><a href="#">Contact</a></li>
+          <li>
+            <form method="POST" action="">
+                {% csrf_token %}
+                <div class="search-container">
+                <input type="text" name="search-value" placeholder="Search here..." class="search-input">
+                <input type="submit" value="Search" class="btn search-button">
+                </div>
+            </form>
+          </li>
+          <li><a href="/expertLogout" class="btn">LogOut</a></li>
+        </ul>
+      </nav>
+      <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+    </div>
+  </header>
+  {% block javaScript%}
+  
+  <script src="{% static 'js/expert/header.js' %}"></script>
+  {% endblock javaScript%}
+ 
+
+
+

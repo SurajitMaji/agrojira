@@ -1,0 +1,73 @@
+{% extends 'expert/base.html'%}
+
+
+{% load static %}
+{% block title %}Expert{% endblock title %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/expert/index.css' %}">
+<style>
+  .getAdvice-container header {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #007acc;
+    color: white;
+  }
+  .project-card {
+    max-width: 700px;
+    margin: 20px auto;
+    background: #ffffff;
+    padding: 25px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    border-radius: 10px;
+  }
+  .project-card h2 {
+    color: #333;
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+  .project-card p {
+    font-size: 16px;
+    color: #555;
+  }
+  .btn-wrapper {
+    text-align: center;
+    margin-top: 20px;
+  }
+  a.get-advise-btn {
+    display: inline-block;
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #007acc;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+  }
+  a.get-advise-btn:hover {
+    background-color: #005f99;
+  }
+</style>
+{% endblock head %}
+
+{% block expertBody %}
+<div class="getAdvice-container">
+  <header>
+    <h1>Get Advice</h1>
+  </header>
+
+  {% for project in projects %}
+  <div class="project-card">
+    <h2>Farmer Name: {{ project.farmer_primary_id.user_name }}</h2>
+    <p>Crop Name: {{ project.crop_name }}</p>
+    <p>Current Stage: {{ project.current_stage }}</p>
+    <div class="btn-wrapper">
+      <a href="{% url 'giveAdvise' project.project_id %}" class="get-advise-btn">
+        Give Advise</a>
+    </div>
+  </div>
+  {% empty %}
+  <p style="text-align:center; color:#888; margin-top:40px;">No active projects found.</p>
+  {% endfor %}
+</div>
+{% endblock expertBody %}

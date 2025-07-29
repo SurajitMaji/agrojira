@@ -1,0 +1,73 @@
+{% extends 'expert/base.html'%}
+
+{% load static %}
+{% block title%}
+Expert
+{% endblock title%}
+  
+{% block head %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/expert/addVideo.css' %}">
+{% endblock head %}
+{% block expertBody %}       
+
+
+<div class="add-video-container">
+    <h2>Update Expert Video</h2>
+    <form method="POST" enctype="multipart/form-data" action="/expertVideoUpdated">
+        {% csrf_token %}
+        
+        <input type="text" name="video_id" value="{{video.video_id}}" style="display:none" required>
+
+        <label for="title">Title:</label>
+        <input type="text" name="title" value="{{video.title}}" required>
+
+        <label for="description">Description:</label>
+        <textarea name="description" rows="4"  required>{{video.description}}</textarea>
+
+        <label for="video_file">Select Video:</label>
+        <input type="file" name="video_file"   id="video_file" accept="video/*" onchange="previewVideo()" >
+
+        <div class="preview">
+            <video id="video_preview" src="{{video.video_file.url}}" controls ></video>
+        </div>
+
+        <label for="thumbnail">Select Thumbnail Image:</label>
+        <input type="file" name="thumbnail" id="thumbnail" accept="image/*" onchange="previewThumbnail()" >
+
+        <div class="preview">
+            <img id="thumbnail_preview" src="{{video.thumbnail.url}}" >
+        </div>
+
+        <label for="duration">Duration:</label>
+        <input type="text" name="duration" value="{{video.duration}}" placeholder="e.g., 5 min" required>
+
+        <label for="category">Category:</label>
+        <select name="category" required>
+            <option value="">--Select one--</option>
+            <option value="soil" {% if video.category == 'soil' %}selected{% endif %}>Soil Preparation</option>
+            <option value="seed" {% if video.category == 'seed' %}selected{% endif %}>Seed Details</option>
+            <option value="sowing" {% if video.category == 'sowing' %}selected{% endif %}>Sowing Process</option>
+            <option value="irrigation" {% if video.category == 'irrigation' %}selected{% endif %}>Irrigation Details</option>
+            <option value="fertilizer" {% if video.category == 'fertilizer' %}selected{% endif %}>Fertilizer Details</option>
+            <option value="pest" {% if video.category == 'pest' %}selected{% endif %}>Pest Details</option>
+            <option value="weed" {% if video.category == 'weed' %}selected{% endif %}>Weed Details</option>
+            <option value="disease" {% if video.category == 'disease' %}selected{% endif %}>Disease Details</option>
+            <option value="harvesting" {% if video.category == 'harvesting' %}selected{% endif %}>Harvesting</option>
+            <option value="postharvesting" {% if video.category == 'postharvesting' %}selected{% endif %}>Post Harvesting Details</option>
+            <option value="others" {% if video.category == 'others' %}selected{% endif %}>Others Details</option>
+            
+        </select>
+        <button type="submit">Upload Video</button>
+    </form>
+</div>    
+
+{% endblock expertBody %}
+
+{% block javaScript%}
+
+    <script src="{% static 'js/expert/addVideo.js' %}"></script>
+{% endblock javaScript%}
+
+
+

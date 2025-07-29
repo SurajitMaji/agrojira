@@ -1,0 +1,73 @@
+{% extends 'expert/base.html'%}
+
+{% load static %}
+{% block title%}
+Expert
+{% endblock title%}
+  
+{% block head %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/expert/addVideo.css' %}">
+{% endblock head %}
+{% block expertBody %}
+
+        
+
+
+<div class="add-video-container">
+    <h2>Upload Expert Video</h2>
+    <form method="POST" enctype="multipart/form-data" action="addVideo">
+        {% csrf_token %}
+        
+        <label for="title">Title:</label>
+        <input type="text" name="title" required>
+
+        <label for="description">Description:</label>
+        <textarea name="description" rows="4" required></textarea>
+
+        <label for="video_file">Select Video:</label>
+        <input type="file" name="video_file" id="video_file" accept="video/*" onchange="previewVideo()" required>
+
+        <div class="preview">
+            <video id="video_preview" controls style="display: none;"></video>
+        </div>
+
+        <label for="thumbnail">Select Thumbnail Image:</label>
+        <input type="file" name="thumbnail" id="thumbnail" accept="image/*" onchange="previewThumbnail()" required>
+
+        <div class="preview">
+            <img id="thumbnail_preview" style="display: none;">
+        </div>
+
+        <label for="duration">Duration:</label>
+        <input type="text" name="duration" placeholder="e.g., 5 min" required>
+
+        <label for="category">Category:</label>
+        <select name="category" required>
+            <option value="">--Select one--</option>
+            <option value="soil">Soil Preparation</option>
+            <option value="seed">Seed Details</option>
+            <option value="sowing">Sowing Process</option>
+            <option value="irrigation">Irrigation Details</option>
+            <option value="fertilizer">Fertilizer Details</option>
+            <option value="pest">Pest Details</option>
+            <option value="weed">Weed Details</option>
+            <option value="disease">Disease Details</option>
+            <option value="harvesting">Harvesting</option>
+            <option value="postharvesting">Post Harvesting Details</option>
+            <option value="others">Others Details</option>
+            
+        </select>
+        <button type="submit">Upload Video</button>
+    </form>
+</div>    
+
+{% endblock expertBody %}
+
+{% block javaScript%}
+
+    <script src="{% static 'js/expert/addVideo.js' %}"></script>
+{% endblock javaScript%}
+
+
+

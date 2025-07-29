@@ -1,0 +1,30 @@
+
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{%block title%} {% endblock title %} Agrojira </title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/expert/header.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/expert/fotter.css' %}">
+    <link rel="shortcut icon" href="{% static 'image/agrojira.jpeg' %}" type="image/x-icon">
+    
+{% block head %}
+{% endblock head %}
+  </head>
+  <body>
+    {% include 'expert/header.html' %}
+
+  
+        {% block expertBody %}
+
+        {% endblock expertBody %}
+
+    {% include 'expert/fotter.html' %}
+
+    <script src="{% static 'js/expert/index.js' %}"></script>
+    {% block javaScript%}
+    {% endblock javaScript%}
+   </body>
+</html>

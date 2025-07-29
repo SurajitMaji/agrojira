@@ -1,0 +1,211 @@
+{% extends 'expert/base.html'%}
+
+{% load static %}
+{% block title%}
+Expert
+{% endblock title%}
+  
+{% block head %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/expert/index.css' %}">
+{% endblock head %}
+    {% block expertBody %}
+
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Answer Questions | Agrojira</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    
+
+.answerQuestion-container .header {
+  background-color: #007acc;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  z-index:0;
+}
+
+.answerQuestion-container .container {
+  padding: 20px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.question-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.question-card {
+  background-color: white;
+  border-left: 5px solid #007acc;
+  padding: 15px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.answer-btn {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #007acc;
+  color: white;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.answer-btn:hover {
+  background-color: #005f99;
+}
+
+.answer-form-container {
+  margin-top: 30px;
+  background: white;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  display: none;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  resize: vertical;
+  font-size: 16px;
+}
+
+button[type="submit"] {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background: #007acc;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button[type="submit"]:hover {
+  background: #005f99;
+}
+
+/* Responsive */
+@media screen and (max-width: 600px) {
+  .question-card h3 {
+    font-size: 16px;
+  }
+
+  .answer-form-container h2 {
+    font-size: 18px;
+  }
+}
+    
+  </style>
+</head>
+<div class="answerQuestion-container">
+
+  <header class="header">
+    <h1>Answer Questions</h1>
+  </header>
+
+  <main class="container">
+    
+    {% if queries %}
+    <div class="question-list">
+      
+      {% for query in queries %}
+        {% comment %} <div class="question-card">
+          <h3>{{query.query_title}}</h3>
+          <p>Asked by: {{query.farmer.user_name}}</p>
+          <button class="answer-btn" onclick="showAnswerForm('q1')">Answer</button>
+        </div> {% endcomment %}
+        <div class="question-card">
+          <h3>{{ query.query_title }}</h3>
+          <p>Asked by: {{ query.farmer.user_name }}</p>
+
+          {% if query.query_image %}
+            <img src="{{ query.query_image.url }}" alt="Query Image" style="max-width:80%; max-height:240px; margin-top:10px;" />
+          {% endif %}
+
+          <p>{{ query.query_text }}</p>
+          <button class="answer-btn" onclick="showAnswerForm('{{ query.query_id }}')">Answer</button>
+        </div>
+
+      {% empty %}
+      <p>No queries submitted yet.</p>
+      {% endfor %}
+      {% endif %}
+          
+    </div>
+
+    <div class="answer-form-container" id="answer-form">
+      <h2>Write Your Answer</h2>
+      <form method="POST" action="submitAnswer" enctype="multipart/form-data" id="answerForm" >
+      {% csrf_token %}
+      <input type="hidden" id="question_id" name="question_id" />
+      <textarea name="answer" id="answer" rows="6" placeholder="Type your answer here..." required></textarea>
+      {% comment %} <input type="file" name="solution_image" id="solution_image" accept="image/*" /> {% endcomment %}
+      <input type="file" name="solution_image" class="user_photo" id="user_photo" required onchange="preview(this,'photo_preview')">
+          <figure>
+              <img src="" alt="" id="photo_preview">
+          </figure>
+      <input type="submit" name="answer" value="Submit Answer">
+      {% comment %} <button type="submit">Submit Answer</button> {% endcomment %}
+    </form>
+
+    </div>
+  </main>
+
+  {% comment %} <script>
+            function showAnswerForm(questionId) {
+          document.getElementById("answer-form").style.display = "block";
+          document.getElementById("question_id").value = questionId;
+          document.getElementById("answer").focus();
+        }
+
+        document.getElementById("answerForm").addEventListener("submit", function(e) {
+          e.preventDefault();
+          const questionId = document.getElementById("question_id").value;
+          const answerText = document.getElementById("answer").value;
+
+          // You can replace this with AJAX/fetch call to Django backend
+          alert(Answer submitted for ${questionId}: ${answerText});
+
+          this.reset();
+          document.getElementById("answer-form").style.display = "none";
+        });
+  </script> {% endcomment %}
+  <script>
+function showAnswerForm(questionId) {
+  document.getElementById("answer-form").style.display = "block";
+  document.getElementById("question_id").value = questionId;
+  document.getElementById("answer").focus();
+}
+
+document.getElementById("answerForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const questionId = document.getElementById("question_id").value;
+  const answerText = document.getElementById("answer").value;
+
+  // Send data to backend (you can enhance this later with AJAX)
+  alert(`Answer submitted for question ID ${questionId}: ${answerText}`);
+
+  //this.reset();
+  document.getElementById("answer-form").style.display = "none";
+});
+</script>
+
+</div>
+</html> 
+   
+
+  {% endblock expertBody %}
+  {% block javaScript%}
+
+    <script src="{% static 'js/imagePreview.js' %}"></script>
+{% endblock javaScript%}

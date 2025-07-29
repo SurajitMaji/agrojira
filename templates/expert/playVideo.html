@@ -1,0 +1,59 @@
+{% extends 'expert/base.html'%}
+
+{% load static %}
+{% block title%}
+Expert
+{% endblock title%}
+  
+{% block head %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/expert/playVideo.css' %}">
+{% endblock head %}
+{% block expertBody %}        
+    <div class="video-container" id="playerContainer">
+        <video id="videoPlayer" class="video" src="{{video.video_file.url}}" poster="{{video.thumbnail.url}}"></video>
+    
+        <div class="controls">
+        <div class="top-controls">
+            <button id="themeToggle" class="btn">🌙</button>
+        </div>
+    
+        <div class="progress-container">
+            <input type="range" id="progressBar" value="0" min="0" step="0.1">
+        </div>
+    
+        <div class="bottom-controls">
+            <button id="playPause" class="btn">►</button>
+            <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
+            
+            <input type="range" id="volume" min="0" max="1" step="0.05" value="1">
+            
+            <select id="speed">
+            <option value="0.5">0.5x</option>
+            <option value="1" selected>1x</option>
+            <option value="1.5">1.5x</option>
+            <option value="2">2x</option>
+            </select>
+    
+            <button id="fullscreen" class="btn">⛶</button>
+        </div>
+        </div>
+    </div>    
+
+{% endblock expertBody %}
+{% block javaScript%}
+
+<script src="{% static 'js/expert/playVideo.js' %}"></script>
+    {% endblock javaScript%}
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,65 @@
+{% extends 'expert/base.html'%}
+
+{% load static %}
+{% block title%}
+Expert
+{% endblock title%}
+  
+{% block head %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/expert/video.css' %}">
+{% endblock head %}
+{% block expertBody %}
+
+        <div class="video-container">
+            <a href="/expert/addVideo" class="add-video-btn">Add New Video</a>
+
+            <div id="video-list">
+                <!-- Video items will be added here dynamically -->
+                 {% if videos %}
+                    {% for v in videos %}
+                    <div class="video-card">
+                        <div class="open-video">
+                            <a href="
+                            {% url 'expertPlayVideo' v.video_id %}
+                            " class="play-btn">
+                                ▶
+                            </a>
+                            <img src="{{v.thumbnail.url}}" alt="Thumbnail" class="thumbnail">
+                        </div>
+                        <div class="video-details">
+                            <h3>{{v.title}}</h3>
+                            <p>{{v.description}}</p>
+                            <div class="stats">
+                                <span>👍 {{0}}</span>
+                                <span>⏰ {{v.upload_date}}</span>
+                                <span>👁 {{v.views}} views</span>
+                            </div>
+                        </div>
+                        <div class="action-buttons">
+                            <a href="
+                            {% url 'expertVideoUpdate' v.video_id %}
+                                    " class="edit-btn">
+                                Edit
+                            </a>
+                            <a href="" class="delete-btn">Delete</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                <div class="video-card">
+                    Yet Not Upload any Video
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        
+        
+        
+    
+
+{% endblock expertBody %}
+
+
+
