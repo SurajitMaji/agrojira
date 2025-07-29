@@ -1,0 +1,22 @@
+        name  => Farmer's name
+        age  => Age of the farmer
+        gender => Fermer gender
+        experience_years  => Years of farming experience
+        farm_size  => Farm size in acres/hectares
+        location  => Geographic location of the farm
+        crops_grown  => List of crops cultivated
+        soil_type  => Type of soil on the farm (e.g., loamy, sandy)
+        irrigation_system  => Type of irrigation (e.g., Drip, Sprinkler)
+        fertilizers_used  => Organic or chemical fertilizers used
+        pest_control_methods  => Pesticides, crop rotation, companion planting, etc.
+        farming_techniques  => Traditional, Organic, Hydroponics, etc.
+        equipment_owned  => List of farm machinery
+        certifications  => Agricultural qualifications
+        sustainable_practices  => Eco-friendly farming techniques
+        technology_used  => Smart farming technologies like AI, sensors, drones
+        
+        => Financial & Productivity Tracking
+        annual_yield  => Dictionary of crop yield in tons per year
+        market_price_per_crop  => Dictionary with crop prices per ton
+        government_subsidies  => Amount of subsidy received
+        weather_adaptability  => Methods for handling weather changes
